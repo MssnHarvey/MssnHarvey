@@ -1,0 +1,346 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NEWSCTF 2021 | Mssn Harvey</title><meta name="keywords" content="NEWSCTF"><meta name="author" content="Harvey"><meta name="copyright" content="Harvey"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="0X1 Miscmisc签到处 binwalk得到了个flag.txt，base64得到flag：flag{Welc0me_t0_newsctf!!!} 伪装者 https:&#x2F;&#x2F;wws.lanzous.com&#x2F;ihGAlldzfmb  flag格式：flag{}Hint:steghide  修改rar头文件  得到以下信息①.背景.txt 123456789小林 正在追一部剧,但是他忘了剧名中一位">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NEWSCTF 2021">
+<meta property="og:url" content="http://example.com/2021/02/13/2021NEWSCTF/index.html">
+<meta property="og:site_name" content="Mssn Harvey">
+<meta property="og:description" content="0X1 Miscmisc签到处 binwalk得到了个flag.txt，base64得到flag：flag{Welc0me_t0_newsctf!!!} 伪装者 https:&#x2F;&#x2F;wws.lanzous.com&#x2F;ihGAlldzfmb  flag格式：flag{}Hint:steghide  修改rar头文件  得到以下信息①.背景.txt 123456789小林 正在追一部剧,但是他忘了剧名中一位">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2531675185.png">
+<meta property="article:published_time" content="2021-02-13T05:14:20.000Z">
+<meta property="article:modified_time" content="2021-03-18T11:35:08.959Z">
+<meta property="article:author" content="Harvey">
+<meta property="article:tag" content="NEWSCTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2531675185.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/02/13/2021NEWSCTF/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-03-18 19:35:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍清单</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影清单</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 评论</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2531675185.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Mssn Harvey</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍清单</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影清单</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 评论</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">NEWSCTF 2021</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-13T05:14:20.000Z" title="发表于 2021-02-13 13:14:20">2021-02-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-03-18T11:35:08.959Z" title="更新于 2021-03-18 19:35:08">2021-03-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Writeup/">Writeup</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="0X1-Misc"><a href="#0X1-Misc" class="headerlink" title="0X1 Misc"></a>0X1 Misc</h1><h2 id="misc签到处"><a href="#misc签到处" class="headerlink" title="misc签到处"></a>misc签到处</h2><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1270498528.jpg"></p>
+<p>binwalk得到了个flag.txt，base64得到flag：flag{Welc0me_t0_newsctf!!!}</p>
+<h2 id="伪装者"><a href="#伪装者" class="headerlink" title="伪装者"></a>伪装者</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://wws.lanzous.com/ihGAlldzfmb">https://wws.lanzous.com/ihGAlldzfmb</a>  flag格式：flag{}<br>Hint:steghide</p>
+</blockquote>
+<p>修改rar头文件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2844222164.png"></p>
+<p>得到以下信息<br>①.背景.txt</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">小林 正在追一部剧,但是他忘了剧名中一位角色的名字,于是他截了个图(好看的剧.png),开始了询问环节.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-----你能帮小林认出这是谁嘛</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">注:角色名字(中文拼音)是压缩包的密码</span><br></pre></td></tr></table></figure>
+
+<p>②.好看的剧.png</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1121862733.png"></p>
+<p>③.通过以上信息可以得知压缩包密码： <code>wangtianfeng</code> ；得到niu.jpg</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2798169470.jpg"></p>
+<p>④.key.wav（steghide隐写需要用到的密码）（PS：和GKCTF中Harley Quinn的考点一样）</p>
+<p>最后一小段可以听到拨号声，将其提取出来（因为后面提及的工具只能分析几十秒内的音频QAQ），DTMF，利用 <strong><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1vAG_iXU7zWLzLfxzBiKIkA">工具</a>（提取码：oy3x）</strong> 得到如下信息</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2863462517.png"></p>
+<p><a target="_blank" rel="noopener" href="http://dyf.ink/crypto/classical/others/#_24">手机键盘密码</a>解出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key &#x3D; ctfisfun</span><br></pre></td></tr></table></figure>
+
+<p>最后得到flag(bushi</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1692078918.png"></p>
+<p>划到最底下可以看到以下信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">熊曰：呋食很誒咯噔破啽住有歡嗚註嗄和你吃冬註物物眠嗚笨嘍擊笨噤襲你爾咬你爾常破很歡我吖拙歡意擊咯堅有嗷嗥哞怎發唬肉既歡沒破噤咯人和嘶啽更</span><br></pre></td></tr></table></figure>
+
+<p>很明显是继<a target="_blank" rel="noopener" href="http://www.keyfc.net/bbs/tools/tudoucode.aspx">与佛论禅</a>之后出来的<a target="_blank" rel="noopener" href="http://hi.pcmoe.net/">与熊论道</a>，解得flag：flag{牛年大吉今晚吃鸡今晚吃鸡小年快乐happy}</p>
+<h2 id="EMOJI"><a href="#EMOJI" class="headerlink" title="EMOJI"></a>EMOJI</h2><blockquote>
+<p>EMOJI(笑)<br>Hint：emoji-aes</p>
+</blockquote>
+<p>修改rar头文件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1342668997.png"></p>
+<p>得到一张图片和加密的压缩包</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2363476616.png"></p>
+<p>不难看出这是长安12时辰那个加密方式</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/992215977.jpg"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2155709941.jpg"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1648768351.jpg"></p>
+<p>799*248+21=198173，从而解出压缩包密码： <code>一九八一七三</code> </p>
+<p>进而得到以下信息：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1581949352.png"></p>
+<p>最后根据题目尝试<a target="_blank" rel="noopener" href="https://aghorler.github.io/emoji-aes/">emoji-aes</a>，得到flag：flag{em0j1_Aes_1s_3_ni5e_3ncr9pt_to0l}</p>
+<h2 id="happy-ox"><a href="#happy-ox" class="headerlink" title="happy ox"></a>happy ox</h2><blockquote>
+<p>这次我们邀请到了牛爷爷来给大家拜个年</p>
+</blockquote>
+<p>lsb 得到压缩包密码： <code>niuniandaji888</code> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/3879285178.png"></p>
+<p>好家伙！又来一层加密…<br>根据文档提示可知是科比密码，对照密码表即可得到压缩包密码：passwdis <code>kbyydsez</code> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1476229734.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/637737911.jpg"></p>
+<p>最终得到flag：flag{0h_y0u_f1nd_Me_h3ck}</p>
+<h2 id="听说你喜欢薅羊毛"><a href="#听说你喜欢薅羊毛" class="headerlink" title="听说你喜欢薅羊毛"></a>听说你喜欢薅羊毛</h2><blockquote>
+<p>附件地址：<a target="_blank" rel="noopener" href="https://wwa.lanzous.com/iNdm7lfooaj">https://wwa.lanzous.com/iNdm7lfooaj</a><br><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1Pc3RlAWW1tzy955TbEwryA">我的附件</a>（提取码：pc1o）</p>
+</blockquote>
+<p>放入010，拖到底部可以看到如下可能是Morse/Bacon的字符串</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/3266453861.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">011110000010010100101011001110100010001101000100101001101000011010011010010001111010001110011010100010111010000011110100000000110111000000000110100110011000000001110</span><br></pre></td></tr></table></figure>
+
+<p>尝试培根（0-&gt;a;1-&gt;b）解得passwordistingshuonixihuanyangmao，but这根本无法解开压缩包（PS:这只是JPHS的key）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1635161036.png"></p>
+<p>经过一番折腾，通过JPHS隐写得到压缩包密码： <code>Wdn1His87</code> </p>
+<p>打开brainpower.txt发现文件头竟是ID3，百度已查得知是mp3的文件头</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/562716738.png"></p>
+<p>audacity打开发现最后一段有情况，放大即可得到压缩包密码： <code>PsWdMuzi123</code> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1379680187.png"></p>
+<p>解得flag.txt（还不是flag.jpg），拉到最后发现是png的文件头倒过来的，<a target="_blank" rel="noopener" href="http://tool.huixiang360.com/str/reverse.php">在线工具</a>/脚本倒一下放入010</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/3405323143.png"></p>
+<p> <strong>附上脚本：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">content &#x3D; [] </span><br><span class="line">with open(&quot;flag.txt&quot; ) as f: </span><br><span class="line">    for row in f.readline(): </span><br><span class="line">        content.append(row) </span><br><span class="line">content.reverse() </span><br><span class="line"></span><br><span class="line">with open(&quot;galf.txt&quot;,&quot;w&quot; ) as f: </span><br><span class="line">    for row in content: </span><br><span class="line">        f.write(row)</span><br></pre></td></tr></table></figure>
+
+<p>but还是无法打开，再次查看发现这应该是jpg的，于是将文件头改为jpg的</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2277511102.png"></p>
+<p>最后打开是张二维码，扫码即可得到flag：flag{s0_easy_is_not_it?}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/668102732.png"></p>
+<h2 id="缺斤少两"><a href="#缺斤少两" class="headerlink" title="缺斤少两"></a>缺斤少两</h2><blockquote>
+<p>可恶，大过年的为什么要缺斤少两。  更改题目中的hint1：  原hint：原文长度8  更改为：原文长度9<br>Hint：是guess不是猜<br><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1cw6gyalEpTaKFFNZrwPlBA">附件</a>（提取码：iruz）</p>
+</blockquote>
+<p>先扫扫两张二维码看看有没有啥线索.jpg  ①.谐音梗，扣钱！.png ： 大牛：我也很疑惑呢（PS:异或）  ②.password.png 应该是二维码不全，于是就先将两张图异或一下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2884195139.png"></p>
+<p>最后补上定位点，扫码得到压缩包密码： <code>password:1q2w3e4r5t6y7u8i</code> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2133239000.png"></p>
+<p>解开里面有两张图（其中一张名叫passwd，而另一张很有可能就是压缩包了）和一个Hint<br><strong>hint.txt</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密码是靠猜的，不是爆破！</span><br></pre></td></tr></table></figure>
+
+<p>根据提示推测是outguess隐写，最终得到压缩包密码：news52ctf0</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2545390577.png"></p>
+<p><strong>Polybius.txt</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cipher:iftffsissrssirissr</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">hint1:\u660e\u6587\u957f\u5ea6\u662f\u0038\uff0c\u4f1a\u4e0b\u68cb\u5417\uff1f</span><br><span class="line">hint2:Zmlyc3Q&#x2F;LGxlbihmaXJzdCk9NQ&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">得到的有意义字符串，作为压缩包密码，才能进入下一层。</span><br></pre></td></tr></table></figure>
+
+<p>好家伙！hint还加密<br>hint1：明文长度是8，会下棋吗？（PS:题目说这里错了，应该是9）（PS:Unicode）<br>hint2：first?,len(first)=5（PS:base64）</p>
+<p>猜测是棋盘密码（<a target="_blank" rel="noopener" href="https://www.yuque.com/u2095721/xhc3mh/xb65yk">棋盘密码-波利比奥斯方阵密码</a>）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1625978581.png"></p>
+<p>而cipher里密文正好是五个字符，于是写个脚本跑一下，可以明显知道是 <code>keyisthis</code> </p>
+<p><strong>附上脚本</strong>（PS:来自BJDCTF-Polybius某大佬的脚本改编）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import itertools</span><br><span class="line">s&#x3D;&quot;first&quot;   #修改处</span><br><span class="line">sumresult&#x3D;[]</span><br><span class="line">numsumresult&#x3D;[]</span><br><span class="line">ciper&#x3D;&quot;iftffsissrssirissr&quot;  #修改处</span><br><span class="line">for i in itertools.permutations(s,5):#找出所有全排列</span><br><span class="line">    sumresult.append(&quot;&quot;.join(i))</span><br><span class="line">for i in sumresult:</span><br><span class="line">    temp&#x3D;&quot;&quot;</span><br><span class="line">    for j in ciper:</span><br><span class="line">        temp+&#x3D;str(i.index(j)+1)</span><br><span class="line">    numsumresult.append(temp)</span><br><span class="line">for i in numsumresult:</span><br><span class="line">    ans_&#x3D;&quot;&quot;</span><br><span class="line">    for j in range(0, len(i),2):</span><br><span class="line">        xx&#x3D;(int(i[j])-1)*5+int(i[j+1])+96</span><br><span class="line">        if xx&gt;ord(&#39;i&#39;):</span><br><span class="line">            xx+&#x3D;1</span><br><span class="line">        ans_+&#x3D;chr(xx)</span><br><span class="line">    print(ans_)</span><br></pre></td></tr></table></figure>
+
+<p>得到的flag.txt居然还不是最终的flag.gif</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">密文：mtHVnkLnIaP3FaW7KOWjTmKkVjWjVzKjdeNvTnAjoH9iZOIvTeHbvD&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">dic&#x3D;JASGBWcQPRXEFLbCDIlmnHUVKTYZdMovwipatNOefghq56rs????kxyz012789+&#x2F;</span><br><span class="line"></span><br><span class="line">恭喜来到最后一层，你知道base64？，那么解一下吧，得到flag就可以提交了呀。</span><br><span class="line">flag：NEWCTF2021&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>得到flag：NEWSCTF2021{base64_1s_v3ry_e@sy_and_fuN}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/51151865.png"></p>
+<h2 id="哥哥的秘密"><a href="#哥哥的秘密" class="headerlink" title="哥哥的秘密"></a>哥哥的秘密</h2><blockquote>
+<p>哥哥能有什么秘密呢<br>Hint1:秘密在原图里面<br>Hint:2+3+8num即地区字母+名字字母+生日</p>
+<p>据说哥哥的秘密藏在了妹妹的QQ空间里<br>QQ：2492853776<br>去寻找flag吧</p>
+</blockquote>
+<p>社工题~</p>
+<h1 id="0X2-Web"><a href="#0X2-Web" class="headerlink" title="0X2 Web"></a>0X2 Web</h1><h2 id="girlfriend"><a href="#girlfriend" class="headerlink" title="girlfriend"></a>girlfriend</h2><blockquote>
+<p>Web签到题<br>题目地址：<a target="_blank" rel="noopener" href="http://47.106.172.29/">http://47.106.172.29</a>:2333/<br>祝福大家找(男/女)朋友能像签到题一样简单</p>
+</blockquote>
+<p>反序列化字符逃逸</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2257254310.png"></p>
+<h1 id="0X3-Crypto"><a href="#0X3-Crypto" class="headerlink" title="0X3 Crypto"></a>0X3 Crypto</h1><h2 id="贝斯家族"><a href="#贝斯家族" class="headerlink" title="贝斯家族"></a>贝斯家族</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">;gM&amp;7AOTKl:236b;HHIm&#x3D;&#39;%8*&#x3D;&#39;&#39;2q;FX]*&lt;,5Z\&gt;&#39;a(\&lt;*)(o:2&lt;mE;DL+19egH[A2@7[A28+B;L2)3;-,Jc&lt;EDpe@kpeS&#x3D;]Ipp@5)e@;FN&lt;1@VeM3&#x3D;tj,I&#x3D;u&#39;8;;FXDT@;BL0@o[bo&#x3D;]\dGA2?f&#39;&lt;CL(F@k&#96;.CASl6l:236V@Vo.c&gt;&amp;6JY@mipjA4Tls;&#x2F;:D4&#x3D;]I2%@PTof&lt;*)gK;eo9(@VeIr</span><br></pre></td></tr></table></figure>
+
+<p>base85-&gt;base64-&gt;base32</p>
+<h2 id="好日子"><a href="#好日子" class="headerlink" title="好日子"></a>好日子</h2><blockquote>
+<p>好日子，11月11日</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">↗↗←↖↕↖↕↳↗↰↗↺↖→↔↰↕↙↕↺↔↰↖↗↔↖↔↑↔→←↑↖↓↗↓←↔↔↗←↘↕↖←↕↕↻↗↰↕↓↖←↗↲↗↑↗↱↗↘↕↔↕↻←↓↔↘↗↕↕↔↖↑↖↖↗↔↗↲↔↙↗↗↗↗↔↔↕↰↔↔↕↰↖↰↔↔↗→↕↔↗↕↖→↕↖↕↓↖←↗↰↔↑↗↖↕↻←↕↕↕←↖↗↘↔↔↕↔↖→↔↰←↔↖↖↖↘↕↱←↑↔↰↔↗↕↘↕↺←→↗↖↗↲←↙&#x3D;</span><br></pre></td></tr></table></figure>
+
+<p>百度看看箭头解密可知此为<a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=jiantou">文本加密为箭头符号</a>，得到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">G6fmJNRzinzWvqr1SC4w8f5oJcPLAKHdo3xEdQVDLyGGtjtjZtBdERfcPJqFo5e6HtdRz4VXk1zwhn2FL9</span><br></pre></td></tr></table></figure>
+
+<p>接着base58得到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">U2FsdGVkX19oI1ocbbcM5wensOuKarNA3noE&#x2F;HS74RNYqh0stoMpQohkLGqF</span><br></pre></td></tr></table></figure>
+
+<p>然后<a target="_blank" rel="noopener" href="http://www.jsons.cn/rabbitencrypt/">Rabbit解密</a>（我也不知道为啥是它.jpg）得到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">klv,oclz&#123;mkd_slp_vb_zjjs_slp&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后<a target="_blank" rel="noopener" href="http://www.atoolbox.net/Tool.php?Id=911">仿射密码</a>（根据题目全设置为11）得到flag：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;the_day_is_good_day&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="你懂猪圈？"><a href="#你懂猪圈？" class="headerlink" title="你懂猪圈？"></a>你懂猪圈？</h2><blockquote>
+<p>看看对照表吧</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cipher：1101101011100000110110001110010011110110111100001100100011101000101111101101100011001110110111001011111011011000101111101101001011100000111001001111101</span><br><span class="line"></span><br><span class="line">flag&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="easy-xor"><a href="#easy-xor" class="headerlink" title="easy_xor"></a>easy_xor</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from flag import flag</span><br><span class="line"></span><br><span class="line">flag&#x3D;bytes_to_long(flag)</span><br><span class="line">ans&#x3D;flag^(flag&lt;&lt;15)</span><br><span class="line">print(ans)</span><br><span class="line"></span><br><span class="line">#ans&#x3D;14569375211114495592988072883061872297563767589932067656113392860528203976417190082740661816716711081417186761262073489271425789667068315834063344130245403597447850801623941898977852694319512368707965</span><br></pre></td></tr></table></figure>
+
+<p>官方wp</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">s&#x3D;&quot;11000010111001111100010100011110011001111110010100011010010111010111001101010111011000011001110101010000010111111001000101010110011001111001010100001110010110010101110111101001010000000110111100000101111111010001101001100111111001010010101001011111100011010111011001000011011100110111011110010101000000100110111110001101011011000100101101000101010111111000100101000110011001111110010100111110010111110000111101011001100101010000010001011001010110110111111111110001010100000011000101011011011111110111001101101101001100110000010100000011000000111011111101110011011101110111001110101001101111100100010101001101000001110001110110010111111010110010111111100101111101&quot;</span><br><span class="line"></span><br><span class="line">def xor(a,b):</span><br><span class="line">    S&#x3D;&quot;&quot;</span><br><span class="line">    for i in range(0,len(a)):</span><br><span class="line">        if a[i]&#x3D;&#x3D;b[i]:</span><br><span class="line">            S+&#x3D;&quot;0&quot;</span><br><span class="line">        else:</span><br><span class="line">            S+&#x3D;&quot;1&quot;</span><br><span class="line">    return S</span><br><span class="line"></span><br><span class="line">flag&#x3D;s[len(s)-15:]</span><br><span class="line">iv&#x3D;flag</span><br><span class="line">N&#x3D;[iv]</span><br><span class="line">for i in range(647,17,-15):</span><br><span class="line">    iv&#x3D;xor(iv,s[i-15:i])</span><br><span class="line">    N.append(iv)</span><br><span class="line">flag&#x3D;&quot;&quot;</span><br><span class="line">for i in range(len(N)-1,-1,-1):</span><br><span class="line">    flag+&#x3D;N[i]</span><br><span class="line">print(&quot;11&quot;+flag)</span><br><span class="line">from Crypto.Util.number import long_to_bytes</span><br><span class="line"></span><br><span class="line">flag&#x3D;int(&quot;11000010111001100100000011010010111001100100000011010110110111001101111011101110110111000100000011101000110111100100000011101010111001100100000011000010110110001101100001011000111100001101111011100100010000001101001011100110010000001110011011011110010000001100101011000010111001101111001001011000111001101101111001000000110100001100101011100100110010100100000011010010111001100100000011110010110111101110101011100100010000001100110011011000110000101100111001110100110011001101100011000010110011101111011011110000110111101110010010111110110010101100001011100110111100101011111001001100110000101101110011001000101111101000110011101010111100101111101&quot;,2)</span><br><span class="line">print(long_to_bytes(flag))</span><br></pre></td></tr></table></figure>
+
+<h2 id="fan-si"><a href="#fan-si" class="headerlink" title="fan si"></a>fan si</h2><blockquote>
+<p>真的是base32，flag{}有用哦<br>Hint1：总共只有两步<br>Hint2：题目就是第一步，fan si？</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">72FVZ2II7KL4V2KQVKUXHWYXYW3F7WAONKUF7TYN72XFRED&#x3D;</span><br><span class="line"></span><br><span class="line">真的是base32，但是好像动了什么手脚？</span><br></pre></td></tr></table></figure>
+
+<p>根据提示可知其为仿射密码</p>
+<h2 id="EZ-RSA"><a href="#EZ-RSA" class="headerlink" title="EZ-RSA"></a>EZ-RSA</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import gmpy2</span><br><span class="line">import sympy</span><br><span class="line">from Crypto.Util.number import *</span><br><span class="line">from flag import flag</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">z&#x3D;getPrime(1024)</span><br><span class="line">p&#x3D;sympy.nextprime(z)</span><br><span class="line">q&#x3D;sympy.prevprime(10*z)</span><br><span class="line">n&#x3D;p*q</span><br><span class="line"></span><br><span class="line">m&#x3D;bytes_to_long(flag)</span><br><span class="line">e&#x3D;0xe18e</span><br><span class="line">c&#x3D;pow(m,e,n)</span><br><span class="line">print(c)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#n&#x3D;0x2c404d87c6244ad1b44aabd95244d5deb3c93cf3bd798ba4624cd9f89c95e246aad9cbda463292c6ef3140d97c5c1e691c54095e75f56d61a1640decc83caccce52c957282949bed20105d4d67c2b4c3d4c15829657e246d899917022e6d4d07c4382bcc3b83376d7250d85088dc73b24d030f4625fb37c5405cee04ace903d68747035fd55946ad2eb807db0b0508fc24fd54185614ab18c83127b7aa48f9927cc1258f819e02c5d2db4074736e374616664a2b49d1ff3a3effc4af201f235af5193a6e9a0192bb39aad91c5291a1b53973a85bec5dbbb3350e6c344b445c71212938d56a0c99e571bd15356979c394f84398143033fc44eb40558f253bb2445</span><br><span class="line">#c&#x3D;0x73658446624aaccfefa351499ece4c4635f61ff9d9d9354236afbad3b9e4000582b192f92a6e7e96b60a8899610a841faee92cb38d0e195587977cb806ecb7e4ffe8772f34cec9e0957f28040466306fe5db43b96824aa45bbebed9c1dbf15ac13db238234b60b36bded6e137483b307296e76902a13914065004a289b2186777f1c93ca656a19e751d0e7cf8c090803242ccfe14746c43fe6785028cef6380c590d59ed3469f27ac1769fa2f7fe22eace6e9af1ee33f57b120dacddabbd09239bfc133e79945af9a01568aa1e44e79813fa2e9069fb755823c4bee745f6404c1a5b690f5ba5d52c9b783bd0dfc3a4d473e99879241c0453de76be0e72980d39</span><br></pre></td></tr></table></figure>
+
+<h2 id="EZ-rsa2"><a href="#EZ-rsa2" class="headerlink" title="EZ_rsa2"></a>EZ_rsa2</h2><blockquote>
+<p>so easy<br>Hint1：有限域 n-th root<br>Hint2：别急着转字符，看看数字<br><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1tmaRhaLdR4Zfqdm0yNESCQ">附件</a>（提取码：08oj）</p>
+</blockquote>
+<h2 id="RSA算法"><a href="#RSA算法" class="headerlink" title="RSA算法"></a>RSA算法</h2><blockquote>
+<p>Hint：x=0代进去  四个节点第一个私钥的和就是p，第二个私钥的和就是q<br><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1nFaFSM7GzqdtUq_F1opeKw">附件</a>（提取码：mx47）</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Harvey</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/02/13/2021NEWSCTF/">http://example.com/2021/02/13/2021NEWSCTF/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Mssn Harvey</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/NEWSCTF/">NEWSCTF</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2531675185.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/IMG_20210320_145848.png" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/IMG_20210320_145848.png" alt="WeChat"/></a><div class="post-qr-code-desc">WeChat</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1616223647_edit_497335509645465.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1616223647_edit_497335509645465.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/02/20/%E7%BA%A2%E9%98%9F%E6%8A%80%E5%B7%A7-%E7%BD%91%E7%BB%9C%E9%92%93%E9%B1%BC/"><img class="prev-cover" src="https://raw.githubusercontent.com/MssnHarvey/cloudimg/main/img/hacker%20(74).jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">红队技巧-网络钓鱼</div></div></a></div><div class="next-post pull-right"><a href="/2020/10/28/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2988852155.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">学习资料</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Harvey</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">17</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/MssnHarvey/mssnharvey.github.io"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=3305601910" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://t.me/MssnHarvey" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a><a class="social-icon" href="https://github.com/MssnHarvey" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3305601910@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Welcome to Harvey'Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0X1-Misc"><span class="toc-number">1.</span> <span class="toc-text">0X1 Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#misc%E7%AD%BE%E5%88%B0%E5%A4%84"><span class="toc-number">1.1.</span> <span class="toc-text">misc签到处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%AA%E8%A3%85%E8%80%85"><span class="toc-number">1.2.</span> <span class="toc-text">伪装者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EMOJI"><span class="toc-number">1.3.</span> <span class="toc-text">EMOJI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#happy-ox"><span class="toc-number">1.4.</span> <span class="toc-text">happy ox</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AC%E8%AF%B4%E4%BD%A0%E5%96%9C%E6%AC%A2%E8%96%85%E7%BE%8A%E6%AF%9B"><span class="toc-number">1.5.</span> <span class="toc-text">听说你喜欢薅羊毛</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%BA%E6%96%A4%E5%B0%91%E4%B8%A4"><span class="toc-number">1.6.</span> <span class="toc-text">缺斤少两</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%A5%E5%93%A5%E7%9A%84%E7%A7%98%E5%AF%86"><span class="toc-number">1.7.</span> <span class="toc-text">哥哥的秘密</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0X2-Web"><span class="toc-number">2.</span> <span class="toc-text">0X2 Web</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#girlfriend"><span class="toc-number">2.1.</span> <span class="toc-text">girlfriend</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0X3-Crypto"><span class="toc-number">3.</span> <span class="toc-text">0X3 Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%9D%E6%96%AF%E5%AE%B6%E6%97%8F"><span class="toc-number">3.1.</span> <span class="toc-text">贝斯家族</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A5%BD%E6%97%A5%E5%AD%90"><span class="toc-number">3.2.</span> <span class="toc-text">好日子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%A0%E6%87%82%E7%8C%AA%E5%9C%88%EF%BC%9F"><span class="toc-number">3.3.</span> <span class="toc-text">你懂猪圈？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#easy-xor"><span class="toc-number">3.4.</span> <span class="toc-text">easy_xor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fan-si"><span class="toc-number">3.5.</span> <span class="toc-text">fan si</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EZ-RSA"><span class="toc-number">3.6.</span> <span class="toc-text">EZ-RSA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EZ-rsa2"><span class="toc-number">3.7.</span> <span class="toc-text">EZ_rsa2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RSA%E7%AE%97%E6%B3%95"><span class="toc-number">3.8.</span> <span class="toc-text">RSA算法</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/03/16/BUUCTF-Web%E5%88%86%E7%B1%BB%E7%BB%83%E4%B9%A0/" title="BUUCTF-Web分类练习"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1689581160.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BUUCTF-Web分类练习"/></a><div class="content"><a class="title" href="/2021/03/16/BUUCTF-Web%E5%88%86%E7%B1%BB%E7%BB%83%E4%B9%A0/" title="BUUCTF-Web分类练习">BUUCTF-Web分类练习</a><time datetime="2021-03-16T06:33:20.000Z" title="发表于 2021-03-16 14:33:20">2021-03-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/15/DC-3%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/" title="DC-3靶机渗透测试报告"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/dc3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DC-3靶机渗透测试报告"/></a><div class="content"><a class="title" href="/2021/03/15/DC-3%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/" title="DC-3靶机渗透测试报告">DC-3靶机渗透测试报告</a><time datetime="2021-03-15T06:11:00.000Z" title="发表于 2021-03-15 14:11:00">2021-03-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/14/VNCTF%202021/" title="VNCTF 2021"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/653112701.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="VNCTF 2021"/></a><div class="content"><a class="title" href="/2021/03/14/VNCTF%202021/" title="VNCTF 2021">VNCTF 2021</a><time datetime="2021-03-14T07:13:20.000Z" title="发表于 2021-03-14 15:13:20">2021-03-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/12/CTF-%E5%8E%8B%E7%BC%A9%E5%8C%85%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/" title="CTF-压缩包那些事儿"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/ctfysb.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="CTF-压缩包那些事儿"/></a><div class="content"><a class="title" href="/2021/03/12/CTF-%E5%8E%8B%E7%BC%A9%E5%8C%85%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/" title="CTF-压缩包那些事儿">CTF-压缩包那些事儿</a><time datetime="2021-03-12T06:11:00.000Z" title="发表于 2021-03-12 14:11:00">2021-03-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/09/DC-2%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/" title="DC-2靶机渗透测试报告"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/dc2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DC-2靶机渗透测试报告"/></a><div class="content"><a class="title" href="/2021/03/09/DC-2%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/" title="DC-2靶机渗透测试报告">DC-2靶机渗透测试报告</a><time datetime="2021-03-09T06:11:00.000Z" title="发表于 2021-03-09 14:11:00">2021-03-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Harvey</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><img src="https://web-resource.mucang.cn/maiche.web/mucang.official/official/resources/images/new-version/beian.png" width="20" height="20" /> </img> 闽ICP备20002768号</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    let initData = {
+      el: '#twikoo-wrap',
+      envId: '',
+      region: ''
+    }
+
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    twikoo.init(initData)
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: '',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="000PeZCQ1i4XVs" data-server="tencent" data-type="artist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
