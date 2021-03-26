@@ -928,7 +928,7 @@
       
         <tags>
             
-            <tag> linux主机安全基线检查脚本 </tag>
+            <tag> 脚本 </tag>
             
         </tags>
       
@@ -1030,7 +1030,7 @@
       
         <tags>
             
-            <tag> shiro反序列化漏洞 </tag>
+            <tag> shiro反序列化 </tag>
             
         </tags>
       
@@ -1734,7 +1734,7 @@
       
         <tags>
             
-            <tag> XXE漏洞 </tag>
+            <tag> XXE </tag>
             
         </tags>
       
