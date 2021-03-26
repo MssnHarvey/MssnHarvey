@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>真香系列-个人逆向虚拟机分享</title>
+      <link href="2021/03/26/%E7%9C%9F%E9%A6%99%E7%B3%BB%E5%88%97-%E4%B8%AA%E4%BA%BA%E9%80%86%E5%90%91%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%88%86%E4%BA%AB/"/>
+      <url>2021/03/26/%E7%9C%9F%E9%A6%99%E7%B3%BB%E5%88%97-%E4%B8%AA%E4%BA%BA%E9%80%86%E5%90%91%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%88%86%E4%BA%AB/</url>
+      
+        <content type="html"><![CDATA[<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p>在此之前我分享过一个pwn的虚拟机，粉丝回馈说很不错！，那么今天我就把我平时进行逆向分析和免杀的虚拟机分享出来，继续延续真香系列。</p><h2 id="2-效果截图"><a href="#2-效果截图" class="headerlink" title="2.效果截图"></a>2.效果截图</h2><p>因为平时也没咋做逆向分析，一般都在此虚拟机中编译免杀工具，进行免杀探索，所以工具不是很齐全，但是应该足够了。</p><h3 id="2-1反汇编调试软件"><a href="#2-1反汇编调试软件" class="headerlink" title="2.1反汇编调试软件"></a>2.1反汇编调试软件</h3><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/%E5%9B%BE%E7%89%871.png"></p><p>我觉得不错的基本上都有。</p><h3 id="2-2PE工具"><a href="#2-2PE工具" class="headerlink" title="2.2PE工具"></a>2.2PE工具</h3><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/%E5%9B%BE%E7%89%872.png"></p><p>平时自己能用到的就这么多了</p><h3 id="2-3加壳工具"><a href="#2-3加壳工具" class="headerlink" title="2.3加壳工具"></a>2.3加壳工具</h3><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/%E5%9B%BE%E7%89%873.png"></p><h3 id="2-4脱壳工具"><a href="#2-4脱壳工具" class="headerlink" title="2.4脱壳工具"></a>2.4脱壳工具</h3><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/%E5%9B%BE%E7%89%874.png"></p><p>听说高手脱壳这方面就用od，ida搞定。</p><h3 id="2-5-其他工具"><a href="#2-5-其他工具" class="headerlink" title="2.5 其他工具"></a>2.5 其他工具</h3><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/%E5%9B%BE%E7%89%875.png"></p><h3 id="2-6桌面预览"><a href="#2-6桌面预览" class="headerlink" title="2.6桌面预览"></a>2.6桌面预览</h3><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/%E5%9B%BE%E7%89%876.png"></p><p>如果觉得壁纸不错的，那说明品位确实不错！</p><h2 id="3-说明"><a href="#3-说明" class="headerlink" title="3.说明"></a>3.说明</h2><p>最近和lengyi师傅筹建了一个Redteamspace 知识星球，此星球是主要是为了探讨前沿的红队技术，以及一些不为人所知的骚姿势，营造一个良好的学习氛围，如果你与我们一样热爱技术，善于分享，那么请加入我们吧！</p><p>此逆向虚拟机也将放入星球中，开机密码也将在星球中公布，最后红队yyds。</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/%E5%9B%BE%E7%89%877.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Gamma实验室 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具推送 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>记一次对某大学的逻辑漏洞</title>
       <link href="2021/03/20/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%AF%B9%E6%9F%90%E5%A4%A7%E5%AD%A6%E7%9A%84%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/"/>
       <url>2021/03/20/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%AF%B9%E6%9F%90%E5%A4%A7%E5%AD%A6%E7%9A%84%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</url>
