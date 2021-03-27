@@ -29,6 +29,31 @@
     
     
     <entry>
+      <title>NepCTF 欢乐个人赛 2021</title>
+      <link href="2021/03/21/2021NepCTF/"/>
+      <url>2021/03/21/2021NepCTF/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>我是懒狗！都很忙最近就没怎么打</p></blockquote><h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h2 id="我是间谍2nd"><a href="#我是间谍2nd" class="headerlink" title="我是间谍2nd"></a>我是间谍2nd</h2><blockquote><p>坏女人往我的u盘里偷偷放了一个程序，你能找出她干了什么吗？remember: try to forgery ip,but not to reverse it.</p><p><a href="https://pan.baidu.com/s/1v68XQW5PjXKaC9lWinChqQ">附件</a>（提取码：2qdt）</p></blockquote><p>不会啊.jpg</p><h2 id="出题人日记"><a href="#出题人日记" class="headerlink" title="出题人日记"></a>出题人日记</h2><blockquote><p>我把茶包的出题日记找到了，里面居然有！！！</p><p><a href="https://pan.baidu.com/s/1SfmX_QMI3YKvp3NfcTl3aA">附件</a>（提取码：1elt）</p></blockquote><p>打开查阅发现第十八天处有flag的踪影</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/HH%5BP%7DY_14G%7BX5%7D13J0NOO28.png"></p><p>将其excel以压缩包的方式打开发现了个hint并找到fufufufufufufufufuufufufufufufufufufufufufufufufufu.flag（png</p><blockquote><p>hint:<br>隐写.wf pna fbyir guvf ceboyrz</p></blockquote><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/PPZ[[7FCAZW$HU3DAFIS%U5.png"></p><p>最后通过以下项目得到flag</p><p><a href="https://www.peter-eigenschink.at/projects/steganographyjs/showcase/">https://www.peter-eigenschink.at/projects/steganographyjs/showcase/</a></p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/flag.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Writeup </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> NepCTF </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>记一次对某大学的逻辑漏洞</title>
       <link href="2021/03/20/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%AF%B9%E6%9F%90%E5%A4%A7%E5%AD%A6%E7%9A%84%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/"/>
       <url>2021/03/20/%E8%AE%B0%E4%B8%80%E6%AC%A1%E5%AF%B9%E6%9F%90%E5%A4%A7%E5%AD%A6%E7%9A%84%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</url>
