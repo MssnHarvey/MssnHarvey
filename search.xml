@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>文网卫士交换机集中管理平台默认弱口令</title>
+      <link href="2021/04/19/WenwangGuardian/"/>
+      <url>2021/04/19/WenwangGuardian/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>当你得到了能决定人生死的东西，心中的正义还不会变吗？</p></blockquote><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>漏洞名称：文网卫士交换机集中管理平台默认弱口令</p><p>漏洞类型：弱口令</p><p>漏洞范围：较大</p><h2 id="操作过程"><a href="#操作过程" class="headerlink" title="操作过程"></a>操作过程</h2><p>弱口令 yyds</p><p>账户密码：admin/admin</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2021041974185675.png"></p><h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2021041974185858558.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CVE </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>红明谷杯技能场景决赛</title>
       <link href="2021/04/17/happyhmgb/"/>
       <url>2021/04/17/happyhmgb/</url>
