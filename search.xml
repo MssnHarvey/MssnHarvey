@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>工控CTF-纵横网络靶场社区</title>
+      <link href="2021/10/07/gongkongxilie/"/>
+      <url>2021/10/07/gongkongxilie/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前段时间省工控被暴打了就想着学习一下工控知识，于是发现了一个很nice的纯工控靶场：<a href="https://game.fengtaisec.com/#/dashboard"><strong>纵横网络靶场社区</strong></a><br>工控小白在这记录一下（咕了很长一段时间，预计后续还灰咕咕咕</p><h2 id="解题记录"><a href="#解题记录" class="headerlink" title="解题记录"></a>解题记录</h2><h3 id="Modbus协议"><a href="#Modbus协议" class="headerlink" title="Modbus协议"></a>Modbus协议</h3><blockquote><p>黑客通过外网进入一家工厂的控制网络，之后对工控网络中的操作员站系统进行了攻击，最终通过工控协议破坏了正常的业务。我们得到了操作员站在攻击前后的网络流量数据包，我们需要分析流量中的蛛丝马迹，找到FLAG,flag形式为 flag{}</p></blockquote><p>考察modbus协议，过滤后发现有个长度最突出的包，进而发现一串可疑字符串得到flag：flag{TheModbusProtocolIsFunny!}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/gongkong1.png"></p><h3 id="MMS协议分析"><a href="#MMS协议分析" class="headerlink" title="MMS协议分析"></a>MMS协议分析</h3><blockquote><p>工业网络中存在的异常，尝试通过分析PACP流量包，分析出流量数据中的异常点，并拿到FLAG，flag形式为 flag{}。</p></blockquote><p>在MMS包下查找一番并没发现什么可疑的信息，然后追踪tcp流发现一张base64编码的图片</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/gongkong2.png"></p><p>base64转图片后即可得到flag：flag{ICS-mms104}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/gongkong3.png"></p><h3 id="大工UDP协议"><a href="#大工UDP协议" class="headerlink" title="大工UDP协议"></a>大工UDP协议</h3><blockquote><p>在进行工业企业检查评估工作中，发现了疑似感染恶意软件的上位机。现已提取出上位机通信流量，尝试分析出异常点，获取FLAG，flag形式为 flag{}。</p></blockquote><p>追踪UDP流发现可疑字符串</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/gongkong4.png"></p><p>hex解码得到flag：flag{7FoM2StkhePz}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/gongkong5.png"></p><h3 id="工控蜜罐日志分析"><a href="#工控蜜罐日志分析" class="headerlink" title="工控蜜罐日志分析"></a>工控蜜罐日志分析</h3><blockquote><p>工控安全分析人员在互联网上部署了工控仿真蜜罐，通过蜜罐可抓取并分析互联网上针对工业资产的扫描行为，将存在高危扫描行为的IP加入防火墙黑名单可有效减少工业企业对于互联网的攻击面。分析出日志中针对西门子私有通信协议扫描最多的IP，分析该扫描组织,Flag为该IP的域名,，flag形式为 flag{}。</p></blockquote><p>虽然不知道怎么才能找到针对西门子私有通信协议扫描最多的IP，但是不难看出来出现最多的IP就是139.162.99.243，于是尝试将其反查域名提交竟然真的是正确的flag：flag{scan-42.security.ipip.net}</p><p>（蹲个工控大佬👴教教这题正解是咋搞的呀~</p><h3 id="隐信道数据安全分析"><a href="#隐信道数据安全分析" class="headerlink" title="隐信道数据安全分析"></a>隐信道数据安全分析</h3><blockquote><p>安全分析人员截获间谍发的秘密邮件，该邮件只有一个MP3文件，安全人员怀疑间谍通过某种private的方式将信息传递出去，尝试分析该文件，获取藏在文件中的数据？flag形式为 flag{}。</p></blockquote><p>（震惊！工控竟然还有音频题.jpg</p><p>尝试了一番音频隐写无果，最后还是010看看它的文件结构，根据题目关键词 <code>某种private的方式</code> 我们找到 <code>struct MPEG_FRAME mf[] - struct MPEG_HEADER mpeg_hdr - uint32 private_bit</code> ，将其每八个为一组，转十进制再转ASCII码，得到flag：flag{pr1v4t3_bi7}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/gongkong6.png"></p><h3 id="工控安全取证"><a href="#工控安全取证" class="headerlink" title="工控安全取证"></a>工控安全取证</h3><blockquote><p>有黑客入侵工控设备后在内网发起了大量扫描，而且扫描次数不止一次。 请分析日志，指出对方第4次发起扫描时的数据包的编号，flag形式为 flag{} </p></blockquote><p>010查看可发现它是个pcap文件，于是我们直接用wireshark打开，很明显可以看出来主要就是 <code>192.168.0.9</code> 在攻击 <code>192.168.0.99</code> ，然后根据题目我们就先将其按时间显示格式来观察</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/gongkong7.png"></p><p>但由于它这时间都是很接近的，于是我们再根据协议来排发现ICMP协议正好是四次，进而得到数据包的编号为155990（but最后的flag却是flag{155989}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/gongkong8.png"></p><p>属实也没整太懂，<a href="https://blog.csdn.net/mochu7777777/article/details/120300941"><strong>那就附上其他师傅的wp</strong></a></p><h3 id="隐藏的黑客"><a href="#隐藏的黑客" class="headerlink" title="隐藏的黑客"></a>隐藏的黑客</h3><blockquote><p>根据情报得知工控现场发现某SCADA系统被黑客攻破,附件为黑客在目录留下的文件和当时时间段捕获到的一部分流量包,你能根据这些信息分析出蛛丝马迹来么flag形式为 flag{}。</p></blockquote><p>首先我们可以看出在 <code>upload</code> 的文件夹下全是 <code>webshell</code>，然后我们分析流量包也在http流下发现<code>webshell.zip</code> </p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/gongkong9.png"></p><p>于是我们将其提取出来…</p><h2 id="佛系摸鱼🐟ing"><a href="#佛系摸鱼🐟ing" class="headerlink" title="佛系摸鱼🐟ing"></a>佛系摸鱼🐟ing</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> Writeup </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工控 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>2021年中国工业互联网安全大赛(福建省选拔赛) 暨首届福建省工业互联网创新大赛</title>
       <link href="2021/09/09/2021gongkong/"/>
       <url>2021/09/09/2021gongkong/</url>
@@ -21,6 +46,31 @@
         <tags>
             
             <tag> 工控 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ctfshow-osint</title>
+      <link href="2021/08/27/ctfshow-osint/"/>
+      <url>2021/08/27/ctfshow-osint/</url>
+      
+        <content type="html"><![CDATA[<h2 id="新手上路"><a href="#新手上路" class="headerlink" title="新手上路"></a>新手上路</h2><blockquote><p>提交图片上桥的名字即可，格式ctfshow{桥的名字}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-1.jpg"></p></blockquote><p>直接Google搜图得到信息：该地区位于蜈支洲島</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-001.png"></p><p>最后搜索附近的经典桥即可得到flag：ctfshow{情人桥}</p><p><img src="https://github.com/MssnHarvey/image/blob/main/ctfshow-osint-002.png?raw=true"></p><h2 id="初学乍练"><a href="#初学乍练" class="headerlink" title="初学乍练"></a>初学乍练</h2><blockquote><p>提交这架飞机的目的地，格式为ctfshow{目的地}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-2.jpg"></p></blockquote><p>图中关键信息：瑞士国旗，通过搜索得知也就5个机场，一个个试过去即可得到flag：ctfshow{苏黎世}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-003.png"></p><p>不过这样试过去就很丢人，我们还是需要确认下来：通过百度识图找到<a href="https://www.xhaiwai.com/news/15020.htm"><strong>相关文章</strong></a>最终确认此为苏黎世机场</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-004.png"></p><h2 id="初学又练"><a href="#初学又练" class="headerlink" title="初学又练"></a>初学又练</h2><blockquote><p>flag格式为 ctfshow{纬度(精确到小数点后四位, 不用进位),经度(精确到小数点后四位, 不用进位)} 例如 若找到的经纬度为( 11.45149,19.19810) 则flag为ctfshow{11.4514,19.1981}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-3.png"></p></blockquote><p>图中看到一家名为SandwichNSmoothies的三文治店，通过谷歌地图精准找到该位置并精准确认经纬度得到flag：ctfshow{55.6382,12.6411}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-005.png"></p><h2 id="初学再练"><a href="#初学再练" class="headerlink" title="初学再练"></a>初学再练</h2><blockquote><p>提交照片上所在军事基地的名称 提交ctfshow{军事基地英文}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-4.jpg"></p></blockquote><p>直接谷歌搜图查找得到此为俄罗斯 · Nagurskoye空军基地，进而得到flag：ctfshow{Nagurskoye}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-006.png"></p><h2 id="现拉现吃"><a href="#现拉现吃" class="headerlink" title="现拉现吃"></a>现拉现吃</h2><blockquote><p>提交图中店铺全名的拼音（无分隔符和声调、字母全小写）加食物价格（阿拉伯数字）即可， 例如：ctfshow{zhouzilamian114514}。</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-5.png"></p></blockquote><p>百度识图发现相似图片，进而得知这家店是云峰清真餐厅(南滨河路店)</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-007.png"></p><p>然后搜索该店牛肉面价格得知一碗牛肉面10块钱，最终得到flag：ctfshow{yunfengqingzhencantingnanbinheludian10}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-008.png"></p><p>提交不对，回头仔细再看一下发现店名是云峰牛肉面，得到flag：ctfshow{yunfengniuroumian10}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-009.png"></p><p>woc还是不对，再查一下发现他应该是加个份牛肉，最后的价格应该是10+7=17，得到flag：ctfshow{yunfengniuroumian17}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-010.png"></p><h2 id="初窥门径"><a href="#初窥门径" class="headerlink" title="初窥门径"></a>初窥门径</h2><blockquote><p>拍摄者后面的建筑名称，格式ctfshow{建筑名称中文}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-6.jpg"></p></blockquote><p>通过yandex识图并进行局部特征识别锁定此为开罗 - 千塔之城，进而得到flag：ctfshow{胡夫金字塔}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-011.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Writeup </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ctfshow </tag>
             
         </tags>
       
