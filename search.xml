@@ -29,6 +29,31 @@
     
     
     <entry>
+      <title>ctfshow-osint</title>
+      <link href="2021/09/27/ctfshow-osint/"/>
+      <url>2021/09/27/ctfshow-osint/</url>
+      
+        <content type="html"><![CDATA[<h2 id="新手上路"><a href="#新手上路" class="headerlink" title="新手上路"></a>新手上路</h2><blockquote><p>提交图片上桥的名字即可，格式ctfshow{桥的名字}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-1.jpg"></p></blockquote><p>直接Google搜图得到信息：该地区位于蜈支洲島</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-001.png"></p><p>最后搜索附近的经典桥即可得到flag：ctfshow{情人桥}</p><p><img src="https://github.com/MssnHarvey/image/blob/main/ctfshow-osint-002.png?raw=true"></p><h2 id="初学乍练"><a href="#初学乍练" class="headerlink" title="初学乍练"></a>初学乍练</h2><blockquote><p>提交这架飞机的目的地，格式为ctfshow{目的地}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-2.jpg"></p></blockquote><p>图中关键信息：瑞士国旗，通过搜索得知也就5个机场，一个个试过去即可得到flag：ctfshow{苏黎世}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-003.png"></p><p>不过这样试过去就很丢人，我们还是需要确认下来：通过百度识图找到<a href="https://www.xhaiwai.com/news/15020.htm"><strong>相关文章</strong></a>最终确认此为苏黎世机场</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-004.png"></p><h2 id="初学又练"><a href="#初学又练" class="headerlink" title="初学又练"></a>初学又练</h2><blockquote><p>flag格式为 ctfshow{纬度(精确到小数点后四位, 不用进位),经度(精确到小数点后四位, 不用进位)} 例如 若找到的经纬度为( 11.45149,19.19810) 则flag为ctfshow{11.4514,19.1981}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-3.png"></p></blockquote><p>图中看到一家名为SandwichNSmoothies的三文治店，通过谷歌地图精准找到该位置并精准确认经纬度得到flag：ctfshow{55.6382,12.6411}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-005.png"></p><h2 id="初学再练"><a href="#初学再练" class="headerlink" title="初学再练"></a>初学再练</h2><blockquote><p>提交照片上所在军事基地的名称 提交ctfshow{军事基地英文}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-4.jpg"></p></blockquote><p>直接谷歌搜图查找得到此为俄罗斯 · Nagurskoye空军基地，进而得到flag：ctfshow{Nagurskoye}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-006.png"></p><h2 id="现拉现吃"><a href="#现拉现吃" class="headerlink" title="现拉现吃"></a>现拉现吃</h2><blockquote><p>提交图中店铺全名的拼音（无分隔符和声调、字母全小写）加食物价格（阿拉伯数字）即可， 例如：ctfshow{zhouzilamian114514}。</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-5.png"></p></blockquote><p>百度识图发现相似图片，进而得知这家店是云峰清真餐厅(南滨河路店)</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-007.png"></p><p>然后搜索该店牛肉面价格得知一碗牛肉面10块钱，最终得到flag：ctfshow{yunfengqingzhencantingnanbinheludian10}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-008.png"></p><p>提交不对，回头仔细再看一下发现店名是云峰牛肉面，得到flag：ctfshow{yunfengniuroumian10}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-009.png"></p><p>woc还是不对，再查一下发现他应该是加个份牛肉，最后的价格应该是10+7=17，得到flag：ctfshow{yunfengniuroumian17}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-010.png"></p><h2 id="初窥门径"><a href="#初窥门径" class="headerlink" title="初窥门径"></a>初窥门径</h2><blockquote><p>拍摄者后面的建筑名称，格式ctfshow{建筑名称中文}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-6.jpg"></p></blockquote><p>通过yandex识图并进行局部特征识别锁定此为开罗 - 千塔之城，进而得到flag：ctfshow{胡夫金字塔}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-011.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Writeup </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ctfshow </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>2021年中国工业互联网安全大赛(福建省选拔赛) 暨首届福建省工业互联网创新大赛</title>
       <link href="2021/09/09/2021gongkong/"/>
       <url>2021/09/09/2021gongkong/</url>
@@ -46,31 +71,6 @@
         <tags>
             
             <tag> 工控 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>ctfshow-osint</title>
-      <link href="2021/08/27/ctfshow-osint/"/>
-      <url>2021/08/27/ctfshow-osint/</url>
-      
-        <content type="html"><![CDATA[<h2 id="新手上路"><a href="#新手上路" class="headerlink" title="新手上路"></a>新手上路</h2><blockquote><p>提交图片上桥的名字即可，格式ctfshow{桥的名字}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-1.jpg"></p></blockquote><p>直接Google搜图得到信息：该地区位于蜈支洲島</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-001.png"></p><p>最后搜索附近的经典桥即可得到flag：ctfshow{情人桥}</p><p><img src="https://github.com/MssnHarvey/image/blob/main/ctfshow-osint-002.png?raw=true"></p><h2 id="初学乍练"><a href="#初学乍练" class="headerlink" title="初学乍练"></a>初学乍练</h2><blockquote><p>提交这架飞机的目的地，格式为ctfshow{目的地}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-2.jpg"></p></blockquote><p>图中关键信息：瑞士国旗，通过搜索得知也就5个机场，一个个试过去即可得到flag：ctfshow{苏黎世}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-003.png"></p><p>不过这样试过去就很丢人，我们还是需要确认下来：通过百度识图找到<a href="https://www.xhaiwai.com/news/15020.htm"><strong>相关文章</strong></a>最终确认此为苏黎世机场</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-004.png"></p><h2 id="初学又练"><a href="#初学又练" class="headerlink" title="初学又练"></a>初学又练</h2><blockquote><p>flag格式为 ctfshow{纬度(精确到小数点后四位, 不用进位),经度(精确到小数点后四位, 不用进位)} 例如 若找到的经纬度为( 11.45149,19.19810) 则flag为ctfshow{11.4514,19.1981}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-3.png"></p></blockquote><p>图中看到一家名为SandwichNSmoothies的三文治店，通过谷歌地图精准找到该位置并精准确认经纬度得到flag：ctfshow{55.6382,12.6411}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-005.png"></p><h2 id="初学再练"><a href="#初学再练" class="headerlink" title="初学再练"></a>初学再练</h2><blockquote><p>提交照片上所在军事基地的名称 提交ctfshow{军事基地英文}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-4.jpg"></p></blockquote><p>直接谷歌搜图查找得到此为俄罗斯 · Nagurskoye空军基地，进而得到flag：ctfshow{Nagurskoye}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-006.png"></p><h2 id="现拉现吃"><a href="#现拉现吃" class="headerlink" title="现拉现吃"></a>现拉现吃</h2><blockquote><p>提交图中店铺全名的拼音（无分隔符和声调、字母全小写）加食物价格（阿拉伯数字）即可， 例如：ctfshow{zhouzilamian114514}。</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-5.png"></p></blockquote><p>百度识图发现相似图片，进而得知这家店是云峰清真餐厅(南滨河路店)</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-007.png"></p><p>然后搜索该店牛肉面价格得知一碗牛肉面10块钱，最终得到flag：ctfshow{yunfengqingzhencantingnanbinheludian10}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-008.png"></p><p>提交不对，回头仔细再看一下发现店名是云峰牛肉面，得到flag：ctfshow{yunfengniuroumian10}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-009.png"></p><p>woc还是不对，再查一下发现他应该是加个份牛肉，最后的价格应该是10+7=17，得到flag：ctfshow{yunfengniuroumian17}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-010.png"></p><h2 id="初窥门径"><a href="#初窥门径" class="headerlink" title="初窥门径"></a>初窥门径</h2><blockquote><p>拍摄者后面的建筑名称，格式ctfshow{建筑名称中文}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-6.jpg"></p></blockquote><p>通过yandex识图并进行局部特征识别锁定此为开罗 - 千塔之城，进而得到flag：ctfshow{胡夫金字塔}</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/ctfshow-osint-011.png"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Writeup </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> ctfshow </tag>
             
         </tags>
       
