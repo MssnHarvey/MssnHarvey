@@ -29,6 +29,31 @@
     
     
     <entry>
+      <title>2021 ByteCTF</title>
+      <link href="2021/10/18/2021ByteCTF/"/>
+      <url>2021/10/18/2021ByteCTF/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今年字节CTF有幸与SU的大师傅们一块打，最后取得了第十名的好成绩（去年自己一个人参加被暴打，呜呜呜~</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2021ByteCTFbySU.jpg"></p><h2 id="Checkin"><a href="#Checkin" class="headerlink" title="Checkin"></a>Checkin</h2><p>公众号发送消息<strong>“安全范⼉”</strong>即可得到flag</p><h2 id="Survey"><a href="#Survey" class="headerlink" title="Survey"></a>Survey</h2><p>填问卷得flag</p><h2 id="HearingNotBelieving"><a href="#HearingNotBelieving" class="headerlink" title="HearingNotBelieving"></a>HearingNotBelieving</h2><p>音频隐写题，sstv robot36 + au 频谱图 得到二维码</p><p>首先通过工具rx sstv将音频转换为图片，拼图得到下图</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2021ByteCTFHearingNotBelievingsstv000.png"></p><p>但是发现不能直接扫描，于是我们去qrazy手撸一下，扫描得到部分flag：<code>U_kn0W_S57V&#125;</code> </p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2021ByteCTFHearingNotBelievingsstv001.png"></p><p>然后在au 频谱图中也发现了二维码</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2021ByteCTFHearingNotBelievingau000.png"></p><p>拼接后依旧无法直接扫描，于是接着手撸得到部分flag：m4yB3_</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2021ByteCTFHearingNotBelievingau001.png"></p><p>最后整理一下得到flag：ByteCTF{m4yB3_U_kn0W_S57V}（可恶！竟然没有flag头的.jpg</p><h2 id="frequently"><a href="#frequently" class="headerlink" title="frequently"></a>frequently</h2><p>dns解析，发现 <code>.bytedanec.top</code> 的 dns 隧道流量</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2021ByteCTFfrequently001.png"></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dns &amp;&amp; dns.qry.name contains &quot;bytedanec.top&quot; &amp;&amp; ip.src &#x3D;&#x3D; 8.8.8.8</span><br></pre></td></tr></table></figure><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2021ByteCTFfrequently002.png"></p><p>将其导出，去重后base64解密发现是张图片，进而得到提示：<code>Congratulations！You find the DNS tunnel</code>（没啥卵用.png</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2021ByteCTFfrequently0003.png"></p><p>接着我们发现真正有用的是io本身，i是1，o是0，八位二换十，得到部分flag：<code>ByteCTF&#123;^_^enJ0y&amp;y0ur</code></p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2021ByteCTFfrequently004.png"></p><p>而后半段在 <code>udp.stream eq 1</code>  中得到：<code>se1f_wIth_m1sc^_^&#125;</code> </p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2021ByteCTFfrequently005.png"></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>字节CTF也太顶了，web根本打不来（不会Java，node黑盒毫无想法，甚至还有逆向<br>只能做做杂项，然而wtcl，安卓流量分析和excel那两题肝不出来<br>最后附上fz师傅他们的wp</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">web部分：</span><br><span class="line">https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;s59xN-QI9oNPrkjhuXtPyw</span><br><span class="line">misc部分：</span><br><span class="line">https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;_A3TjeAZ0yAnpvxyn0wWCA</span><br></pre></td></tr></table></figure><blockquote><p>经典fuzz了！</p><p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2021ByteCTFbabysharknbfuzz.png"></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Writeup </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ByteCTF </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>DC-4靶机渗透测试报告</title>
       <link href="2021/10/10/DC-4%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/"/>
       <url>2021/10/10/DC-4%E9%9D%B6%E6%9C%BA%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/</url>
