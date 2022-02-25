@@ -1,0 +1,551 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ctfshow-Misc入门 | Mssn Harvey</title><meta name="keywords" content="ctfshow"><meta name="author" content="Harvey"><meta name="copyright" content="Harvey"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="此系列为Misc入门图片篇，不定期更新；目的是介绍 Misc 方向中与图片相关的常见出题点；题目按照知识点分类，并尽量保证难度为入门水平； 大部分题目仅涉及单一知识点，但可能有多种解法；找到flag并不困难，关键是了解每一题背后的原理；藏在哪？为什么可以这样藏？请多考虑这两个问题；才疏学浅，人菜手残，若有错漏之处，还望指出； 希望能对刚接触 Misc 方向的朋友有所帮助。    图片篇(基础操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ctfshow-Misc入门">
+<meta property="og:url" content="https://harvey.plus/2021/03/29/ctfshowMisc/index.html">
+<meta property="og:site_name" content="Mssn Harvey">
+<meta property="og:description" content="此系列为Misc入门图片篇，不定期更新；目的是介绍 Misc 方向中与图片相关的常见出题点；题目按照知识点分类，并尽量保证难度为入门水平； 大部分题目仅涉及单一知识点，但可能有多种解法；找到flag并不困难，关键是了解每一题背后的原理；藏在哪？为什么可以这样藏？请多考虑这两个问题；才疏学浅，人菜手残，若有错漏之处，还望指出； 希望能对刚接触 Misc 方向的朋友有所帮助。    图片篇(基础操作">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/ctfshowbg.jpg">
+<meta property="article:published_time" content="2021-03-29T13:49:40.000Z">
+<meta property="article:modified_time" content="2021-04-06T15:52:22.253Z">
+<meta property="article:author" content="Harvey">
+<meta property="article:tag" content="ctfshow">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/ctfshowbg.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://harvey.plus/2021/03/29/ctfshowMisc/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-04-06 23:52:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiperstyle.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">131</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/picture/"><i class="fa-fw fas fa-file-image"></i><span> 图库</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-toolbox"></i><span> 工具</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="http://ctf.ssleye.com/"><span> CTF在线工具</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="http://www.atoolbox.net/"><span> CTF工具箱</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://gchq.github.io/CyberChef/"><span> cyberchef</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://sagecell.sagemath.org/"><span> sage</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-dog"></i><span> 训练平台</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/"><span> XCTF</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://buuoj.cn/"><span> BUUCTF</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://ctf.show/"><span> CTFshow</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.ctfhub.com"><span> CTFHub</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.ichunqiu.com/"><span> I春秋</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.linkedbyx.com/"><span> X平台-安恒</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 评论</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/ctfshowbg.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Mssn Harvey</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/picture/"><i class="fa-fw fas fa-file-image"></i><span> 图库</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-toolbox"></i><span> 工具</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="http://ctf.ssleye.com/"><span> CTF在线工具</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="http://www.atoolbox.net/"><span> CTF工具箱</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://gchq.github.io/CyberChef/"><span> cyberchef</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://sagecell.sagemath.org/"><span> sage</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-dog"></i><span> 训练平台</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/"><span> XCTF</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://buuoj.cn/"><span> BUUCTF</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://ctf.show/"><span> CTFshow</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.ctfhub.com"><span> CTFHub</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.ichunqiu.com/"><span> I春秋</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.linkedbyx.com/"><span> X平台-安恒</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 评论</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ctfshow-Misc入门</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-03-29T13:49:40.000Z" title="发表于 2021-03-29 21:49:40">2021-03-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-04-06T15:52:22.253Z" title="更新于 2021-04-06 23:52:22">2021-04-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Writeup/">Writeup</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>17分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>此系列为Misc入门图片篇，不定期更新；<br>目的是介绍 Misc 方向中与图片相关的常见出题点；<br>题目按照知识点分类，并尽量保证难度为入门水平；<br> 大部分题目仅涉及单一知识点，但可能有多种解法；<br>找到flag并不困难，关键是了解每一题背后的原理；<br>藏在哪？为什么可以这样藏？请多考虑这两个问题；<br>才疏学浅，人菜手残，若有错漏之处，还望指出；<br> 希望能对刚接触 Misc 方向的朋友有所帮助。  </p>
+</blockquote>
+<h1 id="图片篇-基础操作"><a href="#图片篇-基础操作" class="headerlink" title="图片篇(基础操作)"></a>图片篇(基础操作)</h1><h2 id="misc1"><a href="#misc1" class="headerlink" title="misc1"></a>misc1</h2><p>图片即是flag：ctfshow{22f1fb91fc4169f1c9411ce632a0ed8d}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/misc1.png"></p>
+<h2 id="misc2"><a href="#misc2" class="headerlink" title="misc2"></a>misc2</h2><p>010打开发现是张png图片，于是改后缀为png即可获取flag：ctfshow{6f66202f21ad22a2a19520cdd3f69e7b}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/misc2.png"></p>
+<h2 id="misc3"><a href="#misc3" class="headerlink" title="misc3"></a>misc3</h2><p>醉了呀！bpg这都是什么远古图片呀~<br>全网就一个软件能打开它（bpgviewer；打开即可获得flag：ctfshow{aade771916df7cde3009c0e631f9910d}</p>
+<p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1jiLh2ECc2v_xafBAHgaHYg"><strong>附件</strong></a>（提取码：lk1b）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/99778520112456.png"></p>
+<h2 id="misc4"><a href="#misc4" class="headerlink" title="misc4"></a>misc4</h2><p>拼接起来就是flag：ctfshow{4314e2b15ad9a960e7d9d8fc2ff902da}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/3.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/4.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/55.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/4155526497885.png"></p>
+<h1 id="图片篇-信息附加"><a href="#图片篇-信息附加" class="headerlink" title="图片篇(信息附加)"></a>图片篇(信息附加)</h1><h2 id="misc5"><a href="#misc5" class="headerlink" title="misc5"></a>misc5</h2><p>010打开划到底部发现flag：ctfshow{2a476b4011805f1a8e4b906c8f84083e}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/R%7DV83GT@6~IX9TE7$Z$$2%7DQ.png"></p>
+<h2 id="misc6"><a href="#misc6" class="headerlink" title="misc6"></a>misc6</h2><p>010打开直接搜ctfshow就能得到flag：ctfshow{d5e937aefb091d38e70d927b80e1e2ea}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/41254148526896255.png"></p>
+<h2 id="misc7"><a href="#misc7" class="headerlink" title="misc7"></a>misc7</h2><blockquote>
+<p>flag在图片文件信息中。</p>
+</blockquote>
+<p>直接换成txt打开Ctrl+F5搜ctfshow得到flag：ctfshow{c5e77c9c289275e3f307362e1ed86bb7}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/44422144557587.png"></p>
+<h2 id="misc8"><a href="#misc8" class="headerlink" title="misc8"></a>misc8</h2><blockquote>
+<p>flag在图片文件中图片文件中。</p>
+</blockquote>
+<p>直接上来就是一通binwalk、foremost得到flag：ctfshow{1df0a9a3f709a2605803664b55783687}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/4865589552.png"></p>
+<h2 id="misc9"><a href="#misc9" class="headerlink" title="misc9"></a>misc9</h2><blockquote>
+<p>flag在图片块里。</p>
+</blockquote>
+<p>图片块==数据块；又是直接010打开搜ctfshow就能得到flag：ctfshow{5c5e819508a3ab1fd823f11e83e93c75}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/999845862968899.png"></p>
+<h2 id="misc10"><a href="#misc10" class="headerlink" title="misc10"></a>misc10</h2><blockquote>
+<p>flag在图片数据里。</p>
+</blockquote>
+<p>010打开检测发现有个短的idat块有异常</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/01022515564988.png"></p>
+<p>接着就是直接用idat组合成另一张图片，使用zlib进行压缩，跑下脚本得到如下信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">63746673686f777b33353332353234323461633639636236346636343337363838353161633739307d</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/jio55123468755.png"></p>
+<p><strong>附上脚本</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"></span><br><span class="line">IDAT = <span class="string">&quot;789C4B2E492BCEC82FAF363635363235323132494C36B34C4E3233493333313637B3B030354C4C36B734A8050009960BD1&quot;</span>.decode(<span class="string">&#x27;hex&#x27;</span>)</span><br><span class="line"></span><br><span class="line">result = binascii.hexlify(zlib.decompress(IDAT))</span><br><span class="line"></span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
+
+<p>16进制转一下即可得到flag：ctfshow{353252424ac69cb64f643768851ac790}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/554845251548546.png"></p>
+<h2 id="misc11"><a href="#misc11" class="headerlink" title="misc11"></a>misc11</h2><blockquote>
+<p>flag在另一张图里。</p>
+</blockquote>
+<p>删掉第一个idat即可得到flag：ctfshow{44620176948fa759d3eeafeac99f1ce9}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1112385467755555.png"></p>
+<h2 id="misc12"><a href="#misc12" class="headerlink" title="misc12"></a>misc12</h2><blockquote>
+<p>flag在另一张图里。</p>
+</blockquote>
+<p>同上，不过这里得把前八个idat块都删掉保存就能得到flag：ctfshow{10ea26425dd4708f7da7a13c8e256a73}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/122222225414177.png"></p>
+<h2 id="misc13"><a href="#misc13" class="headerlink" title="misc13"></a>misc13</h2><blockquote>
+<p>flag位置在图片末尾。</p>
+</blockquote>
+<p>010打开按提示划到底部发现了如下疑似flag的信息</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/131413520666.png"></p>
+<p>复制粘贴出16进制文本跑下脚本得到：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="string">&quot;631A74B96685738668AA6F4B77B07B216114655336A5655434343678632534DD38EF66AB37103395391F628237BA6545627C3254647E313A64E465F136FA65F5341E3107321D665438F1333239E9616C7D&quot;</span></span><br><span class="line">flag=<span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(s),<span class="number">4</span>):</span><br><span class="line">    flag += s[i]</span><br><span class="line">    flag += s[i+<span class="number">1</span>]</span><br><span class="line">print(flag)</span><br><span class="line"></span><br><span class="line"><span class="comment">#63746673686F777B61653665343663343866373339623765623264316465366534313266383339617D</span></span><br></pre></td></tr></table></figure>
+
+<p>16进制转下得到flag：ctfshow{ae6e3ea48f518b7e42d7de6f412f839a}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/131313555123.png"></p>
+<h2 id="misc14"><a href="#misc14" class="headerlink" title="misc14"></a>misc14</h2><blockquote>
+<p>flag在那张图里。</p>
+</blockquote>
+<p>010打开发现有张图片</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/141452052014666.png"></p>
+<p>于是新建一个将其复制粘贴保存得到flag：ctfshow{ce520f767fc465b0787cdb936363e694}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/misc14deflag.jpg"></p>
+<h2 id="misc15"><a href="#misc15" class="headerlink" title="misc15"></a>misc15</h2><blockquote>
+<p>flag被跳过去了。</p>
+</blockquote>
+<p>010打开就看到了flag：ctfshow{fbe7bb657397e6e0a6adea3e40265425}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1515151515151515515.png"></p>
+<h2 id="misc16"><a href="#misc16" class="headerlink" title="misc16"></a>misc16</h2><blockquote>
+<p>flag在图片数据里。</p>
+</blockquote>
+<p>binwalk分离一下即可得到flag：ctfshow{a7e32f131c011290a62476ae77190b52}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/image-20210331161130247.png"></p>
+<h2 id="misc17"><a href="#misc17" class="headerlink" title="misc17"></a>misc17</h2><blockquote>
+<p>flag在图片数据里。</p>
+</blockquote>
+<p>binwalk发现有个破损的包，接着zsteg发现了隐藏的数据，于是我们将其提取出来</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/177115114156156.png"></p>
+<p>最后binwalk分离得到flag：ctfshow{0fe61fc42e8bbe55b9257d251749ae45}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/3143535616165152.png"></p>
+<h2 id="misc18"><a href="#misc18" class="headerlink" title="misc18"></a>misc18</h2><blockquote>
+<p><strong>flag在标题、作者、照相机和镜头型号里。</strong></p>
+</blockquote>
+<p>根据提示在详细信息中找到并拼接得到flag：ctfshow{325d60c208f728ac17e5f02d4cf5a839}</p>
+<h2 id="misc19"><a href="#misc19" class="headerlink" title="misc19"></a>misc19</h2><blockquote>
+<p>flag在主机上的文档名里。</p>
+</blockquote>
+<p>根据提示我百度找到了个<a target="_blank" rel="noopener" href="https://exif.tuchong.com/view/10702093/"><strong>在线工具</strong></a>查的图片信息进而得到flag：ctfshow{dfdcf08038cd446a5eb50782f8d3605d}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/191919919191645.png"></p>
+<h2 id="misc20"><a href="#misc20" class="headerlink" title="misc20"></a>misc20</h2><blockquote>
+<p>flag在评论里。</p>
+</blockquote>
+<p>同上利用<a target="_blank" rel="noopener" href="https://exif.tuchong.com/view/10702093/"><strong>在线工具</strong></a>查到评论信息</p>
+<p>谐音梗！！西替爱抚秀 = ctfshow！！所以flag是ctfshow{c97964b1aecf06e1d79c21ddad593e42}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/221515251000.png"></p>
+<h2 id="misc21"><a href="#misc21" class="headerlink" title="misc21"></a>misc21</h2><blockquote>
+<p>flag在序号里。</p>
+</blockquote>
+<p>同上找到和序号相关的信息</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2185968941986541698416.png"></p>
+<p>hex后发现hex(X&amp;Ys)；也就是还需要X分辨率、Y分辨率、X定位、Y定位</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/21332131221113223.png"></p>
+<p>最后将那四组数据分别转成16进制拼接并套上ctfshow{}得到flag：ctfshow{e8a221498d5c073b4084eb51b1a1686d}</p>
+<h2 id="misc22"><a href="#misc22" class="headerlink" title="misc22"></a>misc22</h2><blockquote>
+<p>flag在图片里。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.beijing-time.org/shijianchuo/"><strong>参考文章</strong></a>了解一下app0 app1（此位置允许保存一个原图的缩略图</p>
+<p>010打开对照结构正常写在app那几个段得到flag：ctfshow{dbf7d3f84b0125e833dfd3o80820a129}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/ctfshowmiscmisc22flag.jpg"></p>
+<p>眼睛都要看瞎了but提交还是一直不对..</p>
+<blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/555552021-03-31205448.png"></p>
+<p>嘤嘤嘤 ~ 真flag：ctfshow{dbf7d3f84b0125e833dfd3c80820a129}</p>
+<p>对了，还有那个缩略图用stegsolve的full blue看会更清晰，but我显示器放大图片看到老清楚了（凡尔赛boy请求出战</p>
+</blockquote>
+<h2 id="misc23"><a href="#misc23" class="headerlink" title="misc23"></a>misc23</h2><blockquote>
+<p>flag在时间里。</p>
+</blockquote>
+<p>盲搜一波ctf意外收获四个时间段（1997-09-22T02:17:02+08:00、2055-07-15T12:14:48+08:00、2038-05-05T16:50:45+08:00、1984-08-03 18:41:46+08:00）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/23152623562626.png"></p>
+<p>接着分别将得到的四个时间转波<a target="_blank" rel="noopener" href="https://www.beijing-time.org/shijianchuo/"><strong>时间戳</strong></a>得到如下信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">874865822</span><br><span class="line">2699237688</span><br><span class="line">2156662245</span><br><span class="line">460377706</span><br></pre></td></tr></table></figure>
+
+<p>最后我们16进制转一下试试对(mei)不(mao)对(bing)，得到flag：ctfshow{3425649ea0e31938808c0de51b70ce6a}</p>
+<h1 id="图片篇-文件结构"><a href="#图片篇-文件结构" class="headerlink" title="图片篇(文件结构)"></a>图片篇(文件结构)</h1><h2 id="misc24"><a href="#misc24" class="headerlink" title="misc24"></a>misc24</h2><blockquote>
+<p>flag在图片上面。</p>
+</blockquote>
+<p>改高度得到flag：ctfshow{dd7d8bc9e5e873eb7da3fa51d92ca4b7}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2445596498846.png"></p>
+<p>PS：写个小技巧⑧，大家可以将图片的高宽转为16进制并搜索找到对应位置，然后将更改好的数据填进去保存即可</p>
+<h2 id="misc25"><a href="#misc25" class="headerlink" title="misc25"></a>misc25</h2><blockquote>
+<p>flag在图片下面。</p>
+</blockquote>
+<p>同上，得到flag：ctfshow{494f611cc5842dd597f460874ce38f57}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/3154825454155.png"></p>
+<h2 id="misc26"><a href="#misc26" class="headerlink" title="misc26"></a>misc26</h2><blockquote>
+<p>flag还是在图片下面，但到底有多下面？。</p>
+</blockquote>
+<p>再调高点就好了，其中图片高度还需要我们跑下脚本来爆破出得到flag：ctfshow{94aef125e087a7ccf2e28e742efd704c}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/88926424696.png"></p>
+<p><strong>附上脚本</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line">crcbp = <span class="built_in">open</span>(<span class="string">&quot;misc26.png&quot;</span>, <span class="string">&quot;rb&quot;</span>).read()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2000</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2000</span>):</span><br><span class="line">        data = crcbp[<span class="number">12</span>:<span class="number">16</span>] + struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>, i)+struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>, j)+crcbp[<span class="number">24</span>:<span class="number">29</span>]</span><br><span class="line">        crc32 = binascii.crc32(data) &amp; <span class="number">0xffffffff</span></span><br><span class="line">        <span class="keyword">if</span>(crc32 == <span class="number">0xEC9CCBC6</span>):</span><br><span class="line">            print(i, j)</span><br><span class="line">            print(<span class="string">&#x27;hex:&#x27;</span>, <span class="built_in">hex</span>(i), <span class="built_in">hex</span>(j))</span><br><span class="line"></span><br><span class="line"><span class="comment">#0x25e</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/image-20210331194830817.png"></p>
+<h2 id="misc27"><a href="#misc27" class="headerlink" title="misc27"></a>misc27</h2><blockquote>
+<p>flag在图片下面。</p>
+</blockquote>
+<p>同上（指misc24，得到flag：ctfshow{5cc4f19eb01705b99bf41492430a1a14}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/272766645589491.png"></p>
+<h2 id="misc28"><a href="#misc28" class="headerlink" title="misc28"></a>misc28</h2><blockquote>
+<p>flag在图片下面。</p>
+</blockquote>
+<p>同上，得到flag：ctfshow{59c8bc525426166b1c893fe12a387fd7}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/image-20210331210629075.png"></p>
+<h2 id="misc29"><a href="#misc29" class="headerlink" title="misc29"></a>misc29</h2><blockquote>
+<p>flag在图片下面。</p>
+</blockquote>
+<p>同上，得到flag：ctfshow{03ce5be6d60a4b3c7465ab9410801440}</p>
+<p>对了，gif我每一帧都把他高度给改了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/999585852954185.png"></p>
+<h2 id="misc30"><a href="#misc30" class="headerlink" title="misc30"></a>misc30</h2><blockquote>
+<p>正确的宽度是950。</p>
+</blockquote>
+<p>根据提示将高度改为950即可得到flag：ctfshow{6db8536da312f6aeb42da2f45b5f213c}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/3331518413030185414.png"></p>
+<h2 id="misc31"><a href="#misc31" class="headerlink" title="misc31"></a>misc31</h2><blockquote>
+<p>高度是正确的，但正确的宽度是多少呢。</p>
+</blockquote>
+<p>还是第一次遇到bmp的这种题</p>
+<p>参考文章：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/260702527">https://zhuanlan.zhihu.com/p/260702527</a></p>
+<p>大概了解了下bmp的文件结构就开始做题辣~</p>
+<p>首先我们从FF那开始一直复制到最后看看它的文件大小（最后那个不用管他，故意多加的⑧），然后用它除以三就是像素值，最后根据提示高度正确算出正确的宽度，也就是说487202/3/150=1082便是正确的那个宽度了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/57197942159756446323231832.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/84989484323232.png"></p>
+<p>最后改下宽即可得到flag：ctfshow{fb09dcc9005fe3feeefb73646b55efd5}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/323559529255848.png"></p>
+<h2 id="misc32"><a href="#misc32" class="headerlink" title="misc32"></a>misc32</h2><blockquote>
+<p>高度是正确的，但正确的宽度是多少呢。</p>
+</blockquote>
+<p>010打开查找图片的CRC：0xE14A4C0B</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/32231546246457932.png"></p>
+<p>跑脚本爆破它的宽</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/3265226925962699.png"></p>
+<p><strong>附上脚本</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line">crcbp = <span class="built_in">open</span>(<span class="string">&quot;misc32.png&quot;</span>, <span class="string">&quot;rb&quot;</span>).read()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2000</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2000</span>):</span><br><span class="line">        data = crcbp[<span class="number">12</span>:<span class="number">16</span>] + struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>, i)+struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>, j)+crcbp[<span class="number">24</span>:<span class="number">29</span>]</span><br><span class="line">        crc32 = binascii.crc32(data) &amp; <span class="number">0xffffffff</span></span><br><span class="line">        <span class="keyword">if</span>(crc32 == <span class="number">0xE14A4C0B</span>):</span><br><span class="line">            print(i, j)</span><br><span class="line">            print(<span class="string">&#x27;hex:&#x27;</span>, <span class="built_in">hex</span>(i), <span class="built_in">hex</span>(j))</span><br><span class="line"></span><br><span class="line"><span class="comment">#1044 150</span></span><br><span class="line"><span class="comment">#hex: 0x414 0x96</span></span><br></pre></td></tr></table></figure>
+
+<p>最后改下宽即可得到flag：ctfshow{685082227bcf70d17d1b39a5c1195aa9}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/555321564279794.png"></p>
+<h2 id="misc33"><a href="#misc33" class="headerlink" title="misc33"></a>misc33</h2><blockquote>
+<p>出题人丧心病狂，把高度也改了</p>
+</blockquote>
+<p>老样子，010打开找到图片的CRC：0x5255A798</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/333333645524587845.png"></p>
+<p>跑脚本爆破它的高宽</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/33333152262824896.png"></p>
+<p><strong>附上脚本</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"></span><br><span class="line">crcbp = <span class="built_in">open</span>(<span class="string">&quot;misc33.png&quot;</span>, <span class="string">&quot;rb&quot;</span>).read()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2000</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2000</span>):</span><br><span class="line">        data = crcbp[<span class="number">12</span>:<span class="number">16</span>] + struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>, i)+struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>, j)+crcbp[<span class="number">24</span>:<span class="number">29</span>]</span><br><span class="line">        crc32 = binascii.crc32(data) &amp; <span class="number">0xffffffff</span></span><br><span class="line">        <span class="keyword">if</span>(crc32 == <span class="number">0x5255A798</span>):</span><br><span class="line">            print(i, j)</span><br><span class="line">            print(<span class="string">&#x27;hex:&#x27;</span>, <span class="built_in">hex</span>(i), <span class="built_in">hex</span>(j))</span><br><span class="line"></span><br><span class="line"><span class="comment">#978 142</span></span><br><span class="line"><span class="comment">#hex: 0x3d2 0x8e</span></span><br></pre></td></tr></table></figure>
+
+<p>最后改下高宽即可得到flag：ctfshow{03070a10ec3a3282ba1e352f4e07b0a9}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/85485196.png"></p>
+<h2 id="misc34"><a href="#misc34" class="headerlink" title="misc34"></a>misc34</h2><blockquote>
+<p>出题人狗急跳墙，把IHDR块的CRC也改了，但我们知道正确宽度肯定大于900</p>
+</blockquote>
+<p>由于crc都给改了，我们只能通过爆破获取flag惹，在一堆黑图中看到了张含有flag的图：ctfshow{03e102077e3e5de9dd9c04aba16ef014}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/34521464163434.png"></p>
+<p><strong>附上脚本</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line"></span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">r&#x27;misc34.png&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>)</span><br><span class="line">c = f.read()</span><br><span class="line">width = c[<span class="number">16</span>:<span class="number">20</span>]</span><br><span class="line">height = c[<span class="number">20</span>:<span class="number">24</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">900</span>,<span class="number">1200</span>):</span><br><span class="line">    f1 = <span class="built_in">open</span>(<span class="string">&#x27;./out/&#x27;</span>+<span class="built_in">str</span>(i)+<span class="string">&#x27;.png&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">    img = c[:<span class="number">16</span>]+struct.pack(<span class="string">&#x27;&gt;i&#x27;</span>,i)+c[<span class="number">20</span>:]</span><br><span class="line">    f1.write(img)</span><br><span class="line">    f1.close()</span><br></pre></td></tr></table></figure>
+
+<h2 id="misc35"><a href="#misc35" class="headerlink" title="misc35"></a>misc35</h2><blockquote>
+<p>出题人负隅顽抗，但我们知道正确宽度肯定大于900</p>
+</blockquote>
+<p>这里我们先把高度改高一些到能看到下面的东西（这里我把高改到1000），然后同上跑脚本得到flag：ctfshow{ca35201ca9ed607e5a68f44ef573fbc3}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/35555678451235.png"></p>
+<p><strong>附上脚本</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line"></span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&#x27;misc35.jpg&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>)</span><br><span class="line">c = f.read()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">900</span>,<span class="number">1000</span>):</span><br><span class="line">    f1 = <span class="built_in">open</span>(<span class="string">&#x27;./out/&#x27;</span>+<span class="built_in">str</span>(i)+<span class="string">&#x27;.jpg&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">    img = c[:c.index(<span class="string">b&#x27;\x03\xe8\x03\x84&#x27;</span>)+<span class="number">2</span>]+struct.pack(<span class="string">&#x27;&gt;h&#x27;</span>,i)+c[c.index(<span class="string">b&#x27;\x03\xe8\x03\x84&#x27;</span>)+<span class="number">4</span>:]</span><br><span class="line">    f1.write(img)</span><br><span class="line">    f1.close()</span><br></pre></td></tr></table></figure>
+
+<h2 id="misc36"><a href="#misc36" class="headerlink" title="misc36"></a>misc36</h2><blockquote>
+<p>出题人坦白从宽，正确的宽度在920-950之间</p>
+</blockquote>
+<p>gif这个给我坑了好长时间~ 其实和前面还是一个样跑脚本得到flag：ctfshow{1ebf739f832906d60f57436b8179166f}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/66636158445.png"></p>
+<p>不说了直接看脚本吧~ 呜呜呜~</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line"></span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&#x27;misc36.gif&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>)</span><br><span class="line">c = f.read()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">900</span>,<span class="number">950</span>):</span><br><span class="line">    f1 = <span class="built_in">open</span>(<span class="string">&#x27;./out/&#x27;</span>+<span class="built_in">str</span>(i)+<span class="string">&#x27;.gif&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">    img = c[:c.index(<span class="string">b&#x27;\x00\x00\x84\x03\xb6\x03&#x27;</span>)+<span class="number">2</span>]+struct.pack(<span class="string">&#x27;&gt;h&#x27;</span>,i)[::-<span class="number">1</span>]+c[c.index(<span class="string">b&#x27;\x00\x00\x84\x03\xb6\x03&#x27;</span>)+<span class="number">4</span>:]</span><br><span class="line">    f1.write(img)</span><br><span class="line">    f1.close()</span><br></pre></td></tr></table></figure>
+
+<h2 id="misc37"><a href="#misc37" class="headerlink" title="misc37"></a>misc37</h2><blockquote>
+<p>flag在图片里</p>
+</blockquote>
+<p>逐帧保存翻看即可得到flag：ctfshow{2056782cd57b13261dcbbe3d6eecda17}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/misc37_9.jpg"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/misc37_14.jpg"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/misc37_21.jpg"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/misc37_31.jpg"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/misc37_34.jpg"></p>
+<h2 id="misc38"><a href="#misc38" class="headerlink" title="misc38"></a>misc38</h2><blockquote>
+<p>flag在图片里</p>
+</blockquote>
+<p>奇怪的知识增加.jpg 见识到了什么叫apng（想了解更多就自行百度~</p>
+<p>这里我直接利用其 <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1w-KLN09gVs4VR6BC-DQNng"><strong>专门的工具</strong></a>（提取码：2v42）打开得到flag：ctfshow{48b722b570c603ef58cc0b83bbf7680d}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/09403838521859529.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/3838522964.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/36383767845612546.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1040203038624161.png"></p>
+<h2 id="misc39"><a href="#misc39" class="headerlink" title="misc39"></a>misc39</h2><blockquote>
+<p>flag就像水，忽快忽慢地流</p>
+</blockquote>
+<p>gif帧数间隔隐写，使用工具 <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1hqRHsX_zpl6TXuJLq4JIdg"><strong>ImageMagick</strong></a>（提取码：t7hc）提取帧数<br>这里友情提醒千万别用Windows下的各种版本都bug无数，亲测！！因此我发的也是Linux下的~ 不信你就自己爬去**<a target="_blank" rel="noopener" href="https://imagemagick.org/script/download.php">官网</a>**下一个试试（或者去更好用的中文站：<a target="_blank" rel="noopener" href="http://www.imagemagick.com.cn/download.html%EF%BC%89">http://www.imagemagick.com.cn/download.html）</a></p>
+<p>kali下编译安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<p>kali下提取帧数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">identify -format &quot;%T &quot; misc39.gif &gt; misc39.txt</span><br><span class="line"></span><br><span class="line">37 37 36 36 36 37 37 37 37 37 36 37 36 36 37 37 36 36 37 37 36 37 37 37 36 36 37 37 37 37 36 37 36 36 36 37 37 36 37 37 37 37 37 37 37 36 37 37 37 37 37 37 37 36 37 37 36 37 37 36 37 36 37 36 37 37 36 36 37 36 36 37 37 37 36 36 36 36 37 37 36 36 36 37 36 37 37 36 36 37 36 37 37 36 36 37 37 36 37 37 36 36 37 37 36 36 37 37 37 36 36 37 36 37 37 37 36 36 37 36 37 37 36 37 36 37 37 37 36 36 37 37 36 37 37 36 36 36 37 36 36 37 37 36 37 37 37 37 37 36 36 36 37 36 37 37 36 36 37 36 37 36 37 37 36 36 37 36 36 37 37 36 37 37 36 36 37 37 37 36 36 36 37 37 36 36 37 36 36 36 37 37 37 36 36 37 36 37 37 36 37 37 36 36 37 37 36 36 37 37 37 37 36 36 36 36 37 36 37 37 37 36 36 37 37 37 36 36 37 36 37 37 37 36 36 36 37 36 37 37 36 36 36 37 37 37 37 36 36 36 36 37 36 37 37 36 36 36 36 36 37 37 36 37 36 36 36 37 37 36 37 36 37 36 37 37 37 36 36 37 37 37 37 37 37 36 37 </span><br></pre></td></tr></table></figure>
+
+<p>转01再七位一组转字符即可得到flag：ctfshow{52812ff995fb7be268d963a9ebca0459}</p>
+<p><strong>附上脚本</strong>（白嫖V3geD4g师傅脚本.gif）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">&#x27;37 37 36 36 36 37 37 37 37 37 36 37 36 36 37 37 36 36 37 37 36 37 37 37 36 36 37 37 37 37 36 37 36 36 36 37 37 36 37 37 37 37 37 37 37 36 37 37 37 37 37 37 37 36 37 37 36 37 37 36 37 36 37 36 37 37 36 36 37 36 36 37 37 37 36 36 36 36 37 37 36 36 36 37 36 37 37 36 36 37 36 37 37 36 36 37 37 36 37 37 36 36 37 37 36 36 37 37 37 36 36 37 36 37 37 37 36 36 37 36 37 37 36 37 36 37 37 37 36 36 37 37 36 37 37 36 36 36 37 36 36 37 37 36 37 37 37 37 37 36 36 36 37 36 37 37 36 36 37 36 37 36 37 37 36 36 37 36 36 37 37 36 37 37 36 36 37 37 37 36 36 36 37 37 36 36 37 36 36 36 37 37 37 36 36 37 36 37 37 36 37 37 36 36 37 37 36 36 37 37 37 37 36 36 36 36 37 36 37 37 37 36 36 37 37 37 36 36 37 36 37 37 37 36 36 36 37 36 37 37 36 36 36 37 37 37 37 36 36 36 36 37 36 37 37 36 36 36 36 36 37 37 36 37 36 36 36 37 37 36 37 36 37 36 37 37 37 36 36 37 37 37 37 37 37 36 37&#x27;</span></span><br><span class="line">s = s.replace(<span class="string">&#x27;37&#x27;</span>,<span class="string">&#x27;1&#x27;</span>).replace(<span class="string">&#x27;36&#x27;</span>,<span class="string">&#x27;0&#x27;</span>).replace(<span class="string">&#x27; &#x27;</span>,<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="comment"># s = s[1:]</span></span><br><span class="line">print(s)</span><br><span class="line">print(<span class="built_in">len</span>(s))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(s)//<span class="number">7</span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        print(<span class="built_in">chr</span>(<span class="built_in">int</span>(s[i*<span class="number">7</span>:i*<span class="number">7</span>+<span class="number">7</span>],<span class="number">2</span>)),end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#11000111110100110011011100111101000110111111101111111011011010101100100111000011000101100101100110110011001110010111001011010111001101100010011011111000101100101011001001101100111000110010001110010110110011001111000010111001110010111000101100011110000101100000110100011010101110011111101</span></span><br><span class="line"><span class="comment">#287</span></span><br><span class="line"><span class="comment">#ctfshow&#123;52812ff995fb7be268d963a9ebca0459&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="misc40"><a href="#misc40" class="headerlink" title="misc40"></a>misc40</h2><blockquote>
+<p>flag就像歌，有长有短仿佛岁月悠悠</p>
+</blockquote>
+<p>原理同上，只是换成apng的帧时间间隔隐写（也就是misc38的操作对其进行分解），最后跑下脚本得到flag：ctfshow{95ca0297dff0f6b1bdaca394a6fcb95b}</p>
+<p><strong>附上脚本</strong>（V3geD4g TQL！）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">28</span>,<span class="number">69</span>):</span><br><span class="line">    f = <span class="built_in">open</span>(<span class="string">&#x27;./misc40/apngframe&#x27;</span>+<span class="built_in">str</span>(i)+<span class="string">&#x27;.txt&#x27;</span>)</span><br><span class="line">    c =f.read()</span><br><span class="line">    print(<span class="built_in">chr</span>(<span class="built_in">int</span>(c.split(<span class="string">&#x27;/&#x27;</span>)[<span class="number">0</span>].split(<span class="string">&#x27;=&#x27;</span>)[<span class="number">1</span>])),end=<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="misc41"><a href="#misc41" class="headerlink" title="misc41"></a>misc41</h2><blockquote>
+<p>（本题为Misc入门图片篇和愚人节比赛特别联动题）<br>H4ppy Apr1l F001’s D4y！<br> 愚人节到了，一群笨蛋往南飞，一会儿排成S字，一会儿排成B字。</p>
+</blockquote>
+<p>根据提示搜索下f001就直接看到了flag：ctfshow{fcbd427caf4a52f1147ab44346cd1cdd}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/8418799745325141.png"></p>
+<h2 id="misc42"><a href="#misc42" class="headerlink" title="misc42"></a>misc42</h2><blockquote>
+<p>flag有多长？2cm……不好意思打错了，41位</p>
+</blockquote>
+<p>IDAT块长度隐写，借助工具tweakpng（010也行），跑下脚本得到flag：ctfshow{078cbd0f9c8d3f2158e70529f8913c65}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/48959566545612342.png"></p>
+<p>贴上脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = [<span class="number">99</span>,<span class="number">116</span>,<span class="number">102</span>,<span class="number">115</span>,<span class="number">104</span>,<span class="number">111</span>,<span class="number">119</span>,<span class="number">123</span>,<span class="number">48</span>,<span class="number">55</span>,<span class="number">56</span>,<span class="number">99</span>,<span class="number">98</span>,<span class="number">100</span>,<span class="number">48</span>,<span class="number">102</span>,<span class="number">57</span>,<span class="number">99</span>,<span class="number">56</span>,<span class="number">100</span>,<span class="number">51</span>,<span class="number">102</span>,<span class="number">50</span>,<span class="number">49</span>,<span class="number">53</span>,<span class="number">56</span>,<span class="number">101</span>,<span class="number">55</span>,<span class="number">48</span>,<span class="number">53</span>,<span class="number">50</span>,<span class="number">57</span>,<span class="number">102</span>,<span class="number">56</span>,<span class="number">57</span>,<span class="number">49</span>,<span class="number">51</span>,<span class="number">99</span>,<span class="number">54</span>,<span class="number">53</span>,<span class="number">125</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">    print(<span class="built_in">chr</span>(i),end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#ctfshow&#123;078cbd0f9c8d3f2158e70529f8913c65&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="misc43"><a href="#misc43" class="headerlink" title="misc43"></a>misc43</h2><blockquote>
+<p>错误中隐藏着通往正确答案的道路</p>
+</blockquote>
+<p>crc隐写，010打开将各个idat的crc提取出来得到flag：ctfshow{6eb2589ffff5e390fe6b87504dbc0892}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/6643255684943.png"></p>
+<h2 id="misc44"><a href="#misc44" class="headerlink" title="misc44"></a>misc44</h2><blockquote>
+<p>错误中还隐藏着坑</p>
+</blockquote>
+<p>利用一款自动化检测修复PNG损坏的取证工具PCRT进行修复crc校验出错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">我是kali下整的</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;sherlly&#x2F;PCRT.git</span><br><span class="line">cd PCRT</span><br><span class="line">python PCRT.py -y -v -i misc44.png &gt; 44.txt</span><br></pre></td></tr></table></figure>
+
+<p>再跑下脚本得到flag：ctfshow{cc1af32bf96308fc1263231be783f69e}</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">f = <span class="built_in">open</span>(<span class="string">&#x27;44.txt&#x27;</span>)</span><br><span class="line">res = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    c = f.readline()</span><br><span class="line">    <span class="keyword">if</span> c:</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;chunk crc&#x27;</span> <span class="keyword">in</span> c:</span><br><span class="line">            <span class="comment"># print(c)</span></span><br><span class="line">            res+=<span class="string">&#x27;0&#x27;</span></span><br><span class="line">        <span class="keyword">elif</span> <span class="string">&#x27;Correct IDAT CRC&#x27;</span> <span class="keyword">in</span> c:</span><br><span class="line">            res+=<span class="string">&#x27;1&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"> </span><br><span class="line">print(res)</span><br><span class="line">print(<span class="built_in">len</span>(res))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(res)//<span class="number">8</span>):</span><br><span class="line">    a = res[i*<span class="number">8</span>:i*<span class="number">8</span>+<span class="number">8</span>]</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        print(<span class="built_in">chr</span>(<span class="built_in">int</span>(a,<span class="number">2</span>)),end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#11111111111111110110001101110100011001100111001101101000011011110111011101111011011000110110001100110001011000010110011000110011001100100110001001100110001110010011011000110011001100000011100001100110011000110011000100110010001101100011001100110010001100110011000101100010011001010011011100111000001100110110011000110110001110010110010101111101</span></span><br><span class="line"><span class="comment">#344</span></span><br><span class="line"><span class="comment">#ÿÿctfshow&#123;cc1af32bf96308fc1263231be783f69e&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="misc45"><a href="#misc45" class="headerlink" title="misc45"></a>misc45</h2><blockquote>
+<p>有时候也需要换一换思维格式</p>
+</blockquote>
+<p>不做了不做了（手动滑稽</p>
+<h2 id="misc46"><a href="#misc46" class="headerlink" title="misc46"></a>misc46</h2><blockquote>
+<p>你见过扶乩吗</p>
+</blockquote>
+<p>利用工具 ImageMagick 得到每帧的偏移量，然后将它作为坐标来画图,写个脚本跑一下即可得到flag：ctfshow{05906b3be8742a13a93898186bc5802f}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/image-20210406145817589.png"></p>
+<p><strong>附上脚本</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&#x27;46.txt&#x27;</span>)</span><br><span class="line">pp = []</span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    c = f.readline()</span><br><span class="line">    <span class="keyword">if</span> c:</span><br><span class="line">        s = <span class="built_in">eval</span>(c.split(<span class="string">&#x27;+&#x27;</span>)[<span class="number">1</span>]+<span class="string">&#x27;,&#x27;</span>+c.split(<span class="string">&#x27;+&#x27;</span>)[<span class="number">2</span>][:<span class="number">2</span>])</span><br><span class="line">        pp.append(s)</span><br><span class="line">        print(s)</span><br><span class="line">        <span class="comment"># print(c)</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">img = Image.new(<span class="string">&#x27;RGB&#x27;</span>,(<span class="number">400</span>,<span class="number">70</span>),(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> pp:</span><br><span class="line">    new = Image.new(<span class="string">&#x27;RGB&#x27;</span>,(<span class="number">1</span>,<span class="number">1</span>),(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>))</span><br><span class="line">    img.paste(new,i)</span><br><span class="line">plt.imshow(img)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h2 id="misc47"><a href="#misc47" class="headerlink" title="misc47"></a>misc47</h2><blockquote>
+<p>没见过扶乩，那你知道笔仙吗</p>
+</blockquote>
+<p>原理同上，只是这里换成了apng，跑下脚本得到flag：ctfshow{6d51f85b45a0061754a2776a32cf26c4}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/4647123456456474647.png"></p>
+<p><strong>附上脚本</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> struct</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&#x27;misc47.png&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>)</span><br><span class="line">c = f.read()</span><br><span class="line">c = c[c.index(<span class="built_in">bytes</span>.fromhex(<span class="string">&#x27;6663544C00000001&#x27;</span>)):]</span><br><span class="line">pp = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">1124</span>,<span class="number">2</span>):</span><br><span class="line">    start = c.index(<span class="built_in">bytes</span>.fromhex(<span class="string">&#x27;6663544C0000&#x27;</span>)+struct.pack(<span class="string">&#x27;&gt;h&#x27;</span>,i))</span><br><span class="line">    <span class="comment"># start = c.index(bytes.fromhex(&#x27;6663544C000000&#x27;+hex(i)[2:]))</span></span><br><span class="line">    <span class="comment"># print(start)</span></span><br><span class="line">    fc = c[start:start+<span class="number">30</span>]</span><br><span class="line">    print(fc[<span class="number">18</span>:<span class="number">20</span>],fc[<span class="number">22</span>:<span class="number">24</span>])</span><br><span class="line">    print(struct.unpack(<span class="string">&#x27;&gt;h&#x27;</span>,fc[<span class="number">18</span>:<span class="number">20</span>])+struct.unpack(<span class="string">&#x27;&gt;h&#x27;</span>,fc[<span class="number">22</span>:<span class="number">24</span>]))</span><br><span class="line">    pp.append(struct.unpack(<span class="string">&#x27;&gt;h&#x27;</span>,fc[<span class="number">18</span>:<span class="number">20</span>])+struct.unpack(<span class="string">&#x27;&gt;h&#x27;</span>,fc[<span class="number">22</span>:<span class="number">24</span>]))</span><br><span class="line">    <span class="comment"># print(fc.index(b&#x27;\xb6&#x27;),fc.index(b&#x27;\x34&#x27;))</span></span><br><span class="line"><span class="comment"># print(c[:100])</span></span><br><span class="line">img = Image.new(<span class="string">&#x27;RGB&#x27;</span>,(<span class="number">400</span>,<span class="number">70</span>),(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> pp:</span><br><span class="line">    new = Image.new(<span class="string">&#x27;RGB&#x27;</span>,(<span class="number">1</span>,<span class="number">1</span>),(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>))</span><br><span class="line">    img.paste(new,i)</span><br><span class="line">plt.imshow(img)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h2 id="misc48"><a href="#misc48" class="headerlink" title="misc48"></a>misc48</h2><blockquote>
+<p>附件的第（Di）七（Qi）题（Ti）中有提示。本题略脑洞，可跳过</p>
+</blockquote>
+<p>不做了不做了（手动滑稽</p>
+<h2 id="misc49"><a href="#misc49" class="headerlink" title="misc49"></a>misc49</h2><blockquote>
+<p>它们一来就是十六种。本题略脑洞，可跳过</p>
+</blockquote>
+<p>不做了不做了（手动滑稽</p>
+<h1 id="图片篇-颜色通道"><a href="#图片篇-颜色通道" class="headerlink" title="图片篇(颜色通道)"></a>图片篇(颜色通道)</h1><h2 id="misc50"><a href="#misc50" class="headerlink" title="misc50"></a>misc50</h2><blockquote>
+<p>有时候视线也要放低一点</p>
+</blockquote>
+<p>steg打开在红绿蓝三个通道中找到flag：ctfshow{84470883ee1eec2e886436461bf79111}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/5555505214874996.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/516264210055156.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/51522674780005555.png"></p>
+<hr>
+<p>待续….</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Harvey</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://harvey.plus/2021/03/29/ctfshowMisc/">https://harvey.plus/2021/03/29/ctfshowMisc/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://harvey.plus" target="_blank">Mssn Harvey</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ctfshow/">ctfshow</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/ctfshowbg.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/IMG_20210320_145848.png" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/IMG_20210320_145848.png" alt="WeChat"/></a><div class="post-qr-code-desc">WeChat</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1616223647_edit_497335509645465.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1616223647_edit_497335509645465.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/04/02/2021hmgbll/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2021hmgb.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">红明谷杯安全意识赛 2021</div></div></a></div><div class="next-post pull-right"><a href="/2021/03/28/2021DASCTF3/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/DASCTF.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Mar.DASCTF 2021</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/09/27/ctfshowosint/" title="ctfshow-osint"><img class="cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/ctfshowbg.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-27</div><div class="title">ctfshow-osint</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Harvey</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">131</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/MssnHarvey/mssnharvey.github.io"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=3305601910" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://t.me/MssnHarvey" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a><a class="social-icon" href="https://github.com/MssnHarvey" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3305601910@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Welcome to Harvey'Blog！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%AF%87-%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">图片篇(基础操作)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#misc1"><span class="toc-number">1.1.</span> <span class="toc-text">misc1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc2"><span class="toc-number">1.2.</span> <span class="toc-text">misc2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc3"><span class="toc-number">1.3.</span> <span class="toc-text">misc3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc4"><span class="toc-number">1.4.</span> <span class="toc-text">misc4</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%AF%87-%E4%BF%A1%E6%81%AF%E9%99%84%E5%8A%A0"><span class="toc-number">2.</span> <span class="toc-text">图片篇(信息附加)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#misc5"><span class="toc-number">2.1.</span> <span class="toc-text">misc5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc6"><span class="toc-number">2.2.</span> <span class="toc-text">misc6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc7"><span class="toc-number">2.3.</span> <span class="toc-text">misc7</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc8"><span class="toc-number">2.4.</span> <span class="toc-text">misc8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc9"><span class="toc-number">2.5.</span> <span class="toc-text">misc9</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc10"><span class="toc-number">2.6.</span> <span class="toc-text">misc10</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc11"><span class="toc-number">2.7.</span> <span class="toc-text">misc11</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc12"><span class="toc-number">2.8.</span> <span class="toc-text">misc12</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc13"><span class="toc-number">2.9.</span> <span class="toc-text">misc13</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc14"><span class="toc-number">2.10.</span> <span class="toc-text">misc14</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc15"><span class="toc-number">2.11.</span> <span class="toc-text">misc15</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc16"><span class="toc-number">2.12.</span> <span class="toc-text">misc16</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc17"><span class="toc-number">2.13.</span> <span class="toc-text">misc17</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc18"><span class="toc-number">2.14.</span> <span class="toc-text">misc18</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc19"><span class="toc-number">2.15.</span> <span class="toc-text">misc19</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc20"><span class="toc-number">2.16.</span> <span class="toc-text">misc20</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc21"><span class="toc-number">2.17.</span> <span class="toc-text">misc21</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc22"><span class="toc-number">2.18.</span> <span class="toc-text">misc22</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc23"><span class="toc-number">2.19.</span> <span class="toc-text">misc23</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%AF%87-%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">3.</span> <span class="toc-text">图片篇(文件结构)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#misc24"><span class="toc-number">3.1.</span> <span class="toc-text">misc24</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc25"><span class="toc-number">3.2.</span> <span class="toc-text">misc25</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc26"><span class="toc-number">3.3.</span> <span class="toc-text">misc26</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc27"><span class="toc-number">3.4.</span> <span class="toc-text">misc27</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc28"><span class="toc-number">3.5.</span> <span class="toc-text">misc28</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc29"><span class="toc-number">3.6.</span> <span class="toc-text">misc29</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc30"><span class="toc-number">3.7.</span> <span class="toc-text">misc30</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc31"><span class="toc-number">3.8.</span> <span class="toc-text">misc31</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc32"><span class="toc-number">3.9.</span> <span class="toc-text">misc32</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc33"><span class="toc-number">3.10.</span> <span class="toc-text">misc33</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc34"><span class="toc-number">3.11.</span> <span class="toc-text">misc34</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc35"><span class="toc-number">3.12.</span> <span class="toc-text">misc35</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc36"><span class="toc-number">3.13.</span> <span class="toc-text">misc36</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc37"><span class="toc-number">3.14.</span> <span class="toc-text">misc37</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc38"><span class="toc-number">3.15.</span> <span class="toc-text">misc38</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc39"><span class="toc-number">3.16.</span> <span class="toc-text">misc39</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc40"><span class="toc-number">3.17.</span> <span class="toc-text">misc40</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc41"><span class="toc-number">3.18.</span> <span class="toc-text">misc41</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc42"><span class="toc-number">3.19.</span> <span class="toc-text">misc42</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc43"><span class="toc-number">3.20.</span> <span class="toc-text">misc43</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc44"><span class="toc-number">3.21.</span> <span class="toc-text">misc44</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc45"><span class="toc-number">3.22.</span> <span class="toc-text">misc45</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc46"><span class="toc-number">3.23.</span> <span class="toc-text">misc46</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc47"><span class="toc-number">3.24.</span> <span class="toc-text">misc47</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc48"><span class="toc-number">3.25.</span> <span class="toc-text">misc48</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc49"><span class="toc-number">3.26.</span> <span class="toc-text">misc49</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%AF%87-%E9%A2%9C%E8%89%B2%E9%80%9A%E9%81%93"><span class="toc-number">4.</span> <span class="toc-text">图片篇(颜色通道)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#misc50"><span class="toc-number">4.1.</span> <span class="toc-text">misc50</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/12/12/2021MTCTF/" title="第四届2021美团网络安全高校挑战赛"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2021MTCTF.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第四届2021美团网络安全高校挑战赛"/></a><div class="content"><a class="title" href="/2021/12/12/2021MTCTF/" title="第四届2021美团网络安全高校挑战赛">第四届2021美团网络安全高校挑战赛</a><time datetime="2021-12-11T16:00:00.000Z" title="发表于 2021-12-12 00:00:00">2021-12-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/28/2021SMUCTF/" title="The 3rd SMUCTF Office WriteUp"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2021SMUCTF.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="The 3rd SMUCTF Office WriteUp"/></a><div class="content"><a class="title" href="/2021/11/28/2021SMUCTF/" title="The 3rd SMUCTF Office WriteUp">The 3rd SMUCTF Office WriteUp</a><time datetime="2021-11-28T04:00:00.000Z" title="发表于 2021-11-28 12:00:00">2021-11-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/09/ReverseLearnod/" title="入门od打开逆向世界大门之日穿我校某考试系统软件"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/Reverse-learnod.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="入门od打开逆向世界大门之日穿我校某考试系统软件"/></a><div class="content"><a class="title" href="/2021/11/09/ReverseLearnod/" title="入门od打开逆向世界大门之日穿我校某考试系统软件">入门od打开逆向世界大门之日穿我校某考试系统软件</a><time datetime="2021-11-09T15:21:20.000Z" title="发表于 2021-11-09 23:21:20">2021-11-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/30/esp8266tomima/" title="esp8266钓鱼获取指定WiFi密码"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/esp8266fishattack.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="esp8266钓鱼获取指定WiFi密码"/></a><div class="content"><a class="title" href="/2021/10/30/esp8266tomima/" title="esp8266钓鱼获取指定WiFi密码">esp8266钓鱼获取指定WiFi密码</a><time datetime="2021-10-30T04:20:20.000Z" title="发表于 2021-10-30 12:20:20">2021-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/26/2021qwntctf/" title="第四届“强网”拟态防御国际精英挑战赛"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2021qwnt.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第四届“强网”拟态防御国际精英挑战赛"/></a><div class="content"><a class="title" href="/2021/10/26/2021qwntctf/" title="第四届“强网”拟态防御国际精英挑战赛">第四届“强网”拟态防御国际精英挑战赛</a><time datetime="2021-10-26T01:00:00.000Z" title="发表于 2021-10-26 09:00:00">2021-10-26</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/ctfshowbg.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Harvey</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><img src="https://web-resource.mucang.cn/maiche.web/mucang.official/official/resources/images/new-version/beian.png" width="20" height="20" /> </img> 闽ICP备20002768号</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    let initData = {
+      el: '#twikoo-wrap',
+      envId: 'harvey-0g73nuvh55cd4fab',
+      region: ''
+    }
+
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    twikoo.init(initData)
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'harvey-0g73nuvh55cd4fab',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="7944317561" data-server="tencent" data-type="artist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && location.pathname =='/'){
+    
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/building-scifi-digital-art-th.jpg" alt="https://cdn.jsdelivr.net/gh/MssnHarvey/image/building-scifi-digital-art-th.jpg"/></div><div class="blog-slider__content"><span class="blog-slider__code">2021-10-09</span><a class="blog-slider__title" href="2021/10/09/badusb+cs/">BadUSB配合CS免杀实现上线</a><div class="blog-slider__text">BadUSB yyds！</div><a class="blog-slider__button" href="2021/10/09/badusb+cs/">详情</a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2988852155.webp" alt="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2988852155.webp"/></div><div class="blog-slider__content"><span class="blog-slider__code">2020-10-28</span><a class="blog-slider__title" href="2020/10/28/学习资料/">学习资料</a><div class="blog-slider__text">相信懒狗我会不断更新的（不是</div><a class="blog-slider__button" href="2020/10/28/学习资料/">详情</a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/ctf.png" alt="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/ctf.png"/></div><div class="blog-slider__content"><span class="blog-slider__code">2020-02-13</span><a class="blog-slider__title" href="2020/02/13/CTFintroduction/">CTF简介</a><div class="blog-slider__text">来和老赛棍一起签到呀~</div><a class="blog-slider__button" href="2020/02/13/CTFintroduction/">详情</a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载swiper')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.js"></script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper@0.18/swiper/swiperindex.js"></script>
+<style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><!-- hexo injector body_end end --></body></html>

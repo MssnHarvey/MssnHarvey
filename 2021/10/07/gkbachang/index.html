@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>工控CTF-纵横网络靶场社区 | Mssn Harvey</title><meta name="keywords" content="工控"><meta name="author" content="Harvey"><meta name="copyright" content="Harvey"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言前段时间省工控被暴打了就想着学习一下工控知识，于是发现了一个很nice的纯工控靶场：纵横网络靶场社区工控小白在这记录一下（咕了很长一段时间，预计后续还灰咕咕咕 解题记录Modbus协议 黑客通过外网进入一家工厂的控制网络，之后对工控网络中的操作员站系统进行了攻击，最终通过工控协议破坏了正常的业务。我们得到了操作员站在攻击前后的网络流量数据包，我们需要分析流量中的蛛丝马迹，找到FLAG,flag">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工控CTF-纵横网络靶场社区">
+<meta property="og:url" content="https://harvey.plus/2021/10/07/gkbachang/index.html">
+<meta property="og:site_name" content="Mssn Harvey">
+<meta property="og:description" content="前言前段时间省工控被暴打了就想着学习一下工控知识，于是发现了一个很nice的纯工控靶场：纵横网络靶场社区工控小白在这记录一下（咕了很长一段时间，预计后续还灰咕咕咕 解题记录Modbus协议 黑客通过外网进入一家工厂的控制网络，之后对工控网络中的操作员站系统进行了攻击，最终通过工控协议破坏了正常的业务。我们得到了操作员站在攻击前后的网络流量数据包，我们需要分析流量中的蛛丝马迹，找到FLAG,flag">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MssnHarvey/image/image-20211007212525217.png">
+<meta property="article:published_time" content="2021-10-07T12:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-07T13:28:45.901Z">
+<meta property="article:author" content="Harvey">
+<meta property="article:tag" content="工控">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/MssnHarvey/image/image-20211007212525217.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://harvey.plus/2021/10/07/gkbachang/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-10-07 21:28:45'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiperstyle.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">131</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/picture/"><i class="fa-fw fas fa-file-image"></i><span> 图库</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-toolbox"></i><span> 工具</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="http://ctf.ssleye.com/"><span> CTF在线工具</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="http://www.atoolbox.net/"><span> CTF工具箱</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://gchq.github.io/CyberChef/"><span> cyberchef</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://sagecell.sagemath.org/"><span> sage</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-dog"></i><span> 训练平台</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/"><span> XCTF</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://buuoj.cn/"><span> BUUCTF</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://ctf.show/"><span> CTFshow</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.ctfhub.com"><span> CTFHub</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.ichunqiu.com/"><span> I春秋</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.linkedbyx.com/"><span> X平台-安恒</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 评论</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/MssnHarvey/image/image-20211007212525217.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Mssn Harvey</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/picture/"><i class="fa-fw fas fa-file-image"></i><span> 图库</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-toolbox"></i><span> 工具</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="http://ctf.ssleye.com/"><span> CTF在线工具</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="http://www.atoolbox.net/"><span> CTF工具箱</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://gchq.github.io/CyberChef/"><span> cyberchef</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://sagecell.sagemath.org/"><span> sage</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-dog"></i><span> 训练平台</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/"><span> XCTF</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://buuoj.cn/"><span> BUUCTF</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://ctf.show/"><span> CTFshow</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.ctfhub.com"><span> CTFHub</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.ichunqiu.com/"><span> I春秋</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.linkedbyx.com/"><span> X平台-安恒</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 评论</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">工控CTF-纵横网络靶场社区</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-10-07T12:00:00.000Z" title="发表于 2021-10-07 20:00:00">2021-10-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-10-07T13:28:45.901Z" title="更新于 2021-10-07 21:28:45">2021-10-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Writeup/">Writeup</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前段时间省工控被暴打了就想着学习一下工控知识，于是发现了一个很nice的纯工控靶场：<a target="_blank" rel="noopener" href="https://game.fengtaisec.com/#/dashboard"><strong>纵横网络靶场社区</strong></a><br>工控小白在这记录一下（咕了很长一段时间，预计后续还灰咕咕咕</p>
+<h2 id="解题记录"><a href="#解题记录" class="headerlink" title="解题记录"></a>解题记录</h2><h3 id="Modbus协议"><a href="#Modbus协议" class="headerlink" title="Modbus协议"></a>Modbus协议</h3><blockquote>
+<p>黑客通过外网进入一家工厂的控制网络，之后对工控网络中的操作员站系统进行了攻击，最终通过工控协议破坏了正常的业务。我们得到了操作员站在攻击前后的网络流量数据包，我们需要分析流量中的蛛丝马迹，找到FLAG,flag形式为 flag{}</p>
+</blockquote>
+<p>考察modbus协议，过滤后发现有个长度最突出的包，进而发现一串可疑字符串得到flag：flag{TheModbusProtocolIsFunny!}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/gongkong1.png"></p>
+<h3 id="MMS协议分析"><a href="#MMS协议分析" class="headerlink" title="MMS协议分析"></a>MMS协议分析</h3><blockquote>
+<p>工业网络中存在的异常，尝试通过分析PACP流量包，分析出流量数据中的异常点，并拿到FLAG，flag形式为 flag{}。</p>
+</blockquote>
+<p>在MMS包下查找一番并没发现什么可疑的信息，然后追踪tcp流发现一张base64编码的图片</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/gongkong2.png"></p>
+<p>base64转图片后即可得到flag：flag{ICS-mms104}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/gongkong3.png"></p>
+<h3 id="大工UDP协议"><a href="#大工UDP协议" class="headerlink" title="大工UDP协议"></a>大工UDP协议</h3><blockquote>
+<p>在进行工业企业检查评估工作中，发现了疑似感染恶意软件的上位机。现已提取出上位机通信流量，尝试分析出异常点，获取FLAG，flag形式为 flag{}。</p>
+</blockquote>
+<p>追踪UDP流发现可疑字符串</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/gongkong4.png"></p>
+<p>hex解码得到flag：flag{7FoM2StkhePz}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/gongkong5.png"></p>
+<h3 id="工控蜜罐日志分析"><a href="#工控蜜罐日志分析" class="headerlink" title="工控蜜罐日志分析"></a>工控蜜罐日志分析</h3><blockquote>
+<p>工控安全分析人员在互联网上部署了工控仿真蜜罐，通过蜜罐可抓取并分析互联网上针对工业资产的扫描行为，将存在高危扫描行为的IP加入防火墙黑名单可有效减少工业企业对于互联网的攻击面。分析出日志中针对西门子私有通信协议扫描最多的IP，分析该扫描组织,Flag为该IP的域名,，flag形式为 flag{}。</p>
+</blockquote>
+<p>虽然不知道怎么才能找到针对西门子私有通信协议扫描最多的IP，但是不难看出来出现最多的IP就是139.162.99.243，于是尝试将其反查域名提交竟然真的是正确的flag：flag{scan-42.security.ipip.net}</p>
+<p>（蹲个工控大佬👴教教这题正解是咋搞的呀~</p>
+<h3 id="隐信道数据安全分析"><a href="#隐信道数据安全分析" class="headerlink" title="隐信道数据安全分析"></a>隐信道数据安全分析</h3><blockquote>
+<p>安全分析人员截获间谍发的秘密邮件，该邮件只有一个MP3文件，安全人员怀疑间谍通过某种private的方式将信息传递出去，尝试分析该文件，获取藏在文件中的数据？flag形式为 flag{}。</p>
+</blockquote>
+<p>（震惊！工控竟然还有音频题.jpg</p>
+<p>尝试了一番音频隐写无果，最后还是010看看它的文件结构，根据题目关键词 <code>某种private的方式</code> 我们找到 <code>struct MPEG_FRAME mf[] - struct MPEG_HEADER mpeg_hdr - uint32 private_bit</code> ，将其每八个为一组，转十进制再转ASCII码，得到flag：flag{pr1v4t3_bi7}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/gongkong6.png"></p>
+<h3 id="工控安全取证"><a href="#工控安全取证" class="headerlink" title="工控安全取证"></a>工控安全取证</h3><blockquote>
+<p>有黑客入侵工控设备后在内网发起了大量扫描，而且扫描次数不止一次。 请分析日志，指出对方第4次发起扫描时的数据包的编号，flag形式为 flag{} </p>
+</blockquote>
+<p>010查看可发现它是个pcap文件，于是我们直接用wireshark打开，很明显可以看出来主要就是 <code>192.168.0.9</code> 在攻击 <code>192.168.0.99</code> ，然后根据题目我们就先将其按时间显示格式来观察</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/gongkong7.png"></p>
+<p>但由于它这时间都是很接近的，于是我们再根据协议来排发现ICMP协议正好是四次，进而得到数据包的编号为155990（but最后的flag却是flag{155989}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/gongkong8.png"></p>
+<p>属实也没整太懂，<a target="_blank" rel="noopener" href="https://blog.csdn.net/mochu7777777/article/details/120300941"><strong>那就附上其他师傅的wp</strong></a></p>
+<h3 id="隐藏的黑客"><a href="#隐藏的黑客" class="headerlink" title="隐藏的黑客"></a>隐藏的黑客</h3><blockquote>
+<p>根据情报得知工控现场发现某SCADA系统被黑客攻破,附件为黑客在目录留下的文件和当时时间段捕获到的一部分流量包,你能根据这些信息分析出蛛丝马迹来么flag形式为 flag{}。</p>
+</blockquote>
+<p>首先我们可以看出在 <code>upload</code> 的文件夹下全是 <code>webshell</code>，然后我们分析流量包也在http流下发现<code>webshell.zip</code> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/gongkong9.png"></p>
+<p>于是我们将其提取出来…</p>
+<h2 id="佛系摸鱼🐟ing"><a href="#佛系摸鱼🐟ing" class="headerlink" title="佛系摸鱼🐟ing"></a>佛系摸鱼🐟ing</h2></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Harvey</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://harvey.plus/2021/10/07/gkbachang/">https://harvey.plus/2021/10/07/gkbachang/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://harvey.plus" target="_blank">Mssn Harvey</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%B7%A5%E6%8E%A7/">工控</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/MssnHarvey/image/image-20211007212525217.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/IMG_20210320_145848.png" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/IMG_20210320_145848.png" alt="WeChat"/></a><div class="post-qr-code-desc">WeChat</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1616223647_edit_497335509645465.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1616223647_edit_497335509645465.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/10/09/badusb+cs/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/building-scifi-digital-art-th.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">BadUSB配合CS免杀实现上线</div></div></a></div><div class="next-post pull-right"><a href="/2021/09/27/ctfshowosint/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/ctfshowbg.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ctfshow-osint</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/09/09/2021fjgk/" title="2021年中国工业互联网安全大赛(福建省选拔赛) 暨首届福建省工业互联网创新大赛"><img class="cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/2021090918000001.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-09</div><div class="title">2021年中国工业互联网安全大赛(福建省选拔赛) 暨首届福建省工业互联网创新大赛</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Harvey</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">131</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">79</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/MssnHarvey/mssnharvey.github.io"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=3305601910" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://t.me/MssnHarvey" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a><a class="social-icon" href="https://github.com/MssnHarvey" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3305601910@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Welcome to Harvey'Blog！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95"><span class="toc-number">2.</span> <span class="toc-text">解题记录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Modbus%E5%8D%8F%E8%AE%AE"><span class="toc-number">2.1.</span> <span class="toc-text">Modbus协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MMS%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90"><span class="toc-number">2.2.</span> <span class="toc-text">MMS协议分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E5%B7%A5UDP%E5%8D%8F%E8%AE%AE"><span class="toc-number">2.3.</span> <span class="toc-text">大工UDP协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E8%9C%9C%E7%BD%90%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90"><span class="toc-number">2.4.</span> <span class="toc-text">工控蜜罐日志分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E4%BF%A1%E9%81%93%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E5%88%86%E6%9E%90"><span class="toc-number">2.5.</span> <span class="toc-text">隐信道数据安全分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E6%8E%A7%E5%AE%89%E5%85%A8%E5%8F%96%E8%AF%81"><span class="toc-number">2.6.</span> <span class="toc-text">工控安全取证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E8%97%8F%E7%9A%84%E9%BB%91%E5%AE%A2"><span class="toc-number">2.7.</span> <span class="toc-text">隐藏的黑客</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9B%E7%B3%BB%E6%91%B8%E9%B1%BC%F0%9F%90%9Fing"><span class="toc-number">3.</span> <span class="toc-text">佛系摸鱼🐟ing</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/12/12/2021MTCTF/" title="第四届2021美团网络安全高校挑战赛"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2021MTCTF.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第四届2021美团网络安全高校挑战赛"/></a><div class="content"><a class="title" href="/2021/12/12/2021MTCTF/" title="第四届2021美团网络安全高校挑战赛">第四届2021美团网络安全高校挑战赛</a><time datetime="2021-12-11T16:00:00.000Z" title="发表于 2021-12-12 00:00:00">2021-12-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/28/2021SMUCTF/" title="The 3rd SMUCTF Office WriteUp"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2021SMUCTF.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="The 3rd SMUCTF Office WriteUp"/></a><div class="content"><a class="title" href="/2021/11/28/2021SMUCTF/" title="The 3rd SMUCTF Office WriteUp">The 3rd SMUCTF Office WriteUp</a><time datetime="2021-11-28T04:00:00.000Z" title="发表于 2021-11-28 12:00:00">2021-11-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/09/ReverseLearnod/" title="入门od打开逆向世界大门之日穿我校某考试系统软件"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/Reverse-learnod.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="入门od打开逆向世界大门之日穿我校某考试系统软件"/></a><div class="content"><a class="title" href="/2021/11/09/ReverseLearnod/" title="入门od打开逆向世界大门之日穿我校某考试系统软件">入门od打开逆向世界大门之日穿我校某考试系统软件</a><time datetime="2021-11-09T15:21:20.000Z" title="发表于 2021-11-09 23:21:20">2021-11-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/30/esp8266tomima/" title="esp8266钓鱼获取指定WiFi密码"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/esp8266fishattack.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="esp8266钓鱼获取指定WiFi密码"/></a><div class="content"><a class="title" href="/2021/10/30/esp8266tomima/" title="esp8266钓鱼获取指定WiFi密码">esp8266钓鱼获取指定WiFi密码</a><time datetime="2021-10-30T04:20:20.000Z" title="发表于 2021-10-30 12:20:20">2021-10-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/26/2021qwntctf/" title="第四届“强网”拟态防御国际精英挑战赛"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2021qwnt.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第四届“强网”拟态防御国际精英挑战赛"/></a><div class="content"><a class="title" href="/2021/10/26/2021qwntctf/" title="第四届“强网”拟态防御国际精英挑战赛">第四届“强网”拟态防御国际精英挑战赛</a><time datetime="2021-10-26T01:00:00.000Z" title="发表于 2021-10-26 09:00:00">2021-10-26</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/MssnHarvey/image/image-20211007212525217.png')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Harvey</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><img src="https://web-resource.mucang.cn/maiche.web/mucang.official/official/resources/images/new-version/beian.png" width="20" height="20" /> </img> 闽ICP备20002768号</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    let initData = {
+      el: '#twikoo-wrap',
+      envId: 'harvey-0g73nuvh55cd4fab',
+      region: ''
+    }
+
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    twikoo.init(initData)
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'harvey-0g73nuvh55cd4fab',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="7944317561" data-server="tencent" data-type="artist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && location.pathname =='/'){
+    
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/building-scifi-digital-art-th.jpg" alt="https://cdn.jsdelivr.net/gh/MssnHarvey/image/building-scifi-digital-art-th.jpg"/></div><div class="blog-slider__content"><span class="blog-slider__code">2021-10-09</span><a class="blog-slider__title" href="2021/10/09/badusb+cs/">BadUSB配合CS免杀实现上线</a><div class="blog-slider__text">BadUSB yyds！</div><a class="blog-slider__button" href="2021/10/09/badusb+cs/">详情</a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2988852155.webp" alt="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2988852155.webp"/></div><div class="blog-slider__content"><span class="blog-slider__code">2020-10-28</span><a class="blog-slider__title" href="2020/10/28/学习资料/">学习资料</a><div class="blog-slider__text">相信懒狗我会不断更新的（不是</div><a class="blog-slider__button" href="2020/10/28/学习资料/">详情</a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/ctf.png" alt="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/ctf.png"/></div><div class="blog-slider__content"><span class="blog-slider__code">2020-02-13</span><a class="blog-slider__title" href="2020/02/13/CTFintroduction/">CTF简介</a><div class="blog-slider__text">来和老赛棍一起签到呀~</div><a class="blog-slider__button" href="2020/02/13/CTFintroduction/">详情</a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载swiper')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.js"></script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper@0.18/swiper/swiperindex.js"></script>
+<style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><!-- hexo injector body_end end --></body></html>
