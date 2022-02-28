@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>2022 SUSCTF | Mssn Harvey</title><meta name="keywords" content="SUSCTF"><meta name="author" content="Harvey"><meta name="copyright" content="Harvey"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言We are the champion!  Misccheckin https:&#x2F;&#x2F;discord.gg&#x2F;RAvA8Y6D use &gt;help to show help info PM means private message bot only works in challenge-checkin channel   AUDIO Bin received a piece of song">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2022 SUSCTF">
+<meta property="og:url" content="https://harvey.plus/2022/03/01/2022SUSCTF/index.html">
+<meta property="og:site_name" content="Mssn Harvey">
+<meta property="og:description" content="前言We are the champion!  Misccheckin https:&#x2F;&#x2F;discord.gg&#x2F;RAvA8Y6D use &gt;help to show help info PM means private message bot only works in challenge-checkin channel   AUDIO Bin received a piece of song">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2022SUSCTF.jpg">
+<meta property="article:published_time" content="2022-03-01T01:00:00.000Z">
+<meta property="article:modified_time" content="2022-02-28T14:05:01.132Z">
+<meta property="article:author" content="Harvey">
+<meta property="article:tag" content="SUSCTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2022SUSCTF.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://harvey.plus/2022/03/01/2022SUSCTF/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-02-28 22:05:01'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiperstyle.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">132</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">80</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/picture/"><i class="fa-fw fas fa-file-image"></i><span> 图库</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-toolbox"></i><span> 工具</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="http://ctf.ssleye.com/"><span> CTF在线工具</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="http://www.atoolbox.net/"><span> CTF工具箱</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://gchq.github.io/CyberChef/"><span> cyberchef</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://sagecell.sagemath.org/"><span> sage</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-dog"></i><span> 训练平台</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/"><span> XCTF</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://buuoj.cn/"><span> BUUCTF</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://ctf.show/"><span> CTFshow</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.ctfhub.com"><span> CTFHub</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.ichunqiu.com/"><span> I春秋</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.linkedbyx.com/"><span> X平台-安恒</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 评论</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/MssnHarvey/image/2022SUSCTF.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Mssn Harvey</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-archive"></i><span> 归档</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/picture/"><i class="fa-fw fas fa-file-image"></i><span> 图库</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-toolbox"></i><span> 工具</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="http://ctf.ssleye.com/"><span> CTF在线工具</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="http://www.atoolbox.net/"><span> CTF工具箱</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://gchq.github.io/CyberChef/"><span> cyberchef</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://sagecell.sagemath.org/"><span> sage</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-dog"></i><span> 训练平台</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://adworld.xctf.org.cn/"><span> XCTF</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://buuoj.cn/"><span> BUUCTF</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://ctf.show/"><span> CTFshow</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.ctfhub.com"><span> CTFHub</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.ichunqiu.com/"><span> I春秋</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://www.linkedbyx.com/"><span> X平台-安恒</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 评论</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">2022 SUSCTF</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-03-01T01:00:00.000Z" title="发表于 2022-03-01 09:00:00">2022-03-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-02-28T14:05:01.132Z" title="更新于 2022-02-28 22:05:01">2022-02-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Writeup/">Writeup</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>We are the champion!</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2022SUSCTFchampion.png"></p>
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="checkin"><a href="#checkin" class="headerlink" title="checkin"></a>checkin</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://discord.gg/RAvA8Y6D">https://discord.gg/RAvA8Y6D</a><br> use <code>&gt;help</code> to show help info<br> PM means private message<br> bot only works in <code>challenge-checkin</code> channel</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2022SUSCTFcheckin.png"></p>
+<h3 id="AUDIO"><a href="#AUDIO" class="headerlink" title="AUDIO"></a>AUDIO</h3><blockquote>
+<p>Bin received a piece of song from his friend yesterday. The friend told  him that something was hidden in the song. Bin had listened it and found the origin version. Could you help him crack the song and find the  hidden secret?</p>
+</blockquote>
+<p>在两段音频对比之下，可以听到在三十来秒的时候有一段电话音之类的。所以我们先用audition把mp3导出为wav，然后调一下这里的反相上下和增幅，增幅-6；也可以直接写个脚本读音频，然后根据题目的意思做个减法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> wave</span><br><span class="line"><span class="keyword">from</span> scipy.io <span class="keyword">import</span> wavfile</span><br><span class="line"></span><br><span class="line">wav_fname = <span class="string">&#x27;origin_01.wav&#x27;</span></span><br><span class="line">samplerate, data = wavfile.read(wav_fname)</span><br><span class="line">print(data)</span><br><span class="line">print(data.shape[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">wav_fname = <span class="string">&#x27;fromfriends.wav&#x27;</span></span><br><span class="line">samplerate, data1 = wavfile.read(wav_fname)</span><br><span class="line">print(data1)</span><br><span class="line">print(data1.shape[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">dif = data1.shape[<span class="number">0</span>]-data.shape[<span class="number">0</span>]</span><br><span class="line">print(dif)</span><br><span class="line">data1 = data1[:-dif]</span><br><span class="line"><span class="comment"># print(len(data1))</span></span><br><span class="line"><span class="comment"># print(type(data1))</span></span><br><span class="line"></span><br><span class="line">new = data1-data/<span class="number">2</span></span><br><span class="line">print(new)</span><br><span class="line">print()</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> scipy.io.wavfile <span class="keyword">import</span> write</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">samplerate = <span class="number">44100</span>; fs = <span class="number">100</span></span><br><span class="line">t = np.linspace(<span class="number">0.</span>, <span class="number">1.</span>, samplerate)</span><br><span class="line"><span class="comment"># amplitude = np.iinfo(np.int16).max</span></span><br><span class="line"><span class="comment"># print(amplitude)</span></span><br><span class="line"><span class="comment"># data = amplitude * np.sin(2. * np.pi * fs * t)</span></span><br><span class="line">data = new</span><br><span class="line">write(<span class="string">&quot;out.wav&quot;</span>, samplerate, data.astype(np.float32))</span><br></pre></td></tr></table></figure>
+
+<p>最后莫斯解一下得到flag：SUSCTF{MASTEROFAUDIO}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2022SUSCTFAUDIO.png"></p>
+<h3 id="ra2"><a href="#ra2" class="headerlink" title="ra2"></a>ra2</h3><blockquote>
+<p>玩游戏，赢flag！<br> Win the game and caputure the flag.<br> 百度网盘：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1qIXYvw6B-gXpvcHy8b-v9g">https://pan.baidu.com/s/1qIXYvw6B-gXpvcHy8b-v9g</a><br> 提取码：2333<br> google:<a target="_blank" rel="noopener" href="https://drive.google.com/drive/folders/1xhUYCIQAiV9weah3McU486oW_1iIQ3Mk?usp=sharing">https://drive.google.com/drive/folders/1xhUYCIQAiV9weah3McU486oW_1iIQ3Mk?usp=sharing</a></p>
+</blockquote>
+<p>安装相应环境，运行launch-game.cmd，然后直接玩游戏即可得到flag：SUSCTF{RED_ALERT_WINNER!!!}</p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2022SUSCTFra21.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2022SUSCTFra22.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2022SUSCTFra23.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2022SUSCTFra24.png"></p>
+<h3 id="Tanner"><a href="#Tanner" class="headerlink" title="Tanner"></a>Tanner</h3><blockquote>
+<p>There is a special graph which describe one check matrix, find out where is the hint(maybe in the binary data?) and what is the flag.</p>
+</blockquote>
+<p>参考文章：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/148228662">https://zhuanlan.zhihu.com/p/148228662</a></p>
+<p>根据校验矩阵还原码字，然后根据在ID3处发现的hint将所有满足的码字的二进制数据相加之后去sha256得到flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">THE FLAG IS the sha256 of the sum ofthe proper codewords(binary plus)which satisfy the condition.(note: with no zeros front)</span><br><span class="line"></span><br><span class="line">sha256(111111111100000)  -&gt;  SUSCTF&#123;c17019990bf57492cddf24f3cc3be588507b2d567934a101d4de2fa6d606b5c1&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="misound"><a href="#misound" class="headerlink" title="misound"></a>misound</h3><blockquote>
+<p>Noisy and misty, what happened?<br>misound hint:乘法使用ASCII码相乘<br>misound hint2: _的ASCII值是95</p>
+</blockquote>
+<p>在音频中可以得到如下信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 频谱图提取</span><br><span class="line">AnEWmuLTiPLyis_etimes_wiLLbEcomE_B</span><br><span class="line"></span><br><span class="line"># silenteye解密然后base64</span><br><span class="line">207 359 220 224 352 315 359 374 290 310 277 507 391 513 423 392 508 383 440 322 420 427 503 460 295 318 245 302 407 414 410 130 369 317</span><br><span class="line"></span><br><span class="line"># 去掉字母后sstv然后Dotsies Font</span><br><span class="line">NQHFEAOUUUSHLMCJQRFLFNMKGQAOLDWBBI</span><br></pre></td></tr></table></figure>
+
+<p>这里有点非预期了应该，将ASCII字符转换为对应的数值即‘a’–&gt;65，使用ord函数,ord(‘a’)。反正，使用chr函数，将数值转换为对应的ASCII字符，chr(65)，所以只用到了<code>AnEWmuLTiPLyis_etimes_wiLLbEcomE_B</code>这个字符串</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">num = [<span class="string">&#x27;207&#x27;</span>,<span class="string">&#x27; 359&#x27;</span>,<span class="string">&#x27; 220&#x27;</span>,<span class="string">&#x27; 224 &#x27;</span>,<span class="string">&#x27;352 &#x27;</span>,<span class="string">&#x27;315 &#x27;</span>,<span class="string">&#x27;359 &#x27;</span>,<span class="string">&#x27;374&#x27;</span>,<span class="string">&#x27; 290 &#x27;</span>,<span class="string">&#x27;310&#x27;</span>,<span class="string">&#x27; 277&#x27;</span>,<span class="string">&#x27; 507 &#x27;</span>,<span class="string">&#x27;391 &#x27;</span>,<span class="string">&#x27;513 &#x27;</span>,<span class="string">&#x27;423&#x27;</span>,<span class="string">&#x27; 392 &#x27;</span>,<span class="string">&#x27;508 &#x27;</span>,<span class="string">&#x27;383&#x27;</span>,<span class="string">&#x27; 440 &#x27;</span>,<span class="string">&#x27;322&#x27;</span>,<span class="string">&#x27; 420&#x27;</span>,<span class="string">&#x27; 427&#x27;</span>,<span class="string">&#x27; 503 &#x27;</span>,<span class="string">&#x27;460 &#x27;</span>,<span class="string">&#x27;295&#x27;</span>,<span class="string">&#x27; 318 &#x27;</span>,<span class="string">&#x27;245&#x27;</span>,<span class="string">&#x27; 302 &#x27;</span>,<span class="string">&#x27;407&#x27;</span>,<span class="string">&#x27; 414&#x27;</span>,<span class="string">&#x27; 410&#x27;</span>,<span class="string">&#x27; 130 &#x27;</span>,<span class="string">&#x27;369 &#x27;</span>,<span class="string">&#x27;317&#x27;</span>]</span><br><span class="line">a = <span class="string">&#x27;AnEWmuLTiPLyis_etimes_wiLLbEcomE_B&#x27;</span></span><br><span class="line"><span class="comment"># 一个新的乘法是e乘以u将变成b</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 369可以是用_下标或者循环求出来</span></span><br><span class="line"><span class="comment"># print(((ord(&#x27;_&#x27;) * ord(&#x27;e&#x27;))/num[i]))</span></span><br><span class="line"><span class="comment"># 当num[i]等于369时候，值最接近整数#26.00271002710027</span></span><br><span class="line"><span class="comment"># 然后计算了一下95*101和369*26的是相差是1</span></span><br><span class="line"><span class="comment"># 猜测加密算法95*101=369*26+1</span></span><br><span class="line"><span class="comment"># 测试猜想：(207*26+1)/65等于82.8向上取整是83，然后是s字符</span></span><br><span class="line"></span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(num)):</span><br><span class="line">	flag = flag + <span class="built_in">chr</span>(<span class="built_in">round</span>((<span class="built_in">int</span>(num[i]) * <span class="number">26</span> + <span class="number">1</span>)/<span class="built_in">ord</span>(a[i])))</span><br><span class="line">print(flag)</span><br><span class="line"></span><br><span class="line"><span class="comment"># SUSCTF&#123;tHe_matter_iS_unremArkab1e&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>预期解他本意其实是和那个sstv有关的.jpg</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">num = [<span class="string">&#x27;207&#x27;</span>,<span class="string">&#x27; 359&#x27;</span>,<span class="string">&#x27; 220&#x27;</span>,<span class="string">&#x27; 224 &#x27;</span>,<span class="string">&#x27;352 &#x27;</span>,<span class="string">&#x27;315 &#x27;</span>,<span class="string">&#x27;359 &#x27;</span>,<span class="string">&#x27;374&#x27;</span>,<span class="string">&#x27; 290 &#x27;</span>,<span class="string">&#x27;310&#x27;</span>,<span class="string">&#x27; 277&#x27;</span>,<span class="string">&#x27; 507 &#x27;</span>,<span class="string">&#x27;391 &#x27;</span>,<span class="string">&#x27;513 &#x27;</span>,<span class="string">&#x27;423&#x27;</span>,<span class="string">&#x27; 392 &#x27;</span>,<span class="string">&#x27;508 &#x27;</span>,<span class="string">&#x27;383&#x27;</span>,<span class="string">&#x27; 440 &#x27;</span>,<span class="string">&#x27;322&#x27;</span>,<span class="string">&#x27; 420&#x27;</span>,<span class="string">&#x27; 427&#x27;</span>,<span class="string">&#x27; 503 &#x27;</span>,<span class="string">&#x27;460 &#x27;</span>,<span class="string">&#x27;295&#x27;</span>,<span class="string">&#x27; 318 &#x27;</span>,<span class="string">&#x27;245&#x27;</span>,<span class="string">&#x27; 302 &#x27;</span>,<span class="string">&#x27;407&#x27;</span>,<span class="string">&#x27; 414&#x27;</span>,<span class="string">&#x27; 410&#x27;</span>,<span class="string">&#x27; 130 &#x27;</span>,<span class="string">&#x27;369 &#x27;</span>,<span class="string">&#x27;317&#x27;</span>]</span><br><span class="line">a = <span class="string">&#x27;AnEWmuLTiPLyis_etimes_wiLLbEcomE_B&#x27;</span></span><br><span class="line">b = <span class="string">&#x27;NQHFEAOUUUSHLMCJQRFLFNMKGQAOLDWBBI&#x27;</span></span><br><span class="line">print()</span><br><span class="line"></span><br><span class="line"><span class="comment">#95*101=369*26+1</span></span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(num)):</span><br><span class="line">    aa = <span class="built_in">ord</span>(a[i])</span><br><span class="line">    bb = <span class="built_in">ord</span>(b[i])</span><br><span class="line">    n = <span class="built_in">int</span>(num[i])</span><br><span class="line">    t = bb - <span class="built_in">ord</span>(<span class="string">&#x27;A&#x27;</span>)</span><br><span class="line">    print((n * <span class="number">26</span> +t)/aa)</span><br><span class="line">    flag = flag + <span class="built_in">chr</span>(<span class="built_in">round</span>((n * <span class="number">26</span> + <span class="number">1</span>)/aa))</span><br><span class="line"></span><br><span class="line">print(flag)</span><br><span class="line"></span><br><span class="line"><span class="comment"># SUSCTF&#123;tHe_matter_iS_unremArkab1e&#125;</span></span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Harvey</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://harvey.plus/2022/03/01/2022SUSCTF/">https://harvey.plus/2022/03/01/2022SUSCTF/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://harvey.plus" target="_blank">Mssn Harvey</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/SUSCTF/">SUSCTF</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2022SUSCTF.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/IMG_20210320_145848.png" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/IMG_20210320_145848.png" alt="WeChat"/></a><div class="post-qr-code-desc">WeChat</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1616223647_edit_497335509645465.jpg" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/1616223647_edit_497335509645465.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/12/12/2021MTCTF/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2021MTCTF.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">第四届2021美团网络安全高校挑战赛</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Harvey</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">132</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">80</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/MssnHarvey/mssnharvey.github.io"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="tencent://AddContact/?fromId=50&amp;fromSubId=1&amp;subcmd=all&amp;uin=3305601910" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="https://t.me/MssnHarvey" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a><a class="social-icon" href="https://github.com/MssnHarvey" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:3305601910@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">Welcome to Harvey'Blog！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#checkin"><span class="toc-number">2.1.</span> <span class="toc-text">checkin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AUDIO"><span class="toc-number">2.2.</span> <span class="toc-text">AUDIO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ra2"><span class="toc-number">2.3.</span> <span class="toc-text">ra2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tanner"><span class="toc-number">2.4.</span> <span class="toc-text">Tanner</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#misound"><span class="toc-number">2.5.</span> <span class="toc-text">misound</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/03/01/2022SUSCTF/" title="2022 SUSCTF"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2022SUSCTF.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2022 SUSCTF"/></a><div class="content"><a class="title" href="/2022/03/01/2022SUSCTF/" title="2022 SUSCTF">2022 SUSCTF</a><time datetime="2022-03-01T01:00:00.000Z" title="发表于 2022-03-01 09:00:00">2022-03-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/12/2021MTCTF/" title="第四届2021美团网络安全高校挑战赛"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2021MTCTF.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第四届2021美团网络安全高校挑战赛"/></a><div class="content"><a class="title" href="/2021/12/12/2021MTCTF/" title="第四届2021美团网络安全高校挑战赛">第四届2021美团网络安全高校挑战赛</a><time datetime="2021-12-11T16:00:00.000Z" title="发表于 2021-12-12 00:00:00">2021-12-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/28/2021SMUCTF/" title="The 3rd SMUCTF Office WriteUp"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/2021SMUCTF.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="The 3rd SMUCTF Office WriteUp"/></a><div class="content"><a class="title" href="/2021/11/28/2021SMUCTF/" title="The 3rd SMUCTF Office WriteUp">The 3rd SMUCTF Office WriteUp</a><time datetime="2021-11-28T04:00:00.000Z" title="发表于 2021-11-28 12:00:00">2021-11-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/09/ReverseLearnod/" title="入门od打开逆向世界大门之日穿我校某考试系统软件"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/Reverse-learnod.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="入门od打开逆向世界大门之日穿我校某考试系统软件"/></a><div class="content"><a class="title" href="/2021/11/09/ReverseLearnod/" title="入门od打开逆向世界大门之日穿我校某考试系统软件">入门od打开逆向世界大门之日穿我校某考试系统软件</a><time datetime="2021-11-09T15:21:20.000Z" title="发表于 2021-11-09 23:21:20">2021-11-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/30/esp8266tomima/" title="esp8266钓鱼获取指定WiFi密码"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/esp8266fishattack.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="esp8266钓鱼获取指定WiFi密码"/></a><div class="content"><a class="title" href="/2021/10/30/esp8266tomima/" title="esp8266钓鱼获取指定WiFi密码">esp8266钓鱼获取指定WiFi密码</a><time datetime="2021-10-30T04:20:20.000Z" title="发表于 2021-10-30 12:20:20">2021-10-30</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/MssnHarvey/image/2022SUSCTF.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Harvey</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><img src="https://web-resource.mucang.cn/maiche.web/mucang.official/official/resources/images/new-version/beian.png" width="20" height="20" /> </img> 闽ICP备20002768号</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    let initData = {
+      el: '#twikoo-wrap',
+      envId: 'harvey-0g73nuvh55cd4fab',
+      region: ''
+    }
+
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    twikoo.init(initData)
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'harvey-0g73nuvh55cd4fab',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="7944317561" data-server="tencent" data-type="artist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="true" muted></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && location.pathname =='/'){
+    
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/image/building-scifi-digital-art-th.jpg" alt="https://cdn.jsdelivr.net/gh/MssnHarvey/image/building-scifi-digital-art-th.jpg"/></div><div class="blog-slider__content"><span class="blog-slider__code">2021-10-09</span><a class="blog-slider__title" href="2021/10/09/badusb+cs/">BadUSB配合CS免杀实现上线</a><div class="blog-slider__text">BadUSB yyds！</div><a class="blog-slider__button" href="2021/10/09/badusb+cs/">详情</a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2988852155.webp" alt="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/2988852155.webp"/></div><div class="blog-slider__content"><span class="blog-slider__code">2020-10-28</span><a class="blog-slider__title" href="2020/10/28/学习资料/">学习资料</a><div class="blog-slider__text">相信懒狗我会不断更新的（不是</div><a class="blog-slider__button" href="2020/10/28/学习资料/">详情</a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms"><div class="blog-slider__img"><img src="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/ctf.png" alt="https://cdn.jsdelivr.net/gh/MssnHarvey/cloudimg/img/ctf.png"/></div><div class="blog-slider__content"><span class="blog-slider__code">2020-02-13</span><a class="blog-slider__title" href="2020/02/13/CTFintroduction/">CTF简介</a><div class="blog-slider__text">来和老赛棍一起签到呀~</div><a class="blog-slider__button" href="2020/02/13/CTFintroduction/">详情</a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载swiper')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper/swiper/swiper.min.js"></script>
+<script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-swiper@0.18/swiper/swiperindex.js"></script>
+<style></style><script data-pjax>function history_calendar_injector_config(){
+                var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+                var item_html = '<div class="card-widget card-history"><div class="card-content"><div class="item-headline"><i class="fas fa-clock fa-spin"></i><span>那年今日</span></div><div id="history-baidu" style="height: 100px;overflow: hidden"><div class="history_swiper-container" id="history-container" style="width: 100%;height: 100%"><div class="swiper-wrapper" id="history_container_wrapper" style="height:20px"></div></div></div></div>';
+                console.log('已挂载history_calendar')
+                // parent_div_git.innerHTML=item_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",item_html) // 有报错，但不影响使用(支持pjax跳转)
+            }if( document.getElementsByClassName('sticky_layout')[0] && (location.pathname ==='all'|| 'all' ==='all')){
+
+            history_calendar_injector_config()
+        } </script><script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/js/main.js"></script><!-- hexo injector body_end end --></body></html>
